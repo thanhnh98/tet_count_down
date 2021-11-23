@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BaseProject</string>
+    <string name="facebook_app_id">490997225456774</string>
+    <string name="fb_login_protocol_scheme">fb490997225456774</string>
+
+    <string name="signup"><u>Sign up</u></string>
+    <string name="forgot_password"><u>Fogot password?</u></string>
+    <string name="day">Ngày</string>
+    <string name="hour">Giờ</string>
+    <string name="minute">Phút</string>
+    <string name="second">Giây</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        app:layoutDescription="@xml/activity_motion_xml_constraintlayout_scene"
+        android:focusable="true">
+
+        <View
+            android:id="@+id/v_container"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toLeftOf="parent">
+        </View>
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Text1"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/v_container"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Text2"
+            app:layout_constraintLeft_toLeftOf="@id/v_container"
+            app:layout_constraintTop_toBottomOf="@id/tv1"
+            />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="Text3"
+            app:layout_constraintLeft_toLeftOf="@id/v_container"
+            app:layout_constraintTop_toBottomOf="@id/tv2"/>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

@@ -1,0 +1,1 @@
+D:\Github\BaseProject\buildSrc\build\classes\kotlin\main\AndroidConfigs.class;D:\Github\BaseProject\buildSrc\build\classes\kotlin\main\Deps.class;D:\Github\BaseProject\buildSrc\build\classes\kotlin\main\Modules.class;D:\Github\BaseProject\buildSrc\build\classes\kotlin\main\Versions.class
