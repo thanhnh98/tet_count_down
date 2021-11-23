@@ -11,11 +11,12 @@ import com.thanh_nguyen.baseproject.databinding.ActivityMainBinding
 import android.media.MediaPlayer
 
 import com.thanh_nguyen.baseproject.R
+import com.thanh_nguyen.baseproject.common.Constants
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val mediaPlayer by lazy {
-        MediaPlayer.create(this, R.raw.tetlatet).apply {
+        MediaPlayer.create(this, Constants.GLOBAL_SOUND).apply {
             isLooping = true
         }
     }

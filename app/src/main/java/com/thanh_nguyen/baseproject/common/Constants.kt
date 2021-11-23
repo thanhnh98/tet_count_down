@@ -1,9 +1,11 @@
 package com.thanh_nguyen.baseproject.common
 
+import com.thanh_nguyen.baseproject.R
+
 class Constants {
     companion object{
         const val APP_ID = "3809D924-093D-466B-9E7D-BF7823718FB9"
-        val arrWishes = listOf(
+        val GLOBAL_WISH = listOf(
             "Chúc bạn của tôi có một buổi sáng thật tốt lành, một ngày làm việc hiệu quả, may mắn và thành công. Nhớ nở những nụ cười thật tươi và xinh xắn trong ngày hôm nay nhé!",
             "Thành công chỉ đến với những người luôn biết nỗ lực và cố gắng. Mình tin chắc rằng cậu sẽ thành công. Chúc cậu buổi sáng may mắn và tràn đầy năng lượng.",
             "Có 2 điều mà bạn không thể thay đổi, đó chính là ngày hôm qua và ngày mai. Ngày hôm qua đã trôi qua rồi còn ngày mai thì sắp tới. Vì thế, hãy sống trọn vẹn cho ngày hôm nay bạn nhé. Chúc bạn ngày mới vui vẻ!",
@@ -26,8 +28,16 @@ class Constants {
             "Đừng nên dùng những lời tuyệt tình để làm tổn thương đến người mà bạn yêu vào lúc tâm tình tồi tệ nhất.",
             "Có những lúc, không có lần sau, không có cơ hội bắt đầu lại. Có những lúc, bỏ lỡ hiện tại, vĩnh viễn không còn cơ hội nữa. Hãy dùng thái độ cam tâm tình nguyện để sống một cuộc sống an ổn.",
             "Phụ nữ, không cần phải nghiêng nước nghiêng thành, chỉ cần một người đàn ông nghiêng về cô ấy cả một đời!"
-        )
+        ).random()
+
+        val GLOBAL_SOUND = listOf(
+            R.raw.hpny,
+            R.raw.hpnyrm,
+            R.raw.hpnyrm2
+        ) .random()
     }
+
+
     class Exception{
         companion object{
             val CANCELLATION_EXCEPTION = -999

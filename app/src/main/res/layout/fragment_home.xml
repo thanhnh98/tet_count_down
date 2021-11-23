@@ -69,7 +69,7 @@
                 style="@style/TextViewTitle"
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="Mừng tết Nhâm Dần\n2022"
+                android:text="Cùng đón tết Nhâm Dần\n2022"
                 />
             <TextView
                 android:id="@+id/tv_wish"

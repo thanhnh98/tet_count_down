@@ -23,7 +23,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun bindView() {
-        binding.tvWish.text =  Constants.arrWishes.random()
+        binding.tvWish.text = Constants.GLOBAL_WISH
     }
 
     private fun setup() {
