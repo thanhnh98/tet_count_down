@@ -11,7 +11,7 @@ class AuthInterceptor : Interceptor {
         }
 
         fun setToken(token: String){
-            headers["x-access-token"] = token
+            //headers["x-access-token"] = token
         }
     }
 

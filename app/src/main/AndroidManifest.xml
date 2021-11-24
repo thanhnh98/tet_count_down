@@ -2,17 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thanh_nguyen.baseproject" >
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:name=".App"
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.BaseProject" >
@@ -25,24 +20,20 @@
 <!--        </service>-->
 
         <activity android:name=".app.presentation.ui.main.MainActivity"
-            android:theme="@style/Theme.BaseProject.FullScreen">
+            android:theme="@style/Theme.BaseProject.FullScreen"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".app.presentation.ui.SplashScreen"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.thanh_nguyen.baseproject.app.presentation.ui.login.LoginActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-
-        </activity>
-
-        <receiver android:name=".receiver.SmsReceiver">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

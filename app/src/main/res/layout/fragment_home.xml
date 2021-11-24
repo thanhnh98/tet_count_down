@@ -83,6 +83,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sp"
                 android:textStyle="italic|bold"
+                android:alpha="0"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

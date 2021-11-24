@@ -12,11 +12,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
-import com.thanh_nguyen.baseproject.app.data.data_source.remote.LoginRemoteDataSource
 import com.thanh_nguyen.baseproject.app.data.local_data.room_db.StorageDatabase
 import com.thanh_nguyen.baseproject.app.data.network.ApiClient
-import com.thanh_nguyen.baseproject.app.domain.repositories.LoginRepository
-import com.thanh_nguyen.baseproject.app.domain.usecases.LoginUseCase
 import com.thanh_nguyen.baseproject.app.model.AuthorModel
 import com.thanh_nguyen.baseproject.app.model.entities.StorageItemEntity
 import com.thanh_nguyen.baseproject.app.model.respone.Result
@@ -32,11 +29,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.kodein.di.Kodein
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.provider
 import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 import kotlin.random.Random
 
 @ExperimentalCoroutinesApi

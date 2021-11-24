@@ -10,4 +10,5 @@ val appModule = Kodein.Module(APP_MODULE, false){
     import(repositoryModule)
     import(viewModelModule)
     import(useCaseModule)
+    import(othersModule)
 }

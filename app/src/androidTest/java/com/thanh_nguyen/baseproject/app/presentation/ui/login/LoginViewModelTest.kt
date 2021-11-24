@@ -4,17 +4,14 @@
 
 package com.thanh_nguyen.baseproject.app.presentation.ui.login
 
-import android.util.Log
 import androidx.annotation.UiThread
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.thanh_nguyen.baseproject.app.data.repository.LoginRepositoryImplTest
-import com.thanh_nguyen.baseproject.app.domain.usecases.LoginUseCase
 import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseViewModelTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After

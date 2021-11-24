@@ -1,20 +1,30 @@
 package com.thanh_nguyen.baseproject.app.presentation.ui.main.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.thanh_nguyen.baseproject.app.domain.usecases.EventUseCase
 import com.thanh_nguyen.baseproject.app.model.DateDataModel
 import com.thanh_nguyen.baseproject.app.model.HomeDataModel
+import com.thanh_nguyen.baseproject.app.model.WishModel
 import com.thanh_nguyen.baseproject.common.Constants
 import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseCollectionViewModel
 import com.thanh_nguyen.baseproject.utils.getSecondsUntilDate
+import com.thanh_nguyen.baseproject.utils.toJson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class HomeViewModel: BaseCollectionViewModel() {
+class HomeViewModel(
+    private val eventUseCase: EventUseCase
+): BaseCollectionViewModel() {
     private var _homeData = MutableLiveData<HomeDataModel>()
     val homeData: LiveData<HomeDataModel> get() = _homeData
+
+    private var _wishesData = MutableLiveData<WishModel>()
+    val wishesData: LiveData<WishModel> get() = _wishesData
 
     fun startCountDown(){
         viewModelScope.launch {
@@ -45,5 +55,18 @@ class HomeViewModel: BaseCollectionViewModel() {
         }
         delay(1000)
         onTick()
+    }
+
+    fun getWishes(){
+        viewModelScope.launch {
+            eventUseCase.getWishes().collect {
+                it.data?.apply {
+                }
+                if (it.data == null)
+                    _wishesData.postValue(WishModel(data = listOf("Happy new year")))
+                else
+                    _wishesData.postValue(it.data)
+            }
+        }
     }
 }

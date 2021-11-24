@@ -19,7 +19,6 @@ class MainStateAdapter(
 
 data class MainStateModel(
     val title: String,
-    @DrawableRes val icon: Int,
     val fragment: Fragment
 
 )

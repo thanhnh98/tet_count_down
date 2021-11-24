@@ -24,10 +24,12 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
     }
 
     bindViewModel<HomeViewModel>() with provider {
-        HomeViewModel()
+        HomeViewModel(instance())
     }
 
     bindViewModel<ProfileViewModel>() with provider {
         ProfileViewModel()
     }
+
+
 }

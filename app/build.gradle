@@ -33,7 +33,7 @@ android {
         debug {
             debuggable true
             minifyEnabled false
-            buildConfigField "String", "BASE_URL", "\"https://gist.githubusercontent.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
             applicationIdSuffix ".debug"
             signingConfig signingConfigs.debug
         }
@@ -41,7 +41,7 @@ android {
             debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"https://gist.githubusercontent.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
             signingConfig signingConfigs.release
         }
     }
