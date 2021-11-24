@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -22,6 +21,10 @@ android {
 
     signingConfigs {
         release {
+            storeFile file('D:\\Github\\tet-count-down-store\\tet_count_down_key_store.jks')
+            storePassword 'thanhnh'
+            keyAlias 'key0'
+            keyPassword 'thanhnh'
 //            keyAlias keystoreProperties['keyAlias']
 //            keyPassword keystoreProperties['keyPassword']
 //            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
@@ -39,7 +42,7 @@ android {
         }
         release {
             debuggable false
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
             signingConfig signingConfigs.release
@@ -116,12 +119,6 @@ dependencies {
     implementation Deps.lifecycle_livedata_ktx
     implementation Deps.circle_imageview
     implementation Deps.lottie
-
-    //firebase
-    implementation platform(Deps.firebase_bom)
-    implementation Deps.firebase_analytics_ktx
-    implementation Deps.firebase_messaging_ktx
-    implementation Deps.firebase_auth
 
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
