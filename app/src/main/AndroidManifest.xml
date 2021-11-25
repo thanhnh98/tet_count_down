@@ -13,7 +13,7 @@
         android:theme="@style/Theme.BaseProject" >
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="@string/key_ads"/>
         <!--        <service-->
 <!--            android:name="com.thanh_nguyen.baseproject.external.firebase.AppFirebaseMessageService"-->
 <!--            android:exported="false">-->

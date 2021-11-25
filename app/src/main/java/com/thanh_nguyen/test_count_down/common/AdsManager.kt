@@ -4,13 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.utils.NullableOnClick
 
 class AdsManager(private val context: Context) {
@@ -18,7 +18,7 @@ class AdsManager(private val context: Context) {
     fun prepareAds(): AdsManager{
         InterstitialAd.load(
             context,
-            "ca-app-pub-3940256099942544/1033173712",
+            BuildConfig.ADS_ID,
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -27,7 +27,6 @@ class AdsManager(private val context: Context) {
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
-                    Log.e("loaded","loaded ads")
                 }
             })
         return this
@@ -40,7 +39,6 @@ class AdsManager(private val context: Context) {
     ){
         mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
-                Log.e("onDismissed","?")
                 onDismiss?.invoke()
             }
 
