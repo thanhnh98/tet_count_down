@@ -19,7 +19,7 @@ class App: Application(), LifecycleObserver, KodeinAware {
         super.onCreate()
         instance = this
         MobileAds.initialize(this)
-        val testDeviceIds = listOf("2D754340943AB2A524632B55EEC48816")
+        val testDeviceIds = listOf("11A5A306389981CA70B4C70CBE041154")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
     }
