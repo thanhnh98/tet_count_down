@@ -4,13 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.BuildConfig
+import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.utils.NullableOnClick
 
 class AdsManager(private val context: Context) {
@@ -18,8 +21,10 @@ class AdsManager(private val context: Context) {
     fun prepareAds(): AdsManager{
         InterstitialAd.load(
             context,
-            BuildConfig.ADS_ID,
-            AdRequest.Builder().build(),
+            App.getString(R.string.key_ads_interstitial),
+            AdRequest.Builder().build().apply {
+                Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
+            },
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     mInterstitialAd = null

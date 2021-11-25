@@ -1,4 +1,8 @@
 <resources>
+    <string name="key_ads_app_id">com.google.android.gms.ads.APPLICATION_ID</string>
+    <string name="key_ads">ca-app-pub-3395045728500314~1259121134</string>
+    <string name="key_ads_interstitial">ca-app-pub-3395045728500314/5395297950</string>
+
     <string name="app_name">Sắp tết</string>
     <string name="signup"><u>Sign up</u></string>
     <string name="forgot_password"><u>Fogot password?</u></string>

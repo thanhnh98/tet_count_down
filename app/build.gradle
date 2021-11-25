@@ -37,7 +37,6 @@ android {
             debuggable true
             minifyEnabled false
             buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
-            buildConfigField "String", "ADS_ID", "\"ca-app-pub-3940256099942544/1033173712\""
             applicationIdSuffix ".debug"
             signingConfig signingConfigs.debug
         }
@@ -46,7 +45,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
-            buildConfigField "String", "ADS_ID", "\"ca-app-pub-3395045728500314/5395297950\""
             signingConfig signingConfigs.release
         }
     }

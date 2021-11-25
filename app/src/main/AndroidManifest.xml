@@ -12,7 +12,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.BaseProject" >
         <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:name="@string/key_ads_app_id"
             android:value="@string/key_ads"/>
         <!--        <service-->
 <!--            android:name="com.thanh_nguyen.baseproject.external.firebase.AppFirebaseMessageService"-->
