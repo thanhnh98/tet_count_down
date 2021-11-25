@@ -4,6 +4,7 @@
 
 package com.thanh_nguyen.test_count_down.di
 
+import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -14,5 +15,9 @@ private const val OTHER = "OTHER"
 val othersModule = Kodein.Module("OTHER", false) {
     bind() from singleton {
         BackgroundSoundManager(instance())
+    }
+
+    bind() from singleton {
+        AdsManager(instance())
     }
 }

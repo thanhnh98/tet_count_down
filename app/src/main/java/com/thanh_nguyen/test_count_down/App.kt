@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.res.Resources
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleObserver
+import com.google.android.gms.ads.MobileAds
 import com.thanh_nguyen.test_count_down.di.appModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -13,6 +14,7 @@ class App: Application(), LifecycleObserver, KodeinAware {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        MobileAds.initialize(this)
     }
 
     override val kodein: Kodein = Kodein.lazy {

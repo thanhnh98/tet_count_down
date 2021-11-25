@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.BaseProject" >
-<!--        <service-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+        <!--        <service-->
 <!--            android:name="com.thanh_nguyen.baseproject.external.firebase.AppFirebaseMessageService"-->
 <!--            android:exported="false">-->
 <!--            <intent-filter>-->
@@ -27,6 +30,7 @@
 
         <activity android:name="com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen"
             android:theme="@style/SplashTheme"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
