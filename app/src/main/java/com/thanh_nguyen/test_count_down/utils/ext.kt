@@ -113,3 +113,10 @@ fun getSecondsUntilDate(endDate: String): Long{
     val endMillis = endDate.toCalendar().timeInMillis
     return TimeUnit.MILLISECONDS.toSeconds(endMillis - currentMillis)
 }
+
+
+fun getDaysUntilDate(endDate: String): Long{
+    val currentMillis = System.currentTimeMillis()
+    val endMillis = endDate.toCalendar().timeInMillis
+    return TimeUnit.MILLISECONDS.toDays(endMillis - currentMillis)
+}

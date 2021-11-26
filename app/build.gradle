@@ -78,7 +78,7 @@ dependencies {
     implementation Deps.material
     implementation Deps.constraintlayout
 
-    implementation "com.android.billingclient:billing-ktx:4.0.0"
+//    implementation "com.android.billingclient:billing-ktx:4.0.0"
 
     //local test
     testImplementation Deps.junit
