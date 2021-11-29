@@ -3,8 +3,8 @@ package com.thanh_nguyen.test_count_down.app.data.data_source.remote
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.thanh_nguyen.test_count_down.app.model.respone.ErrorResponse
-import com.thanh_nguyen.test_count_down.app.model.respone.Result
+import com.thanh_nguyen.test_count_down.app.model.response.ErrorResponse
+import com.thanh_nguyen.test_count_down.app.model.response.Result
 import com.thanh_nguyen.test_count_down.common.Constants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

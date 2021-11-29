@@ -17,7 +17,7 @@
     <color name="tab_background_unselected">#FF3700B3</color>
 
     <color name="md_red_200_opacity_5">#80B0BBC5</color>
-    <color name="bg_widget_color">#80C62828</color>
+    <color name="bg_widget_color">#40ffffff</color>
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>

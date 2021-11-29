@@ -53,4 +53,30 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
+    <style name="Widget.TextView.Large" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">cursive</item>
+    </style>
+
+    <style name="Widget.TextView.Title1" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">cursive</item>
+    </style>
+
+    <style name="Widget.TextView.Title2" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/_20sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">cursive</item>
+    </style>
+
+    <style name="Widget.TextView.Small" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">cursive</item>
+    </style>
+
 </resources>

@@ -1,6 +1,8 @@
 package com.thanh_nguyen.test_count_down
 
 import android.app.Application
+import android.appwidget.AppWidgetManager
+import android.content.Intent
 import android.content.res.Resources
 import android.util.Log
 import androidx.annotation.StringRes

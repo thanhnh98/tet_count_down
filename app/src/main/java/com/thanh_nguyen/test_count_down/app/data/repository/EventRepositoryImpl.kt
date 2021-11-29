@@ -7,7 +7,7 @@ package com.thanh_nguyen.test_count_down.app.data.repository
 import com.thanh_nguyen.test_count_down.app.data.data_source.remote.EventRemoteDataSource
 import com.thanh_nguyen.test_count_down.app.domain.repositories.EventRepository
 import com.thanh_nguyen.test_count_down.app.model.WishModel
-import com.thanh_nguyen.test_count_down.app.model.respone.Result
+import com.thanh_nguyen.test_count_down.app.model.response.Result
 import kotlinx.coroutines.flow.Flow
 
 class EventRepositoryImpl(private val dataSource: EventRemoteDataSource): EventRepository {

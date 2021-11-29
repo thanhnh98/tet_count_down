@@ -1,8 +1,11 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui.main
 
+import android.appwidget.AppWidgetManager
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.RemainTimeWidget
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.calendar.CalendarFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
@@ -19,6 +22,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         soundManager.playBackgroundSound()
         setupViewPager()
+        sendBroadcast(Intent(this, RemainTimeWidget::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        })
     }
 
     override fun onResume() {

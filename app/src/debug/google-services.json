@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "197930861817",
+    "project_id": "sap-tet-debug",
+    "storage_bucket": "sap-tet-debug.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197930861817:android:eaeaffa1a990b2d8c80e28",
+        "android_client_info": {
+          "package_name": "com.thanh_nguyen.tet_count_down.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197930861817-bml2jt06gh1ihgo3q9stg2ddmr7l8bvo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thanh_nguyen.tet_count_down.debug",
+            "certificate_hash": "500862b311916d42af58d8a63433ddc2eadf5bb7"
+          }
+        },
+        {
+          "client_id": "197930861817-j8bru1ne1i9c2rrrh6pk481ssndnie7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAhGf4ZnSUjD0RmVPtEneDce6nVSmL_X0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197930861817-j8bru1ne1i9c2rrrh6pk481ssndnie7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
