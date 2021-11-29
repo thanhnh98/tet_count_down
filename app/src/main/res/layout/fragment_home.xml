@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@drawable/bg_gray_opacity_50"
-                android:text="Mỗi sáng thức dậy, cậu là người đầu tiên xuất hiện trong tâm trí tớ. Mong một ngày một rạng rỡ sẽ đến với cậu. Good day!"
+                android:text="Mỗi sáng thức dậy, bạn có thêm một cơ hội mới, cố gắng nắm bắt nhé. Good day!"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sp"
                 android:textStyle="italic|bold"

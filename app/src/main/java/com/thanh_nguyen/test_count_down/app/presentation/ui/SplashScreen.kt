@@ -23,6 +23,7 @@ import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.databinding.ActivitySplashBinding
+import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import okhttp3.internal.wait
@@ -38,7 +39,6 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
         super.onCreate(savedInstanceState)
         soundManager.playFireworkSound()
         adsManager.prepareAds()
-        Log.e("id", "${getString(R.string.key_ads)}")
         lifecycleScope.launch {
             AppSharedPreferences.isVisited.collect {
                 if (isGoneToMain)

@@ -4,15 +4,18 @@ import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import androidx.core.app.AlarmManagerCompat
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
+import com.thanh_nguyen.test_count_down.common.notification.pushNotification
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.receiver.AlarmReceiver
 import kotlinx.coroutines.*
@@ -23,13 +26,10 @@ import java.util.*
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
     private val adsManager: AdsManager by instance()
-    private lateinit var intentAlarm: Intent
-    lateinit var pendingIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        alarmSetup()
         soundManager.playBackgroundSound()
         setupViewPager()
         adsManager.prepareAds()
@@ -71,18 +71,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onBackPressed() {
         finish()
-    }
-
-    @SuppressLint("ShortAlarm", "UnspecifiedImmutableFlag")
-    private fun alarmSetup(){
-        intentAlarm = Intent(this, AlarmReceiver::class.java)
-        pendingIntent = PendingIntent.getBroadcast(this, 999, intentAlarm,PendingIntent.FLAG_CANCEL_CURRENT)
-        val alarmManager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        alarmManager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            System.currentTimeMillis(),
-            5000,
-            pendingIntent
-        )
     }
 }
