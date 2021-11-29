@@ -3,7 +3,7 @@ package com.thanh_nguyen.test_count_down.di
 import androidx.lifecycle.ViewModelProvider
 import bindViewModel
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeViewModel
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.profile.ProfileViewModel
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.calendar.CalendarViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.direct
 import org.kodein.di.generic.bind
@@ -27,8 +27,8 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
         HomeViewModel(instance())
     }
 
-    bindViewModel<ProfileViewModel>() with provider {
-        ProfileViewModel()
+    bindViewModel<CalendarViewModel>() with provider {
+        CalendarViewModel()
     }
 
 

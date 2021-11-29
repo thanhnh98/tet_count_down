@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:id="@+id/exOneAppBarLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/colorPrimaryLight"-->
+<!--            android:theme="@style/AppTheme.AppBarOverlay">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="14dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/exOneYearText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="24sp"-->
+<!--                    tools:text="2019" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/exOneMonthText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="sans-serif-light"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="38sp"-->
+<!--                    tools:text="April" />-->
+
+<!--            </LinearLayout>-->
+
+<!--            <include-->
+<!--                android:id="@+id/legendLayout"-->
+<!--                layout="@layout/calendar_day_legend"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp" />-->
+
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <com.kizitonwose.calendarview.CalendarView-->
+<!--                android:id="@+id/calendar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cv_dayViewResource="@layout/calendar_day_layout"-->
+<!--                app:cv_orientation="horizontal"-->
+<!--                app:cv_outDateStyle="endOfRow"-->
+<!--                app:cv_inDateStyle="allMonths"-->
+<!--                app:cv_scrollMode="paged" />-->
+<!--        </FrameLayout>-->
+
+
+    </LinearLayout>
+</layout>

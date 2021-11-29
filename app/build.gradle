@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -21,11 +23,11 @@ android {
 
     signingConfigs {
         release {
-            //storeFile file('D:\\Github\\tet-count-down-store\\tet_count_down_key_store.jks')
+            storeFile file('D:\\Github\\tet-count-down-store\\tet_count_down_key_store.jks')
             storePassword 'thanhnh'
             keyAlias 'key0'
             keyPassword 'thanhnh'
-            storeFile file('/Users/thanhnh/github/tet-count-down-key-store/tet_count_down_key_store.jks')
+//            storeFile file('/Users/thanhnh/github/tet-count-down-key-store/tet_count_down_key_store.jks')
 //            keyAlias keystoreProperties['keyAlias']
 //            keyPassword keystoreProperties['keyPassword']
 //            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
@@ -38,7 +40,6 @@ android {
             debuggable true
             minifyEnabled false
             buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
-            applicationIdSuffix ".debug"
             signingConfig signingConfigs.debug
         }
         release {
@@ -50,6 +51,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -57,6 +59,7 @@ android {
     buildFeatures {
 
         dataBinding true
+        viewBinding true
 
         // for view binding:
         // viewBinding true
@@ -78,6 +81,8 @@ dependencies {
     implementation Deps.material
     implementation Deps.constraintlayout
 
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
 //    implementation "com.android.billingclient:billing-ktx:4.0.0"
 
     //local test
@@ -86,7 +91,7 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:1.3"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "org.robolectric:robolectric:4.3.1"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
     testImplementation "org.mockito:mockito-core:4.0.0"
 
     //instrumented test
@@ -95,7 +100,7 @@ dependencies {
     androidTestImplementation Deps.espresso_core
     androidTestImplementation "org.mockito:mockito-core:4.0.0"
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.28.1"
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 
     implementation Deps.gson
@@ -124,11 +129,15 @@ dependencies {
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation "androidx.activity:activity-ktx:1.3.1"
+    implementation "androidx.activity:activity-ktx:1.4.0"
 
     //ktx
-    implementation("androidx.collection:collection-ktx:1.2.0-beta01")
+    implementation("androidx.collection:collection-ktx:1.2.0-rc01")
     implementation 'com.google.android.gms:play-services-ads:20.5.0'
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 }

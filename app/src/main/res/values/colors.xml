@@ -17,6 +17,7 @@
     <color name="tab_background_unselected">#FF3700B3</color>
 
     <color name="md_red_200_opacity_5">#80B0BBC5</color>
+    <color name="bg_widget_color">#80C62828</color>
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>
@@ -311,4 +312,8 @@
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 </resources>

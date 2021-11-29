@@ -23,4 +23,12 @@
     <style name="SplashTheme" parent="Theme.BaseProject.FullScreen">
         <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
+
+    <style name="Theme.BaseProject.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">8dp</item>
+        <item name="appWidgetPadding">4dp</item>
+        <item name="appWidgetInnerRadius">4dp</item>
+    </style>
+
+    <style name="Theme.BaseProject.AppWidgetContainer" parent="Theme.BaseProject.AppWidgetContainerParent" />
 </resources>

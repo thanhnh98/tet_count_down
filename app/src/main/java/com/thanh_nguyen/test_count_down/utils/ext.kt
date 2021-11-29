@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -22,6 +24,8 @@ import androidx.lifecycle.observe
 import com.google.gson.Gson
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.temporal.WeekFields
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -120,3 +124,20 @@ fun getDaysUntilDate(endDate: String): Long{
     val endMillis = endDate.toCalendar().timeInMillis
     return TimeUnit.MILLISECONDS.toDays(endMillis - currentMillis)
 }
+
+fun daysOfWeekFromLocale(): Array<DayOfWeek> {
+    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+    var daysOfWeek = DayOfWeek.values()
+    // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
+    // Only necessary if firstDayOfWeek != DayOfWeek.MONDAY which has ordinal 0.
+    if (firstDayOfWeek != DayOfWeek.MONDAY) {
+        val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
+        val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
+        daysOfWeek = rhs + lhs
+    }
+    return daysOfWeek
+}
+
+fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(this, color)
+
+fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getColorCompat(color))

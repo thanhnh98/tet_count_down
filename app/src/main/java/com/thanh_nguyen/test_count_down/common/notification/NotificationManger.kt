@@ -13,10 +13,14 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.model.DateDataModel
+import com.thanh_nguyen.test_count_down.app.model.HomeDataModel
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.utils.getDaysUntilDate
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 
 
 fun pushNotification(context: Context){
@@ -32,11 +36,13 @@ fun pushNotification(context: Context){
         PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
     )
 
+    val notificationLayout = RemoteViews(context.packageName, R.layout.notification_small)
+    notificationLayout.setTextViewText(R.id.tv_remaining_days, getDaysUntilDate(Constants.EventDate.LUNAR_NEW_YEAR).toString())
+
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
         .setSmallIcon(R.mipmap.ic_launcher)
-        .setContentTitle("SẮP ĐẾN TẾT ROOIFIII !!!")
-        .setContentText("Chỉ còn ${getDaysUntilDate(Constants.EventDate.LUNAR_NEW_YEAR)} ngày nữa là tết rồi <3")
         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+        .setCustomContentView(notificationLayout)
         .setContentIntent(intent)
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

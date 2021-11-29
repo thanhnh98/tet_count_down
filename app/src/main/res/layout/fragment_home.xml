@@ -54,40 +54,20 @@
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintGuide_percent="0.5"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_60dp"
-            android:layout_marginBottom="@dimen/_16dp"
-            android:layout_marginHorizontal="@dimen/_16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1">
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewTitle"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="Đón tết Nhâm Dần\n2022"
-                />
-            <TextView
-                android:id="@+id/tv_wish"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_16dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/bg_gray_opacity_50"
-                android:text="Mỗi sáng thức dậy, cậu là người đầu tiên xuất hiện trong tâm trí tớ. Mong một ngày một rạng rỡ sẽ đến với cậu. Good day!"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_18sp"
-                android:textStyle="italic|bold"
-                android:alpha="0"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ltv_tiger"
+            android:layout_width="@dimen/_160dp"
+            android:layout_height="@dimen/_160dp"
+            app:lottie_fileName="tiger_cute.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:layout_constraintBottom_toTopOf="@id/ctl_day"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ctl_day"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/_16dp"
@@ -123,6 +103,43 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gl_month"
                 android:text="@string/day"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_40dp"
+            android:layout_marginBottom="@dimen/_40dp"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1">
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                style="@style/TextViewTitle"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Đón tết Nhâm Dần\n2022"
+                />
+
+            <TextView
+                android:id="@+id/tv_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_16dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/bg_gray_opacity_50"
+                android:layout_marginTop="@dimen/_8dp"
+                android:text="Mỗi sáng thức dậy, bạn có thêm một cơ hội mới, cố gắng nắm bắt nhé. Good day!"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sp"
+                android:textStyle="italic|bold"
+                android:alpha="0"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
