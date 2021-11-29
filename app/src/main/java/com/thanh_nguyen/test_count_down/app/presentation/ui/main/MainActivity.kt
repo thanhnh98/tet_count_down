@@ -22,7 +22,6 @@ import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
-    private val adsManager: AdsManager by instance()
     private lateinit var intentAlarm: Intent
     lateinit var pendingIntent: PendingIntent
 
@@ -32,11 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         alarmSetup()
         soundManager.playBackgroundSound()
         setupViewPager()
-        adsManager.prepareAds()
-            .show(
-                this@MainActivity,
-                20000,
-            )
     }
 
     override fun onResume() {
@@ -73,10 +67,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         finish()
     }
 
-    @SuppressLint("ShortAlarm", "UnspecifiedImmutableFlag")
     private fun alarmSetup(){
         intentAlarm = Intent(this, AlarmReceiver::class.java)
-        pendingIntent = PendingIntent.getBroadcast(this, 999, intentAlarm,PendingIntent.FLAG_CANCEL_CURRENT)
+        pendingIntent = PendingIntent.getBroadcast(this, 999, intentAlarm, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT)
         val alarmManager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,

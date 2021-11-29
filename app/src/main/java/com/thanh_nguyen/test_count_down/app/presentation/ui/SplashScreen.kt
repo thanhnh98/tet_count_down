@@ -38,7 +38,7 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
         super.onCreate(savedInstanceState)
         soundManager.playFireworkSound()
         adsManager.prepareAds()
-        Log.e("id", "${getString(R.string.key_ads)}")
+        //Log.e("id", "${getString(R.string.key_ads)}")
         lifecycleScope.launch {
             AppSharedPreferences.isVisited.collect {
                 if (isGoneToMain)

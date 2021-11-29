@@ -19,7 +19,6 @@ import com.thanh_nguyen.test_count_down.utils.getDaysUntilDate
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun pushNotification(context: Context){
     val notificationIntent = Intent(context, SplashScreen::class.java)
     val notificationManager: NotificationManager? = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
@@ -30,12 +29,9 @@ fun pushNotification(context: Context){
         context,
         123,
         notificationIntent,
-        PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
     )
-//
-//    val notificationLayout = RemoteViews("com.thanh_nguyen.test_count_down", R.layout.notification_small)
-//    val notificationLayoutExpanded = RemoteViews(packageName, R.layout.notification_large)
-//
+
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
         .setSmallIcon(R.mipmap.ic_launcher)
         .setContentTitle("SẮP ĐẾN TẾT ROOIFIII !!!")

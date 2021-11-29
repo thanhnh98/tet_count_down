@@ -66,9 +66,9 @@ fun inflateView(parent: ViewGroup, @LayoutRes layoutRes: Int): View{
         .inflate(layoutRes, null)
 }
 
-fun View.onClick(f: () -> Unit){
+inline fun <reified T: View>T.onClick(crossinline onClick: (view: T) -> Unit){
     setOnClickListener {
-        f.invoke()
+        onClick.invoke(it as T)
     }
 }
 

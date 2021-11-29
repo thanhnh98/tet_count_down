@@ -3,6 +3,7 @@ package com.okxe.app.util
 import android.content.Context
 import android.content.res.Resources
 import android.util.DisplayMetrics
+import com.thanh_nguyen.test_count_down.App
 
 
 fun getScreenWidth(): Int {
@@ -20,8 +21,8 @@ fun getScreenHeight(): Int {
  * @param context Context to get resources and device specific display metrics
  * @return A float value to represent px equivalent to dp depending on device density
  */
-fun convertDpToPixel(dp: Float, context: Context): Float {
-    return dp * (context.resources
+fun convertDpToPixel(dp: Float): Float {
+    return dp * (App.getInstance().resources
         .displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
 }
 
@@ -32,8 +33,8 @@ fun convertDpToPixel(dp: Float, context: Context): Float {
  * @param context Context to get resources and device specific display metrics
  * @return A float value to represent dp equivalent to px value
  */
-fun convertPixelsToDp(px: Float, context: Context): Float {
-    return px / (context.resources
+fun convertPixelsToDp(px: Float): Float {
+    return px / (App.getInstance().resources
         .displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
 }
 
