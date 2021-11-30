@@ -18,6 +18,9 @@
 
     <color name="md_red_200_opacity_5">#80B0BBC5</color>
     <color name="bg_widget_color">#40ffffff</color>
+    <color name="white_opacity_40">#40ffffff</color>
+    <color name="white_cc_opacity_40">#78CCCCCC</color>
+    <color name="transparent">#00ffffff</color>
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>

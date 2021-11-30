@@ -1,61 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:background="@color/md_red_50"
-    android:padding="@dimen/_10dp"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
     <ImageView
-        android:layout_width="@dimen/_60dp"
-        android:layout_height="@dimen/_60dp"
-        android:src="@mipmap/ic_launcher"/>
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/theme_widget"
+        android:scaleType="centerCrop"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Happy new year"
-            android:textSize="@dimen/_24sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:fontFamily="cursive"/>
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="@dimen/_10dp"
+            android:orientation="vertical">
             <TextView
+                style="@style/Notification.TextView.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Còn "
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="cursive"
-                />
+                android:text="Happy new year"
+                android:textSize="@dimen/_24sp"/>
 
-            <TextView
-                android:id="@+id/tv_remaining_days"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="cursive"
-                tools:text="60"
-                android:textSize="@dimen/_24sp"
-                android:textStyle="bold"
-                />
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/Notification.TextView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tết chỉ còn "
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" ngày"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="cursive"
-                />
+                <TextView
+                    style="@style/Notification.TextView.Bold"
+                    android:id="@+id/tv_remaining_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="60"
+                    android:textSize="@dimen/_24sp"
+                    />
+
+                <TextView
+                    style="@style/Notification.TextView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ngày"
+                    />
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

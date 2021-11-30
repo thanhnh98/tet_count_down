@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.thanh_nguyen.tet_count_down",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 108,
+      "versionName": "1.0.8",
+      "outputFile": "app-release.apk"
+    }
+  ]
+}

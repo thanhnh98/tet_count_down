@@ -18,7 +18,7 @@ fun setAlarmRemindAfterInterval(context: Context, interval: Long = 1000 * 60 * 6
     val alarmManager: AlarmManager = context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
     alarmManager.setRepeating(
         AlarmManager.RTC_WAKEUP,
-        System.currentTimeMillis(),
+        System.currentTimeMillis() + interval,
         interval,
         pendingIntent
     )

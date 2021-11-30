@@ -23,11 +23,11 @@ android {
 
     signingConfigs {
         release {
-//            storeFile file('D:\\Github\\tet-count-down-store\\tet_count_down_key_store.jks')
+            storeFile file('D:\\Github\\tet-count-down-store\\tet_count_down_key_store.jks')
             storePassword 'thanhnh'
             keyAlias 'key0'
             keyPassword 'thanhnh'
-            storeFile file('/Users/thanhnh/github/tet-count-down-key-store/tet_count_down_key_store.jks')
+//            storeFile file('/Users/thanhnh/github/tet-count-down-key-store/tet_count_down_key_store.jks')
 //            keyAlias keystoreProperties['keyAlias']
 //            keyPassword keystoreProperties['keyPassword']
 //            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null

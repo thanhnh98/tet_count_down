@@ -3,9 +3,9 @@
     android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/remain_time_widget"
     android:initialLayout="@layout/remain_time_widget"
-    android:minWidth="@dimen/_200dp"
-    android:minHeight="@dimen/_50dp"
-    android:previewImage="@drawable/hpny_widget_bg"
-    android:resizeMode="horizontal|vertical"
+    android:minWidth="@dimen/widget_min_width"
+    android:minHeight="@dimen/widget_min_height"
+    android:previewImage="@drawable/preview_widget"
+    android:resizeMode="horizontal"
     android:updatePeriodMillis="1000"
     android:widgetCategory="home_screen|keyguard" />
