@@ -21,6 +21,7 @@ import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
+import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.observeLiveDataChanged
 import com.thanh_nguyen.test_count_down.utils.onClick
@@ -70,6 +71,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 
     private fun setupOnClick() {
         binding.imgOpenWidget.onClick {
+            AppAnalytics.trackEventClickOpenWidget()
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val myProvider = ComponentName(activity?:return@onClick, RemainTimeWidget::class.java)
 
@@ -81,6 +83,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
                 appWidgetManager.requestPinAppWidget(myProvider, null, successCallback)
+                AppAnalytics.trackEventCouldOpenWidget()
             }
             else {
                 Toast.makeText(activity, "Thiết bị không hỗ trợ tạo widget trực tiếp", Toast.LENGTH_SHORT).show()

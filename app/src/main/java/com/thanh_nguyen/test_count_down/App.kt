@@ -1,13 +1,9 @@
 package com.thanh_nguyen.test_count_down
 
 import android.app.Application
-import android.appwidget.AppWidgetManager
-import android.content.Intent
 import android.content.res.Resources
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleObserver
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.thanh_nguyen.test_count_down.di.appModule
