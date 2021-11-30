@@ -137,6 +137,7 @@
                 />
 
             <TextView
+                style="@style/TextViewWish"
                 android:id="@+id/tv_wish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -146,10 +147,7 @@
                 android:background="@drawable/bg_gray_opacity_50"
                 android:layout_marginTop="@dimen/_8dp"
                 android:text="Mỗi sáng thức dậy, bạn có thêm một cơ hội mới, cố gắng nắm bắt nhé. Good day!"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_18sp"
-                android:textStyle="italic|bold"
-                android:alpha="0"
+                android:alpha="1"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
