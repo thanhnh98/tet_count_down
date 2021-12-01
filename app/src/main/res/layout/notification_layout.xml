@@ -1,0 +1,197 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.BaseProject.AppWidget.Container"
+    android:id="@+id/layout_root"
+    android:theme="@style/Theme.BaseProject.AppWidgetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_200dp"
+    android:background="@drawable/bg_widget"
+    android:layout_gravity="center"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/theme_widget"
+        android:alpha="0.95"
+        android:scaleType="fitXY"/>
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        android:padding="@dimen/_8dp"
+        android:layout_gravity="right"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_6dp"
+        android:paddingVertical="@dimen/_10dp">
+
+        <TextView
+            style="@style/Notification.TextView.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Happy new year 2022"
+            android:textAllCaps="true"
+            android:layout_marginTop="@dimen/_10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginTop="@dimen/_10dp"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_day_1"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/tv_day_2"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Notification.TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_hour_1"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/tv_hour_2"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Notification.TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giờ"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_minute_1"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/tv_minute_2"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Notification.TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phút"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_second_1"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/tv_second_2"
+                        style="@style/Notification.TextView.Large"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Notification.TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giây"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

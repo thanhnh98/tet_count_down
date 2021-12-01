@@ -8,6 +8,6 @@ import com.thanh_nguyen.test_count_down.common.notification.pushNotification
 
 class AlarmReceiver: BroadcastReceiver() {
     override fun onReceive(p0: Context?, p1: Intent?) {
-        pushNotification(p0?:return)
+//        pushNotification(p0?:return)
     }
 }

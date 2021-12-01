@@ -25,7 +25,7 @@ class App: Application(), LifecycleObserver, KodeinAware {
         )
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
-        setAlarmRemindAfterInterval(this)
+//        setAlarmRemindAfterInterval(this)
     }
 
     override val kodein: Kodein = Kodein.lazy {

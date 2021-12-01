@@ -2,6 +2,7 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main
 
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import com.thanh_nguyen.test_count_down.R
@@ -11,10 +12,12 @@ import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragme
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
+import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import org.kodein.di.generic.instance
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+
     private val soundManager: BackgroundSoundManager by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +28,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         sendBroadcast(Intent(this, RemainTimeWidget::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
         })
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(Intent(this, CountDownForegroundService::class.java))
+        }
     }
 
     override fun onResume() {

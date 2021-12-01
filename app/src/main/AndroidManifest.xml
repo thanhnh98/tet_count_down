@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:name=".App"
@@ -63,6 +64,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".receiver.UpdateCountDownServiceReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="UPDATE_COUNT_DOWN_SERVICE"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".service.CountDownForegroundService">
+
+        </service>
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
@@ -37,6 +38,10 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
     override fun inflateLayout(): Int = R.layout.activity_splash
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (BuildConfig.DEBUG) {
+            goToMain()
+            return
+        }
         soundManager.playFireworkSound()
         adsManager.prepareAds()
         lifecycleScope.launch {

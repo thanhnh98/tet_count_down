@@ -10,6 +10,7 @@ import android.widget.RemoteViews
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.Constants
+import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
 import kotlinx.coroutines.*
@@ -47,6 +48,7 @@ class RemainTimeWidget : AppWidgetProvider() {
     }
 
     override fun onEnabled(context: Context) {
+        cmn("isEnable")
         // Enter relevant functionality for when the first widget is created
         job = CoroutineScope(Dispatchers.IO).launch {
             while (true){
@@ -60,6 +62,7 @@ class RemainTimeWidget : AppWidgetProvider() {
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+        cmn("isDisable")
         job?.cancel()
     }
 }
