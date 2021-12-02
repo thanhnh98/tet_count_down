@@ -17,6 +17,14 @@ class AppAnalytics {
             logEvent(Event.CouldOpenWidget)
         }
 
+        fun trackCloseCountDownNotification(){
+            logEvent(Event.CloseCountDownNotification)
+        }
+
+        fun trackPinnedNotification(){
+            logEvent(Event.PinnedNotification)
+        }
+
         private fun logEvent(event: Event){
             if (!BuildConfig.DEBUG){
                 firebaseAnalytic.logEvent(event.action, event.params)
@@ -29,4 +37,6 @@ class AppAnalytics {
 sealed class Event(val action: String, val params: Bundle? = null){
     object ClickOpenWidget: Event(action = "click_open_widget")
     object CouldOpenWidget: Event(action = "can_open_widget")
+    object CloseCountDownNotification: Event(action = "close_count_down_notification")
+    object PinnedNotification: Event(action = "pinned_notification")
 }

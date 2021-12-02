@@ -1,0 +1,81 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.BaseProject.AppWidget.Container"
+    android:id="@+id/layout_root"
+    android:theme="@style/Theme.BaseProject.AppWidgetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_widget"
+    android:layout_gravity="center"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/theme_widget"
+        android:alpha="0.95"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="left|center_vertical"
+        android:paddingHorizontal="@dimen/_6dp"
+        android:paddingVertical="@dimen/_10dp">
+
+        <TextView
+            style="@style/Notification.TextView.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Happy new year 2022"
+            android:textAllCaps="true"
+            android:layout_marginTop="@dimen/_10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/Notification.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tết chỉ còn "/>
+
+            <TextView
+                android:id="@+id/tv_day_remain"
+                style="@style/Notification.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06"
+                android:textSize="@dimen/_24dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                style="@style/Notification.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ngày"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="right|bottom">
+                <TextView
+                    android:id="@+id/tv_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gray_opacity_50"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Theo dõi"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="@dimen/_6dp"
+                    android:paddingVertical="@dimen/_4dp"
+                    android:textSize="@dimen/_12sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

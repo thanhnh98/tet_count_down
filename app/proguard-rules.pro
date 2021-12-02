@@ -20,3 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -dontwarn com.sendbird.android.shadow.**
+-dontwarn carbon.BR
+-dontwarn carbon.internal**
+-dontwarn java.lang.invoke**
+
+-dontwarn android.databinding.**
+-keep class android.databinding.** { *; }

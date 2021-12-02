@@ -6,6 +6,6 @@ object AndroidConfigs {
     const val minSdkVersion = 23
     const val targetSdkVersion = 31
 
-    const val versionCode = 110
-    const val versionName = "1.1.0"
+    const val versionCode = 111
+    const val versionName = "1.1.1"
 }

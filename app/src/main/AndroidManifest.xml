@@ -30,6 +30,19 @@
         </receiver>
 
         <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_msg_firebase" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <meta-data
             android:name="@string/key_ads_app_id"
             android:value="@string/key_ads" /> <!-- <service -->
         <!-- android:name="com.thanh_nguyen.baseproject.external.firebase.AppFirebaseMessageService" -->
@@ -41,12 +54,16 @@
         <activity
             android:name=".app.presentation.ui.main.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.BaseProject.FullScreen"></activity>
+            android:theme="@style/Theme.BaseProject.FullScreen">
+
+        </activity>
         <activity
             android:name=".app.presentation.ui.SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:launchMode="singleInstance"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -73,6 +90,10 @@
         </receiver>
 
         <service android:name=".service.CountDownForegroundService">
+
+        </service>
+
+        <service android:name=".service.WidgetCountdownService">
 
         </service>
     </application>

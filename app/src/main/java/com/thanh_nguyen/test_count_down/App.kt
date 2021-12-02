@@ -6,8 +6,8 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleObserver
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import com.google.firebase.messaging.FirebaseMessaging
 import com.thanh_nguyen.test_count_down.di.appModule
-import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -25,7 +25,7 @@ class App: Application(), LifecycleObserver, KodeinAware {
         )
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
-//        setAlarmRemindAfterInterval(this)
+        FirebaseMessaging.getInstance().isAutoInitEnabled = true
     }
 
     override val kodein: Kodein = Kodein.lazy {

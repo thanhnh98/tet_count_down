@@ -13,6 +13,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Ap
 
 object PreferencesKey{
     val IS_VISITED = booleanPreferencesKey("isVisited")
+    val IS_CLOSED_COUNT_DOWN_NOTI = booleanPreferencesKey("IS_CLOSED_COUNT_DOWN_NOTI")
 
 }
 
@@ -29,4 +30,7 @@ object AppSharedPreferences {
 
     val isVisited = getByKey(PreferencesKey.IS_VISITED, false)
     suspend fun setIsVisited(isVisited: Boolean) = setKey(PreferencesKey.IS_VISITED, isVisited)
+
+    val isClosedCountDownNoti = getByKey(PreferencesKey.IS_CLOSED_COUNT_DOWN_NOTI, false)
+    suspend fun setisClosedCountDownNoti(isClosedCountDownNoti: Boolean) = setKey(PreferencesKey.IS_CLOSED_COUNT_DOWN_NOTI, isClosedCountDownNoti)
 }

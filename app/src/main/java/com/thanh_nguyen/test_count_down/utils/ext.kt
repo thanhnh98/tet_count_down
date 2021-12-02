@@ -141,3 +141,7 @@ fun daysOfWeekFromLocale(): Array<DayOfWeek> {
 fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(this, color)
 
 fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getColorCompat(color))
+
+fun Activity.showToastMessage(msg: String){
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}

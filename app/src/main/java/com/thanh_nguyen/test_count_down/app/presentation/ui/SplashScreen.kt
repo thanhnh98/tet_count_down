@@ -4,18 +4,10 @@
 
 package com.thanh_nguyen.test_count_down.app.presentation.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
@@ -24,12 +16,11 @@ import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.databinding.ActivitySplashBinding
-import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import okhttp3.internal.wait
 import org.kodein.di.generic.instance
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreen: BaseActivity<ActivitySplashBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
     private val adsManager: AdsManager by instance()

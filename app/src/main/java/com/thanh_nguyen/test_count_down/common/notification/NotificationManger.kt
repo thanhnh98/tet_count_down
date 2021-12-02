@@ -6,33 +6,32 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import android.widget.RemoteViews
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.PRIORITY_MAX
-import com.thanh_nguyen.test_count_down.BuildConfig
+import androidx.core.os.bundleOf
 import com.thanh_nguyen.test_count_down.R
-import com.thanh_nguyen.test_count_down.app.model.DateDataModel
-import com.thanh_nguyen.test_count_down.app.model.HomeDataModel
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.receiver.ReceiverEvent
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver
+import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver.Companion.RECEIVER_EVENT
+import com.thanh_nguyen.test_count_down.service.CountDownForegroundService.Companion.FOREGROUND_ID
+import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getDaysUntilDate
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 
-fun pushNotification(context: Context, notificationId: Int, notification: Notification){
-    val notificationManager: NotificationManager? = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-    notificationManager?.notify(notificationId, notification)
-}
-
-fun createNotification(context: Context, view: RemoteViews, requestCode: Int, channelId: String, isOnGoing: Boolean = false): Notification{
+fun createNotificationKeepAlive(
+    context: Context,
+    view: RemoteViews,
+    requestCode: Int,
+    channelId: String,
+    isOnGoing: Boolean = false,
+): Notification{
 
     val notificationIntent = Intent(context, SplashScreen::class.java)
     val notificationManager: NotificationManager? = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
@@ -48,13 +47,13 @@ fun createNotification(context: Context, view: RemoteViews, requestCode: Int, ch
 
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
         .setSmallIcon(R.mipmap.ic_launcher)
-        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+        .setCustomBigContentView(view)
         .setCustomContentView(view)
         .setVibrate(null)
         .setContentIntent(intent)
+        .setOnlyAlertOnce(true)
         .setOngoing(true)
         .setPriority(PRIORITY_MAX)
-        .setProgress(100,50, false)
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
         val channel = NotificationChannel(
@@ -74,7 +73,7 @@ fun createNotification(context: Context, view: RemoteViews, requestCode: Int, ch
     return notification
 }
 
-fun createNotificationCountdownView(context: Context): RemoteViews{
+fun createNotificationCountdownViewAlive(context: Context): RemoteViews{
     val minuteSec = 60
     val hourSec = minuteSec * 60
     val daySec = hourSec * 24
@@ -85,7 +84,7 @@ fun createNotificationCountdownView(context: Context): RemoteViews{
     val seconds = totalSeconds - days * daySec - hours * hourSec - minutes * minuteSec
 
     // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.notification_layout)
+    val views = RemoteViews(context.packageName, R.layout.notification_view_count_down)
     views.setOnClickPendingIntent(R.id.layout_root,
         PendingIntent.getActivity(
             context,
@@ -115,12 +114,58 @@ fun createNotificationCountdownView(context: Context): RemoteViews{
 
     views.setOnClickPendingIntent(R.id.img_close, PendingIntent.getBroadcast(
         context,
-        999,
+        1,
         Intent(context, UpdateCountDownServiceReceiver::class.java).apply {
-            putExtra("ReceiverEvent", ReceiverEvent.CLOSE_FOREGROUND )
+            putExtra(RECEIVER_EVENT, ReceiverEvent.CLOSE_COUNT_DOWN)
         },
         PendingIntent.FLAG_IMMUTABLE
     ))
 
     return views
+}
+
+fun pushAlertNotification(context: Context){
+    val notificationIntent = Intent(context, SplashScreen::class.java).apply {
+        flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+    }
+    val notificationManager: NotificationManager? = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
+
+    val intent = PendingIntent.getActivity(
+        context,
+        2,
+        notificationIntent,
+        PendingIntent.FLAG_IMMUTABLE
+    )
+
+    val notificationLayout = RemoteViews(context.packageName, R.layout.notification_layout_alert).apply {
+        setTextViewText(R.id.tv_day_remain, getDaysUntilDate(Constants.EventDate.LUNAR_NEW_YEAR).toString())
+        setOnClickPendingIntent(R.id.tv_follow, PendingIntent.getBroadcast(
+            context,
+            3,
+            Intent(context, UpdateCountDownServiceReceiver::class.java).apply {
+                putExtra(RECEIVER_EVENT,ReceiverEvent.PINNED_COUNT_DOWN)
+            },
+            PendingIntent.FLAG_IMMUTABLE
+        ))
+    }
+
+    val notificationBuilder = NotificationCompat.Builder(context, "TET")
+        .setSmallIcon(R.mipmap.ic_launcher)
+        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+        .setCustomContentView(notificationLayout)
+        .setContentIntent(intent)
+        .setPriority(PRIORITY_MAX)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        val channelId = "TET DEN ROI"
+        val channel = NotificationChannel(
+            channelId,
+            "HPNY",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        notificationManager?.createNotificationChannel(channel)
+        notificationBuilder.setChannelId(channelId)
+    }
+
+    notificationManager?.notify(FOREGROUND_ID, notificationBuilder.build())
 }

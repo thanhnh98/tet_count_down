@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseProject.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BaseProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BaseProject.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseProject.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseProject.buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/BaseProject.utils.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/BaseProject.utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tet_count_down.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/tet_count_down.buildSrc.iml" />
     </modules>

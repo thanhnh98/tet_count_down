@@ -8,24 +8,31 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startForegroundService
 import androidx.core.view.children
+import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.okxe.app.util.convertDpToPixel
+import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.RemainTimeWidget
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
-import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
-import com.thanh_nguyen.test_count_down.utils.observeLiveDataChanged
-import com.thanh_nguyen.test_count_down.utils.onClick
+import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
+import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
@@ -71,26 +78,53 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 
     private fun setupOnClick() {
         binding.imgOpenWidget.onClick {
-            AppAnalytics.trackEventClickOpenWidget()
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val myProvider = ComponentName(activity?:return@onClick, RemainTimeWidget::class.java)
+            openMenu()
+        }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && appWidgetManager.isRequestPinAppWidgetSupported) {
-                val successCallback = PendingIntent.getBroadcast(
-                    context,
-                    0,
-                    Intent(activity, SplashScreen::class.java),
-                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        binding.imgPin.onClick {
+            pinCountDownNoti()
+        }
+    }
 
-                appWidgetManager.requestPinAppWidget(myProvider, null, successCallback)
-                AppAnalytics.trackEventCouldOpenWidget()
-            }
-            else {
-                Toast.makeText(activity, "Thiết bị không hỗ trợ tạo widget trực tiếp", Toast.LENGTH_SHORT).show()
+    private fun pinCountDownNoti(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            lifecycleScope.launch {
+                AppSharedPreferences.isClosedCountDownNoti.collect { isClosed ->
+                    if (isClosed == true){
+                        activity?.startForegroundService(Intent(activity, CountDownForegroundService::class.java))
+                        activity?.showToastMessage("Cùng theo dõi tết sắp đến trên thanh trạng thái nhé")
+                    }
+                    else{
+                        activity?.stopService(Intent(activity, CountDownForegroundService::class.java))
+                        activity?.showToastMessage("Đã dừng đếm ngược, bấm lần nữa để tiếp tục theo dõi")
+                    }
+                }
+                cancel()
             }
         }
     }
 
+    private fun openMenu(){
+        AppAnalytics.trackEventClickOpenWidget()
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val myProvider = ComponentName(activity?:return, RemainTimeWidget::class.java)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && appWidgetManager.isRequestPinAppWidgetSupported) {
+            val successCallback = PendingIntent.getBroadcast(
+                context,
+                0,
+                Intent(activity, SplashScreen::class.java),
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+            appWidgetManager.requestPinAppWidget(myProvider, null, successCallback)
+            AppAnalytics.trackEventCouldOpenWidget()
+        }
+        else {
+            Toast.makeText(activity, "Thiết bị không hỗ trợ tạo Widget trực tiếp", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun setup() {
         observeLiveDataChanged(viewModel.homeData){ data ->
             data.date.apply{
@@ -110,6 +144,16 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                 binding.tvWish.text = this.random()
                 binding.tvWish.animate()
                     .alpha(1f).duration = 500
+            }
+        }
+
+        lifecycleScope.launch {
+            AppSharedPreferences.isClosedCountDownNoti.collect { isClosed ->
+                if (isClosed == true){
+                    binding.imgPin.setImageDrawable(App.getResources().getDrawable(R.drawable.ic_unpin, null))
+                }
+                else
+                    binding.imgPin.setImageDrawable(App.getResources().getDrawable(R.drawable.ic_pin, null))
             }
         }
     }
