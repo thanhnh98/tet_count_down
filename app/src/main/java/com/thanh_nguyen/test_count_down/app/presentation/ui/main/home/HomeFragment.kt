@@ -27,11 +27,14 @@ import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
+import com.thanh_nguyen.test_count_down.job
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
@@ -89,18 +92,28 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     private fun pinCountDownNoti(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             lifecycleScope.launch {
-                AppSharedPreferences.isClosedCountDownNoti.collect { isClosed ->
-                    if (isClosed == true){
-                        activity?.startForegroundService(Intent(activity, CountDownForegroundService::class.java))
-                        activity?.showToastMessage("Cùng theo dõi tết sắp đến trên thanh trạng thái nhé")
+                AppSharedPreferences.isClosedCountDownNoti.stateIn(this).collect { isClosed ->
+                    cmn("current $isClosed")
+                    if(isClosed == true) {
+                        activity?.startForegroundService(
+                            Intent(
+                                activity ?: return@collect,
+                                CountDownForegroundService::class.java
+                            )
+                        )
+                        activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
                     }
                     else{
-                        activity?.stopService(Intent(activity, CountDownForegroundService::class.java))
-                        activity?.showToastMessage("Đã dừng đếm ngược, bấm lần nữa để tiếp tục theo dõi")
+                        activity?.stopService(
+                            Intent(
+                                activity ?: return@collect,
+                                CountDownForegroundService::class.java
+                            )
+                        )
+                        activity?.showToastMessage("Đã gỡ bộ đếm, bấm lại để kích hoạt khi bạn nôn nao đến tết nhé")
                     }
                 }
-                cancel()
-            }
+            }.cancel() //cancel after finished
         }
     }
 
