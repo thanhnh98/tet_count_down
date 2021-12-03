@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <string name="key_ads_app_id">com.google.android.gms.ads.APPLICATION_ID</string>-->
+    <string name="app_name">Sắp tết DEBUG</string>
+
+    <!--    <string name="key_ads_app_id">com.google.android.gms.ads.APPLICATION_ID</string>-->
 <!--    <string name="key_ads">ca-app-pub-3940256099942544~3347511713</string>-->
 <!--    <string name="key_ads_interstitial">ca-app-pub-3940256099942544/1033173712</string>-->
 </resources>

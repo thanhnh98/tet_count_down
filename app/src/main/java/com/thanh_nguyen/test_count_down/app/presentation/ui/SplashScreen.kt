@@ -29,10 +29,10 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
     override fun inflateLayout(): Int = R.layout.activity_splash
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (BuildConfig.DEBUG) {
-            goToMain()
-            return
-        }
+//        if (BuildConfig.DEBUG) {
+//            goToMain()
+//            return
+//        }
         soundManager.playFireworkSound()
         adsManager.prepareAds()
         lifecycleScope.launch {

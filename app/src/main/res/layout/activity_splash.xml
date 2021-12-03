@@ -47,5 +47,10 @@
             android:layout_marginBottom="@dimen/_16dp"
             android:scaleX="-1"
             />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
