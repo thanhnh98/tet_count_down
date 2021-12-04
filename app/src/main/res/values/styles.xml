@@ -139,4 +139,46 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AboutTextView" parent="Widget.AppCompat.TextView">
+
+    </style>
+
+    <style name="AboutTextView.Header.Title" parent="AboutTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/gilroy_extra_bold</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:padding">@dimen/_16dp</item>
+        <item name="android:layout_marginTop">@dimen/_24dp</item>
+    </style>
+
+
+    <style name="AboutTextView.Header.Content" parent="AboutTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+        <item name="android:textSize">@dimen/_14sp</item>
+    </style>
+
+
+    <style name="AboutTextView.Item.Title.First" parent="AboutTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/gilroy_bold</item>
+        <item name="android:textSize">@dimen/_24sp</item>
+        <item name="android:gravity">bottom</item>
+    </style>
+
+
+    <style name="AboutTextView.Item.Title.Second" parent="AboutTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/gilroy_bold</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:gravity">bottom</item>
+    </style>
+
+    <style name="AboutTextView.Item.Title.Content" parent="AboutTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+        <item name="android:textSize">@dimen/_14sp</item>
+        <item name="android:layout_marginTop">@dimen/_4dp</item>
+    </style>
+
 </resources>

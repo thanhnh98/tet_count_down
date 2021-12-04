@@ -6,15 +6,15 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.widget.RemoteViews
-import com.thanh_nguyen.test_count_down.R
+import androidx.annotation.RequiresApi
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.service.WidgetCountdownService
-import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Job
 
 /**
  * Implementation of App Widget functionality.
@@ -48,6 +48,7 @@ class RemainTimeWidget : AppWidgetProvider() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onEnabled(context: Context) {
         context.sendBroadcast(Intent(context, RemainTimeWidget::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE

@@ -6,7 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".app.presentation.ui.main.MainActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#fcf9e6">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="600:337"
+            android:src="@drawable/img_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_main"

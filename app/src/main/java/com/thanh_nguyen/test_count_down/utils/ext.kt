@@ -55,15 +55,6 @@ fun Any?.isNull() = this == null
 
 fun Double.formatPrice(pattern: String? = "###,###,###.00"): String = DecimalFormat(pattern).format(this)
 
-inline fun <reified VB: ViewDataBinding> inflateDataBinding(parent: ViewGroup, @LayoutRes layoutRes: Int, attachParent: Boolean = false): VB{
-    return DataBindingUtil.inflate(
-        LayoutInflater.from(parent.context),
-        layoutRes,
-        parent,
-        attachParent
-    )
-}
-
 fun inflateView(parent: ViewGroup, @LayoutRes layoutRes: Int): View{
     return LayoutInflater
         .from(parent.context)

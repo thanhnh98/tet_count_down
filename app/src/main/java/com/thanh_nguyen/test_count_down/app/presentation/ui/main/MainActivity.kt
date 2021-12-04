@@ -10,9 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.RemainTimeWidget
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
+import com.thanh_nguyen.test_count_down.common.viewpager_transformer.ZoomOutPageTransformer
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
@@ -64,10 +66,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 title = "Home",
                 fragment = HomeFragment()
             ),
+            MainStateModel(
+                title = "About",
+                fragment = AboutFragment()
+            ),
         )
         val adapter = MainStateAdapter(this, fragments)
 
-        binding.vpMain.adapter = adapter
+        with(binding.vpMain) {
+            this.adapter = adapter
+            setPageTransformer(ZoomOutPageTransformer())
+        }
     }
 
     override fun inflateLayout(): Int = R.layout.activity_main

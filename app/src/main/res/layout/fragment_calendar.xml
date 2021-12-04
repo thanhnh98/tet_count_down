@@ -1,71 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical">
 
-<!--        <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:id="@+id/exOneAppBarLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@color/colorPrimaryLight"-->
-<!--            android:theme="@style/AppTheme.AppBarOverlay">-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/theme_tet"
+            android:scaleType="centerCrop"
+            />
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="14dp">-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_fileName="fireworks.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/exOneYearText"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="24sp"-->
-<!--                    tools:text="2019" />-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_wish_container"
+            android:layout_margin="@dimen/_16dp"
+            android:padding="@dimen/_16dp">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/exOneMonthText"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fontFamily="sans-serif-light"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="38sp"-->
-<!--                    tools:text="April" />-->
-
-<!--            </LinearLayout>-->
-
-<!--            <include-->
-<!--                android:id="@+id/legendLayout"-->
-<!--                layout="@layout/calendar_day_legend"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp" />-->
-
-<!--        </com.google.android.material.appbar.AppBarLayout>-->
-
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <com.kizitonwose.calendarview.CalendarView-->
-<!--                android:id="@+id/calendar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:cv_dayViewResource="@layout/calendar_day_layout"-->
-<!--                app:cv_orientation="horizontal"-->
-<!--                app:cv_outDateStyle="endOfRow"-->
-<!--                app:cv_inDateStyle="allMonths"-->
-<!--                app:cv_scrollMode="paged" />-->
-<!--        </FrameLayout>-->
-
-
-    </LinearLayout>
+            <include
+                layout="@layout/component_collection" />
+        </FrameLayout>
+    </FrameLayout>
 </layout>

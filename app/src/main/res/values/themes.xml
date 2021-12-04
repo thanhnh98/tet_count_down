@@ -20,6 +20,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
     </style>
 
+    <style name="Theme.BaseProject.MainScreen" parent="Theme.BaseProject.FullScreen">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
     <style name="SplashTheme" parent="Theme.BaseProject.FullScreen">
         <item name="android:windowBackground">@color/colorPrimary</item>
     </style>

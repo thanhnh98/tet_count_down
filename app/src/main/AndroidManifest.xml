@@ -54,7 +54,8 @@
         <activity
             android:name=".app.presentation.ui.main.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.BaseProject.FullScreen">
+            android:theme="@style/Theme.BaseProject.FullScreen"
+            >
 
         </activity>
         <activity

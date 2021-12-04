@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="headerData"
+            type="com.thanh_nguyen.test_count_down.app.model.AboutHeaderDataModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{headerData.title}"
+            tools:background="@color/md_red_A400"
+            tools:text="Năm nhâm tuất có gì?"
+            style="@style/AboutTextView.Header.Title"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{headerData.content}"
+            tools:background="@color/md_red_A400"
+            tools:text="Năm 2022 là năm Nhâm Dần hay còn gọi là năm con Hổ. Năm 2022 âm lịch được tính từ ngày 01/02/2022 đến hết ngày 21/01/2023 theo lịch dương. Về cuộc sống, người sinh năm 2022 Nhâm Dần sẽ có cuộc sống tràn ngập niềm vui. Trong công việc, mọi thứ đều tiến triển thuận lợi và thuận buồm xuôi gió."
+            style="@style/AboutTextView.Header.Content"
+            android:gravity="center"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:ignore="RtlCompat"
+            android:paddingHorizontal="@dimen/_16dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
