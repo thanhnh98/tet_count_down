@@ -64,11 +64,11 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                 }
             }
             adsClickCount++.apply {
-                if (this % 15 == 0)
-                    adsManager.show(
-                        activity?:return@apply,
-                        5000,
-                    )
+//                if (this % 15 == 0)
+//                    adsManager.show(
+//                        activity?:return@apply,
+//                        5000,
+//                    )
             }
             false
         }
@@ -100,6 +100,12 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                                 activity ?: return@collect,
                                 CountDownForegroundService::class.java
                             )
+                        )
+                        adsManager.show(
+                            activity = activity?:return@collect,
+                            onDismiss = {
+                                activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
+                            }
                         )
                         activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
                     }

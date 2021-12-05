@@ -1,9 +1,11 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui.main
 
+import android.animation.Animator
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
@@ -14,9 +16,12 @@ import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFrag
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
+import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageTransformer
 import com.thanh_nguyen.test_count_down.common.viewpager_transformer.ZoomOutPageTransformer
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
+import com.thanh_nguyen.test_count_down.utils.cmn
+import com.thanh_nguyen.test_count_down.utils.onClick
 import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -43,6 +48,86 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
             }
         }
+        binding.ltvSwipe.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationStart(p0: Animator?) {
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                hideSwipeContainer()
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+
+        })
+
+        binding.ctlSwipeContainer.onClick {
+            hideSwipeContainer()
+        }
+
+        lifecycleScope.launch {
+            AppSharedPreferences.isShowedInstruction.collect {
+                if (it == true){
+                    hideSwipeContainer()
+                }
+                else
+                    showSwipeContainer()
+            }
+        }
+    }
+
+    private fun showSwipeContainer() {
+        binding.ctlSwipeContainer.alpha = 0f
+        binding.ctlSwipeContainer.visibility = View.VISIBLE
+        binding.ctlSwipeContainer
+            .animate()
+            .alpha(1f)
+            .setListener(object: Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    binding.ctlSwipeContainer.visibility = View.VISIBLE
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                }
+
+            })
+            .duration = 500
+    }
+
+    private fun hideSwipeContainer(){
+        binding.ctlSwipeContainer
+            .animate()
+            .alpha(0f)
+            .setListener(object: Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                   binding.ctlSwipeContainer.visibility = View.GONE
+                    lifecycleScope.launch {
+                        AppSharedPreferences.setIsShowedInstruction(true)
+                    }
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                }
+
+            })
+            .duration = 500
     }
 
     override fun onResume() {
@@ -75,7 +160,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         with(binding.vpMain) {
             this.adapter = adapter
-            setPageTransformer(ZoomOutPageTransformer())
+            setPageTransformer(CubeInPageTransformer())
         }
     }
 

@@ -39,7 +39,7 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentCalendarBinding, AboutVi
                 "Lịch nghỉ tết 2022 (Nguồn: eBH)"
             ),
             AboutItemDataModel(
-                "Tết đến rồi, về nhà thôi",
+                "Tết đến rồi, về nhà thôi!",
                 "Lại một năm nữa sắp qua đi, kết thúc một năm cũng chính là một khởi đầu cho một năm mới, khởi đầu cho mọi sự tốt lành mới sắp đến." +
                         "\n" +
                         "\n" +
