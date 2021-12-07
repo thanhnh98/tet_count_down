@@ -29,13 +29,11 @@ import org.kodein.di.generic.instance
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-
     private val soundManager: BackgroundSoundManager by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        soundManager.playBackgroundSound()
         setupViewPager()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -132,7 +130,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onResume() {
         super.onResume()
-        soundManager.playBackgroundSound()
     }
 
     override fun onPause() {
@@ -142,7 +139,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        soundManager.stopBackgroundSound()
+        soundManager.pauseBackgroundSound()
     }
 
     private fun setupViewPager() {

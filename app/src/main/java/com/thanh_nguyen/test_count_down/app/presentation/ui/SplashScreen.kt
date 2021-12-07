@@ -23,7 +23,7 @@ import org.kodein.di.generic.instance
 @SuppressLint("CustomSplashScreen")
 class SplashScreen: BaseActivity<ActivitySplashBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
-    private val adsManager: AdsManager by instance()
+    //private val adsManager: AdsManager by instance()
     private var isGoneToMain = false
 
     override fun inflateLayout(): Int = R.layout.activity_splash
@@ -34,36 +34,12 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
 //            return
 //        }
         soundManager.playFireworkSound()
-        adsManager.prepareAds()
+        //adsManager.prepareAds()
         lifecycleScope.launch {
-            AppSharedPreferences.isVisited.collect {
-                if (isGoneToMain)
-                    return@collect
-
-                if (it == true){
-                    with(Dispatchers.Main) {
-                        adsManager.show(
-                            this@SplashScreen,
-                            2000,
-                            onDismiss = {
-                                goToMain()
-                            },
-                            onFailedToShow = {
-                                goToMain()
-                            },
-                            onOtherException = {
-                                goToMain()
-                            }
-                        )
-                    }
-                }
-                else{
-                    delay(2000)
-                    with(Dispatchers.Main){
-                        AppSharedPreferences.setIsVisited(true)
-                        goToMain()
-                    }
-                }
+            delay(2000)
+            with(Dispatchers.Main){
+                AppSharedPreferences.setIsVisited(true)
+                goToMain()
             }
         }
     }

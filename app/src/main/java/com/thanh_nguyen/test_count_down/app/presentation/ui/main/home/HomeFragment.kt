@@ -13,6 +13,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.content.ContextCompat.startForegroundService
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +25,7 @@ import com.thanh_nguyen.test_count_down.RemainTimeWidget
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.AdsManager
+import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
@@ -40,14 +42,17 @@ import org.kodein.di.generic.instance
 
 class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by kodeinViewModel()
-    private val adsManager: AdsManager by instance()
+    private val soundManager: BackgroundSoundManager by instance()
+
+    //private val adsManager: AdsManager by instance()
     private var adsClickCount = 1
+    private var isMutedSound: Boolean? = null
 
     override fun inflateLayout(): Int = R.layout.fragment_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adsManager.prepareAds()
+        //adsManager.prepareAds()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -87,13 +92,25 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         binding.imgPin.onClick {
             pinCountDownNoti()
         }
+
+        binding.imgSound.onClick {
+            changeStatusSound()
+        }
+    }
+
+    private fun changeStatusSound() {
+        lifecycleScope.launch {
+            if (isMutedSound == true)
+                AppSharedPreferences.setIsMuted(false)
+            else
+                AppSharedPreferences.setIsMuted(true)
+        }
     }
 
     private fun pinCountDownNoti(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             lifecycleScope.launch {
                 AppSharedPreferences.isClosedCountDownNoti.stateIn(this).collect { isClosed ->
-                    cmn("current $isClosed")
                     if(isClosed == true) {
                         activity?.startForegroundService(
                             Intent(
@@ -101,13 +118,13 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                                 CountDownForegroundService::class.java
                             )
                         )
-                        adsManager.show(
-                            activity = activity?:return@collect,
-                            onDismiss = {
-                                activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
-                            }
-                        )
-                        activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
+//                        adsManager.show(
+//                            activity = activity?:return@collect,
+//                            onDismiss = {
+//                                activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
+//                            }
+//                        )
+//                        activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
                     }
                     else{
                         activity?.stopService(
@@ -175,6 +192,31 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                     binding.imgPin.setImageDrawable(App.getResources().getDrawable(R.drawable.ic_pin, null))
             }
         }
+
+        lifecycleScope.launch {
+            AppSharedPreferences.isMuted.collect { isMuted ->
+                isMutedSound = isMuted
+                if (isMuted == true) {
+                    soundManager.pauseBackgroundSound()
+                    binding.imgSound.setImageDrawable(
+                        getDrawable(
+                            activity ?: return@collect,
+                            R.drawable.ic_volume_off
+                        )
+                    )
+                    activity?.showToastMessage("Nhạc nền đang tắt")
+                }
+                else {
+                    soundManager.playBackgroundSound()
+                    binding.imgSound.setImageDrawable(
+                        getDrawable(
+                            activity ?: return@collect,
+                            R.drawable.ic_volume_on
+                        )
+                    )
+                }
+            }
+        }
     }
 
     private fun createLottieView(x: Float, y: Float): LottieAnimationView{
@@ -212,5 +254,15 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         }catch (e: Exception){
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isMutedSound != true)
+            soundManager.playBackgroundSound()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

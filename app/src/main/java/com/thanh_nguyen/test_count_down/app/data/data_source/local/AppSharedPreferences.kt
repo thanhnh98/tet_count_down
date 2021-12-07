@@ -15,6 +15,7 @@ object PreferencesKey{
     val IS_VISITED = booleanPreferencesKey("isVisited")
     val IS_CLOSED_COUNT_DOWN_NOTI = booleanPreferencesKey("IS_CLOSED_COUNT_DOWN_NOTI")
     val IS_SHOWED_INSTRUCTION = booleanPreferencesKey("IS_SHOWED_INSTRUCTION")
+    val IS_MUTED = booleanPreferencesKey("IS_MUTED")
 
 }
 
@@ -37,4 +38,7 @@ object AppSharedPreferences {
 
     val isShowedInstruction = getByKey(PreferencesKey.IS_SHOWED_INSTRUCTION, false)
     suspend fun setIsShowedInstruction(isShowedInstruction: Boolean) = setKey(PreferencesKey.IS_SHOWED_INSTRUCTION, isShowedInstruction)
+
+    val isMuted = getByKey(PreferencesKey.IS_MUTED, false)
+    suspend fun setIsMuted(isMuted: Boolean) = setKey(PreferencesKey.IS_MUTED, isMuted)
 }
