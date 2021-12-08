@@ -1,17 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.BaseProject.AppWidget.Container"
     android:id="@+id/layout_root"
     android:theme="@style/Theme.BaseProject.AppWidgetContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_110dp"
     android:background="@drawable/bg_widget"
-    android:layout_gravity="center"
-    >
+    android:layout_gravity="center">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:src="@drawable/theme_widget"
         android:alpha="0.95"
         android:scaleType="fitXY"/>
@@ -21,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="left|center_vertical"
-        android:paddingHorizontal="@dimen/_6dp"
+        android:paddingHorizontal="@dimen/_10dp"
         android:paddingVertical="@dimen/_10dp">
 
         <TextView

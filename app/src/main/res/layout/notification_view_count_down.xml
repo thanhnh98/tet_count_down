@@ -4,15 +4,15 @@
     android:id="@+id/layout_root"
     android:theme="@style/Theme.BaseProject.AppWidgetContainer"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_200dp"
+    android:layout_height="150dp"
     android:background="@drawable/bg_widget"
     android:layout_gravity="center"
     >
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/theme_widget"
+        android:layout_height="150dp"
+        android:src="@drawable/theme_notification_countdown"
         android:alpha="0.95"
         android:scaleType="fitXY"/>
 

@@ -23,18 +23,12 @@ import org.kodein.di.generic.instance
 @SuppressLint("CustomSplashScreen")
 class SplashScreen: BaseActivity<ActivitySplashBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
-    //private val adsManager: AdsManager by instance()
     private var isGoneToMain = false
 
     override fun inflateLayout(): Int = R.layout.activity_splash
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        if (BuildConfig.DEBUG) {
-//            goToMain()
-//            return
-//        }
         soundManager.playFireworkSound()
-        //adsManager.prepareAds()
         lifecycleScope.launch {
             delay(2000)
             with(Dispatchers.Main){

@@ -61,23 +61,23 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
             statusBarColor = drawableColor
         }
     }
-
-    /**
-    * If increase version code to 30 (R) , remove brackets
-     * */
-    private fun hideSystemUI(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-        }else{
-            window.decorView.systemUiVisibility = (
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    )
-        }
-    }
-
-    open fun enableLightStatusBar(){
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.statusBarColor = Color.WHITE
-    }
+//
+//    /**
+//    * If increase version code to 30 (R) , remove brackets
+//     * */
+//    private fun hideSystemUI(){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            window.setDecorFitsSystemWindows(false)
+//        }else{
+//            window.decorView.systemUiVisibility = (
+//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    )
+//        }
+//    }
+//
+//    open fun enableLightStatusBar(){
+//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//        window.statusBarColor = Color.WHITE
+//    }
 }
