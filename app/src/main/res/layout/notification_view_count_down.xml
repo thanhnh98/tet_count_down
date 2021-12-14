@@ -10,11 +10,46 @@
     >
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/theme_notification_countdown"
-        android:alpha="0.95"
-        android:scaleType="fitXY"/>
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_150dp"
+        android:src="@drawable/flower"
+        android:layout_gravity="right|center_vertical"/>
+    <TextView
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_150dp"
+        android:background="@drawable/bg_view_hide_img"
+        android:layout_gravity="right|center_vertical"/>
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_50dp"
+        android:layout_marginTop="@dimen/_50dp"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_100dp"
+        android:layout_marginTop="@dimen/_75dp"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_120dp"
+        android:layout_marginTop="@dimen/_120dp"/>
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_100dp"
+        />
 
     <ImageView
         android:id="@+id/img_close"
@@ -38,6 +73,7 @@
             android:layout_height="wrap_content"
             android:text="Happy new year 2022"
             android:textAllCaps="true"
+            android:layout_gravity="left"
             android:layout_marginTop="@dimen/_10dp"
             />
 
@@ -45,16 +81,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="4"
+            android:weightSum="10"
             android:layout_marginTop="@dimen/_10dp"
-            android:gravity="center">
+            android:gravity="left">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="left">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -82,6 +118,7 @@
                     style="@style/Notification.TextView.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="Ngày"/>
             </LinearLayout>
 
@@ -90,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="left">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -126,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="left">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -162,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="left">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

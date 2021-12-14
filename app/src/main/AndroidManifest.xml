@@ -17,17 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseProject"
         android:usesCleartextTraffic="true">
-        <receiver
-            android:name=".RemainTimeWidget"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
+<!--        <receiver-->
+<!--            android:name=".RemainTimeWidget"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />-->
+<!--            </intent-filter>-->
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/remain_time_widget_info" />
-        </receiver>
+<!--            <meta-data-->
+<!--                android:name="android.appwidget.provider"-->
+<!--                android:resource="@xml/remain_time_widget_info" />-->
+<!--        </receiver>-->
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -45,12 +45,7 @@
         <meta-data
             android:name="@string/key_ads_app_id"
             android:value="@string/key_ads" /> <!-- <service -->
-        <!-- android:name="com.thanh_nguyen.baseproject.external.firebase.AppFirebaseMessageService" -->
-        <!-- android:exported="false"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
-        <!-- </intent-filter> -->
-        <!-- </service> -->
+
         <activity
             android:name=".app.presentation.ui.main.MainActivity"
             android:screenOrientation="portrait"
@@ -62,7 +57,7 @@
             android:name=".app.presentation.ui.SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
+            android:theme="@style/Theme.App.Starting"
             android:launchMode="singleInstance"
             >
             <intent-filter>
@@ -94,9 +89,9 @@
 
         </service>
 
-        <service android:name=".service.WidgetCountdownService">
+<!--        <service android:name=".service.WidgetCountdownService">-->
 
-        </service>
+<!--        </service>-->
     </application>
 
 </manifest>

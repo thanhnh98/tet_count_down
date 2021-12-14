@@ -44,6 +44,10 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
         )
     }
 
+    fun keepOnScreen(){
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
+
     fun hideSystemBars() {
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(window.decorView) ?: return

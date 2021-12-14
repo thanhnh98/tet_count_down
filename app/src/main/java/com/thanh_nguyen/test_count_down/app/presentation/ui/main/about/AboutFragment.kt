@@ -2,20 +2,25 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.about
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.model.AboutHeaderDataModel
 import com.thanh_nguyen.test_count_down.app.model.AboutItemDataModel
+import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.content.AboutViewItem
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.header.AboutHeaderViewItem
-import com.thanh_nguyen.test_count_down.common.base.adapter.RecycleViewItem
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
-import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentCalendarBinding
 import kodeinViewModel
+import kotlinx.coroutines.flow.collect
 
 class AboutFragment: BaseCollectionFragmentMVVM<FragmentCalendarBinding, AboutViewModel>() {
+
     override val viewModel: AboutViewModel by kodeinViewModel()
 
     override fun inflateLayout(): Int = R.layout.fragment_calendar
@@ -23,6 +28,48 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentCalendarBinding, AboutVi
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreatedX(view: View, savedInstanceState: Bundle?) {
         super.onViewCreatedX(view, savedInstanceState)
+        setupObserver()
+        setUpAds()
+        setupData()
+    }
+
+    private fun setupObserver() {
+        lifecycleScope.launchWhenCreated {
+            viewModel.adsInfo.collect {
+                it.onResultReceived(
+                    onLoading = {
+
+                    },
+                    onError = {
+
+                    },
+                    onSuccess = {
+                        binding.lnlAds.addView(
+                            createAdsView(getString(R.string.key_ads_banner)).apply {
+                                loadAd(AdRequest.Builder().build().apply {
+                                    Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
+                                })
+                            }
+                        )
+                    }
+                )
+            }
+        }
+    }
+
+    private fun createAdsView(adsId: String): AdView{
+        return AdView(activity).apply {
+            adSize = AdSize.BANNER
+            adUnitId = adsId
+        }
+    }
+
+    private fun setUpAds() {
+        viewModel.getAdsInfo()
+    }
+
+    private fun setupData() {
+
         showHeaderItem(
             AboutHeaderDataModel(
                 "Năm Nhâm Dần có gì?",

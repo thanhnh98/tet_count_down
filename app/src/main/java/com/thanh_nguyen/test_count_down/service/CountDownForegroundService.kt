@@ -4,6 +4,7 @@ import android.util.Log
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationCountdownViewAlive
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationKeepAlive
+import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.utils.closeAlarm
 import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
@@ -24,11 +25,19 @@ class CountDownForegroundService: BaseService() {
         observeEvent {
             AppSharedPreferences.setisClosedCountDownNoti(false)
             while (true){
-                startForeground(FOREGROUND_ID, createNotificationKeepAlive(
-                    this@CountDownForegroundService,
-                    createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
-                    FOREGROUND_REQUEST_CODE,
-                    FOREGROUND_NOTI_CHANNEL))
+                try {
+                    startForeground(
+                        FOREGROUND_ID,
+                        createNotificationKeepAlive(
+                            this@CountDownForegroundService,
+                            createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
+                            FOREGROUND_REQUEST_CODE,
+                            FOREGROUND_NOTI_CHANNEL
+                        )
+                    )
+                }catch (e: Exception){
+                    e.printStackTrace()
+                }
                 delay(1000)
             }
         }

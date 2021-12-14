@@ -2,6 +2,7 @@
     <string name="key_ads_app_id">com.google.android.gms.ads.APPLICATION_ID</string>
     <string name="key_ads">ca-app-pub-3395045728500314~1259121134</string>
     <string name="key_ads_interstitial">ca-app-pub-3395045728500314/5395297950</string>
+    <string name="key_ads_banner">ca-app-pub-3395045728500314/8400351777</string>
     <string name="default_notification_channel_id">MSG</string>
 
     <string name="app_name">Sắp tết</string>

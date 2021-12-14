@@ -44,15 +44,12 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by kodeinViewModel()
     private val soundManager: BackgroundSoundManager by instance()
 
-    //private val adsManager: AdsManager by instance()
-    private var adsClickCount = 1
     private var isMutedSound: Boolean? = null
 
     override fun inflateLayout(): Int = R.layout.fragment_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //adsManager.prepareAds()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -67,13 +64,6 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                         createLottieView(x, y)
                     )
                 }
-            }
-            adsClickCount++.apply {
-//                if (this % 15 == 0)
-//                    adsManager.show(
-//                        activity?:return@apply,
-//                        5000,
-//                    )
             }
             false
         }
@@ -118,13 +108,6 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                                 CountDownForegroundService::class.java
                             )
                         )
-//                        adsManager.show(
-//                            activity = activity?:return@collect,
-//                            onDismiss = {
-//                                activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
-//                            }
-//                        )
-//                        activity?.showToastMessage("Cùng chờ đến tết nào, theo dõi trực tiếp trên thanh trạng thông báo")
                     }
                     else{
                         activity?.stopService(
@@ -195,25 +178,27 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 
         lifecycleScope.launch {
             AppSharedPreferences.isMuted.collect { isMuted ->
-                isMutedSound = isMuted
-                if (isMuted == true) {
-                    soundManager.pauseBackgroundSound()
-                    binding.imgSound.setImageDrawable(
-                        getDrawable(
-                            activity ?: return@collect,
-                            R.drawable.ic_volume_off
+                if (isMutedSound != isMuted) {
+                    isMutedSound = isMuted
+                    if (isMuted == true) {
+                        soundManager.pauseBackgroundSound()
+                        binding.imgSound.setImageDrawable(
+                            getDrawable(
+                                activity ?: return@collect,
+                                R.drawable.ic_volume_off
+                            )
                         )
-                    )
-                    activity?.showToastMessage("Nhạc nền đang tắt")
-                }
-                else {
-                    soundManager.playBackgroundSound()
-                    binding.imgSound.setImageDrawable(
-                        getDrawable(
-                            activity ?: return@collect,
-                            R.drawable.ic_volume_on
+                        activity?.showToastMessage("Nhạc nền đang tắt")
+                    } else {
+                        soundManager.playBackgroundSound()
+                        binding.imgSound.setImageDrawable(
+                            getDrawable(
+                                activity ?: return@collect,
+                                R.drawable.ic_volume_on
+                            )
                         )
-                    )
+                        activity?.showToastMessage("Nhạc nền đang bật")
+                    }
                 }
             }
         }

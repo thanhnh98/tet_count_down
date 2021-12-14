@@ -8,15 +8,51 @@
     android:layout_gravity="center">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:src="@drawable/theme_widget"
-        android:alpha="0.95"
-        android:scaleType="fitXY"/>
+        android:layout_width="@dimen/_120dp"
+        android:layout_height="@dimen/_120dp"
+        android:src="@drawable/flower"
+        android:layout_gravity="right|center_vertical"/>
+    <TextView
+        android:layout_width="@dimen/_120dp"
+        android:layout_height="@dimen/_120dp"
+        android:background="@drawable/bg_view_hide_img"
+        android:layout_gravity="right|center_vertical"/>
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_50dp"
+        android:layout_marginTop="@dimen/_10dp"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_100dp"
+        android:layout_marginTop="@dimen/_25dp"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_70dp"
+        android:layout_marginTop="@dimen/_70dp"/>
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_60dp"
+        />
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/_110dp"
         android:orientation="vertical"
         android:gravity="left|center_vertical"
         android:paddingHorizontal="@dimen/_10dp"

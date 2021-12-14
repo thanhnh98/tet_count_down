@@ -41,4 +41,6 @@ object AppSharedPreferences {
 
     val isMuted = getByKey(PreferencesKey.IS_MUTED, false)
     suspend fun setIsMuted(isMuted: Boolean) = setKey(PreferencesKey.IS_MUTED, isMuted)
+
+
 }

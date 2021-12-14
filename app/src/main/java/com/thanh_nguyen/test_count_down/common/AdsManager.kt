@@ -22,9 +22,7 @@ class AdsManager(private val context: Context) {
         InterstitialAd.load(
             context,
             App.getString(R.string.key_ads_interstitial),
-            AdRequest.Builder().build().apply {
-                Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
-            },
+            AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     mInterstitialAd = null

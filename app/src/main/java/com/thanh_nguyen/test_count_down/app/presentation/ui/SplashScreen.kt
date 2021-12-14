@@ -4,9 +4,11 @@
 
 package com.thanh_nguyen.test_count_down.app.presentation.ui
 
+import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
@@ -27,6 +29,9 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
 
     override fun inflateLayout(): Int = R.layout.activity_splash
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Handle the splash screen transition.
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
         soundManager.playFireworkSound()
         lifecycleScope.launch {
@@ -36,6 +41,69 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
                 goToMain()
             }
         }
+
+        binding.imgHpny.animate()
+            .setDuration(1000)
+            .alpha(1f)
+            .setListener(object: Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    binding.imgFlowerTop.alpha = 1f
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                }
+
+            })
+            .start()
+
+        binding.imgFlowerTop.animate()
+            .setDuration(1000)
+            .setListener(object: Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    binding.imgFlowerTop.alpha = 1f
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                }
+
+            })
+            .alpha(1f)
+            .start()
+
+        binding.imgFlowerBottom.animate()
+            .setDuration(1000)
+            .setListener(object: Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    binding.imgFlowerBottom.alpha = 1f
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                }
+
+            })
+            .alpha(1f)
+            .start()
     }
 
     private fun goToMain(){

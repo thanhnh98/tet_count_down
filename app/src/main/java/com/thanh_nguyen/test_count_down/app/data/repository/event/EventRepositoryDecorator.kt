@@ -2,7 +2,7 @@
  * Created by Thanh Nguyen on 11/24/21, 9:42 AM
  */
 
-package com.thanh_nguyen.test_count_down.app.data.repository
+package com.thanh_nguyen.test_count_down.app.data.repository.event
 
 import com.thanh_nguyen.test_count_down.app.domain.repositories.EventRepository
 import com.thanh_nguyen.test_count_down.app.model.WishModel

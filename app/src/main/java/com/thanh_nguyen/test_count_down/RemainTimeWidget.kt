@@ -11,7 +11,6 @@ import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.Constants
-import com.thanh_nguyen.test_count_down.service.WidgetCountdownService
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
 import kotlinx.coroutines.Job
@@ -50,15 +49,15 @@ class RemainTimeWidget : AppWidgetProvider() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onEnabled(context: Context) {
-        context.sendBroadcast(Intent(context, RemainTimeWidget::class.java).apply {
-            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-        })
-        context.startService(Intent(context, WidgetCountdownService::class.java))
+//        context.sendBroadcast(Intent(context, RemainTimeWidget::class.java).apply {
+//            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+//        })
+//        context.startService(Intent(context, WidgetCountdownService::class.java))
     }
 
     override fun onDisabled(context: Context) {
-        job?.cancel()
-        context.stopService(Intent(context, WidgetCountdownService::class.java))
+//        job?.cancel()
+//        context.stopService(Intent(context, WidgetCountdownService::class.java))
     }
 }
 
@@ -87,7 +86,7 @@ internal fun updateAppWidget(
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
     )
-    views.setOnClickPendingIntent(R.id.img_bg,
+    views.setOnClickPendingIntent(R.id.layout_root,
         PendingIntent.getActivity(
             context,
             0,

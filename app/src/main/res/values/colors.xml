@@ -13,6 +13,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_bg_wish">#7A8E0000</color>
+    <color name="colorPrimaryAlpha0">#00C62828</color>
 
     <color name="bg_stroke">#C62828</color>
     <color name="bg_solid">#FFCDD2</color>

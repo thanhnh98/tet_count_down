@@ -6,13 +6,13 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.PRIORITY_MAX
-import androidx.core.os.bundleOf
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
 import com.thanh_nguyen.test_count_down.common.Constants
@@ -20,7 +20,6 @@ import com.thanh_nguyen.test_count_down.receiver.ReceiverEvent
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver.Companion.RECEIVER_EVENT
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService.Companion.FOREGROUND_ID
-import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getDaysUntilDate
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate

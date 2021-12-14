@@ -28,7 +28,7 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
     }
 
     bindViewModel<AboutViewModel>() with provider {
-        AboutViewModel()
+        AboutViewModel(instance())
     }
 
 
