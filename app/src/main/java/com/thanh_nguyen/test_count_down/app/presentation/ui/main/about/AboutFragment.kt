@@ -14,16 +14,17 @@ import com.thanh_nguyen.test_count_down.app.model.AboutItemDataModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.content.AboutViewItem
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.header.AboutHeaderViewItem
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.handbook.items.header.HandbookHeaderViewItem
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
-import com.thanh_nguyen.test_count_down.databinding.FragmentCalendarBinding
+import com.thanh_nguyen.test_count_down.databinding.FragmentAboutBinding
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
 
-class AboutFragment: BaseCollectionFragmentMVVM<FragmentCalendarBinding, AboutViewModel>() {
+class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewModel>() {
 
     override val viewModel: AboutViewModel by kodeinViewModel()
 
-    override fun inflateLayout(): Int = R.layout.fragment_calendar
+    override fun inflateLayout(): Int = R.layout.fragment_about
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreatedX(view: View, savedInstanceState: Bundle?) {
@@ -107,7 +108,7 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentCalendarBinding, AboutVi
 
     private fun showHeaderItem(headerData: AboutHeaderDataModel){
         recyclerManager.replace(
-            AboutHeaderViewItem::class,
+            HandbookHeaderViewItem::class,
             AboutHeaderViewItem(headerData)
         )
     }

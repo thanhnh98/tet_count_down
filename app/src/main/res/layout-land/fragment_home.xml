@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/theme_tet"
+            android:scaleType="centerCrop"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lt_firework"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_scale="1"
+            app:lottie_fileName="fireworks.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:scaleX="-1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal_3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintGuide_percent="0.7"/>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ltv_tiger"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:lottie_fileName="tiger_cute.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:scaleX="-1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_3"
+            app:layout_constraintLeft_toRightOf="@id/gl_vertical"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/LayoutItemCountLandscape"
+            android:id="@+id/ctl_day"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/gl_vertical_1"
+            app:layout_constraintRight_toLeftOf="@id/gl_vertical_2"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_2"
+            >
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_month_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6"/>
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:id="@+id/tv_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/gl_month_1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="00"
+                android:gravity="bottom|right"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewRight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/gl_month_1"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/day"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1">
+
+            <FrameLayout
+                android:id="@+id/fl_img_pin_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/_6dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:background="@drawable/bg_round_gray_opacity_50">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_pin"
+                    android:layout_width="@dimen/_16dp"
+                    android:layout_height="@dimen/_16dp"
+                    android:src="@drawable/ic_pin"
+                    android:layout_gravity="center"
+                    />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/fl_img_sound_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/fl_img_pin_container"
+                app:layout_constraintTop_toTopOf="@id/fl_img_pin_container"
+                android:padding="@dimen/_6dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/bg_round_gray_opacity_50">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_sound"
+                    android:layout_width="@dimen/_16dp"
+                    android:layout_height="@dimen/_16dp"
+                    android:src="@drawable/ic_volume_on"
+                    app:layout_constraintRight_toLeftOf="@id/fl_img_pin_container"
+                    app:layout_constraintTop_toTopOf="@id/fl_img_pin_container"
+                    />
+            </FrameLayout>
+
+            <TextView
+                style="@style/TextViewWish"
+                android:id="@+id/tv_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_img_pin_container"
+                android:background="@drawable/bg_wish_container"
+                android:layout_marginTop="@dimen/_8dp"
+                android:text="Mỗi sáng thức dậy, bạn có thêm một cơ hội mới, cố gắng nắm bắt nhé. Good day!"
+                android:alpha="0"
+                tools:alpha="1"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/LayoutItemCountLandscape"
+            android:id="@+id/ctl_hour"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
+            app:layout_constraintLeft_toRightOf="@id/gl_vertical_2"
+            app:layout_constraintRight_toLeftOf="@id/gl_vertical"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_2"
+            >
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_day_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:id="@+id/tv_hour"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/gl_day_1"
+                android:text="00"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewRight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/gl_day_1"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/hour"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/LayoutItemCountLandscape"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/gl_vertical_1"
+            app:layout_constraintTop_toTopOf="@id/gl_horizontal_2"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_3"
+            app:layout_constraintRight_toLeftOf="@id/gl_vertical_2"
+            >
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_minute_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:id="@+id/tv_minute"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/gl_minute_1"
+                android:text="00"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewRight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/gl_minute_1"
+                android:text="@string/minute"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/LayoutItemCountLandscape"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toLeftOf="@id/gl_vertical"
+            app:layout_constraintLeft_toRightOf="@id/gl_vertical_2"
+            app:layout_constraintBottom_toBottomOf="@id/gl_horizontal_3"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_2"
+            >
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_second_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:id="@+id/tv_second"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/gl_second_1"
+                android:text="00"
+                />
+
+            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/TextViewRight"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/gl_second_1"
+                android:text="@string/second"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_3">
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_open_widget"
+            android:layout_width="@dimen/_28dp"
+            android:layout_height="@dimen/_28dp"
+            android:layout_marginRight="@dimen/_16dp"
+            android:src="@drawable/ic_open_widget"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_3"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="gone"
+            />
+
+        <FrameLayout
+            android:id="@+id/container_fireworks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

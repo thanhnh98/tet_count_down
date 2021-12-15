@@ -10,6 +10,7 @@
         <item name="android:fontFamily">@font/gilroy_semibold</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/_18sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="TextViewBottom" parent="Widget.AppCompat.TextView">
@@ -26,6 +27,26 @@
         <item name="android:textSize">@dimen/number_large</item>
         <item name="android:background">@drawable/bg_top_corner</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextViewLeft" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/selender</item>
+        <item name="android:textColor">@color/md_grey_800</item>
+        <item name="android:textSize">@dimen/number_large</item>
+        <item name="android:background">@drawable/bg_left_corner</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextViewRight" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/selender</item>
+        <item name="android:textColor">@color/md_grey_800</item>
+        <item name="android:textSize">@dimen/number_tiny</item>
+        <item name="android:background">@drawable/bg_right_corner</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/_20dp</item>
+        <item name="android:paddingLeft">@dimen/_6dp</item>
     </style>
 
     <style name="TextViewTitle" parent="Widget.AppCompat.TextView">
@@ -195,4 +216,11 @@
         <item name="postSplashScreenTheme">@style/SplashTheme</item>  # Required.
     </style>
 
+    <style name="LayoutItemCountLandscape">
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="FeatureText" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+    </style>
 </resources>

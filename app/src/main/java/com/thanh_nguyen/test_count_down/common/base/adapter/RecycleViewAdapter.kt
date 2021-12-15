@@ -23,6 +23,10 @@ class RecycleViewAdapter<VH: RecyclerView.ViewHolder, IVH: RecycleViewItem<out V
         return mItems[position].getType()
     }
 
+    fun getItemViewSpanSize(position: Int): Int {
+        return mItems[position].spanSize()
+    }
+
     override fun getItemCount(): Int {
         return mItems.size
     }

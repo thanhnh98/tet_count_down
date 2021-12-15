@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.handbook.HandbookFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
@@ -144,8 +145,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 fragment = HomeFragment()
             ),
             MainStateModel(
-                title = "About",
-                fragment = AboutFragment()
+                title = "Handbook",
+                fragment = HandbookFragment()
             ),
         )
         val adapter = MainStateAdapter(this, fragments)

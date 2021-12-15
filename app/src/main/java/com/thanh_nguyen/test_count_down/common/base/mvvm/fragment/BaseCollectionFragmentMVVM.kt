@@ -16,12 +16,11 @@ import com.thanh_nguyen.test_count_down.common.base.mvvm.viewmodel.BaseCollectio
 
 abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectionViewModel> : BaseFragmentMVVM<DB, VM>() {
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
-    private val SPAN_COUNT = 1
     private var isLoadingMore = false
     lateinit var recyclerView: RecyclerView
     lateinit var swipeRefresh: SwipeRefreshLayout
     var recyclerManager = RecyclerManager<Any>()
-    var gridLayoutManager = GridLayoutManager(context, SPAN_COUNT)
+    var gridLayoutManager = GridLayoutManager(context, getSpanCount())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +47,11 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
 
         with(gridLayoutManager){
             reverseLayout = isReverseLayout()
+            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return recyclerManager.adapter.getItemViewSpanSize(position)
+                }
+            }
         }
 
         with(recyclerView){
@@ -123,4 +127,6 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
     open fun shouldPullToRefresh(): Boolean = true
 
     open fun isReverseLayout() = false
+
+    open fun getSpanCount(): Int = 1
 }

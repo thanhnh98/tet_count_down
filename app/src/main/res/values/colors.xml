@@ -312,6 +312,7 @@
     <!--blue grey-->
     <color name="md_blue_grey_50">#ECEFF1</color>
     <color name="md_blue_grey_100">#CFD8DC</color>
+    <color name="md_blue_grey_100_opacity_50">#80CFD8DC</color>
     <color name="md_blue_grey_200">#B0BBC5</color>
     <color name="md_blue_grey_300">#90A4AE</color>
     <color name="md_blue_grey_400">#78909C</color>

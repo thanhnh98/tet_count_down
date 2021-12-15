@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="headerData"
+            type="com.thanh_nguyen.test_count_down.app.model.HandbookHeaderModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            style="@style/TextViewTitle"
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{headerData.title}"
+            android:fontFamily=""
+            tools:background="@color/md_red_A400"
+            tools:text="Năm nhâm tuất có gì?"
+            android:gravity="center"
+            android:paddingTop="@dimen/_16dp"
+            android:paddingBottom="@dimen/_16dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
