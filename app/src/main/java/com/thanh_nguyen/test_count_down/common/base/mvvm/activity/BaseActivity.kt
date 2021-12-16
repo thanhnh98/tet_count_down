@@ -9,6 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
@@ -29,33 +30,37 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
     open fun inflateStatusColor() = App.getInstance().getColor(R.color.colorPrimary)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableFullScreen()
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, inflateLayout())
+        enableFullScreen()
     }
 
     private fun enableFullScreen(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-        )
+//        window.setFlags(
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//        )
+        hideSystemUI()
+    }
+
+    private fun hideSystemUI() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowInsetsControllerCompat(window, binding.root).let { controller ->
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+    }
+
+    private fun showSystemUI() {
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+        WindowInsetsControllerCompat(window, binding.root).show(WindowInsetsCompat.Type.systemBars())
     }
 
     fun keepOnScreen(){
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-    }
-
-    fun hideSystemBars() {
-        val windowInsetsController =
-            ViewCompat.getWindowInsetsController(window.decorView) ?: return
-        // Configure the behavior of the hidden system bars
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        // Hide both the status bar and the navigation bar
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
     }
 
     private fun setStatusBarColor(@DrawableRes drawableColor: Int = inflateStatusColor()) {
@@ -65,23 +70,4 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
             statusBarColor = drawableColor
         }
     }
-//
-//    /**
-//    * If increase version code to 30 (R) , remove brackets
-//     * */
-//    private fun hideSystemUI(){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            window.setDecorFitsSystemWindows(false)
-//        }else{
-//            window.decorView.systemUiVisibility = (
-//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                    )
-//        }
-//    }
-//
-//    open fun enableLightStatusBar(){
-//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//        window.statusBarColor = Color.WHITE
-//    }
 }

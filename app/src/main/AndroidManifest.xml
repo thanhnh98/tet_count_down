@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
@@ -17,26 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseProject"
         android:usesCleartextTraffic="true">
-<!--        <receiver-->
-<!--            android:name=".RemainTimeWidget"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />-->
-<!--            </intent-filter>-->
-
-<!--            <meta-data-->
-<!--                android:name="android.appwidget.provider"-->
-<!--                android:resource="@xml/remain_time_widget_info" />-->
-<!--        </receiver>-->
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_msg_firebase" />
+            android:resource="@drawable/ic_notification" />
         <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more. -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorPrimary" />
+            android:resource="@color/colorPrimaryNotification" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
@@ -53,7 +41,7 @@
 
         </activity>
         <activity
-            android:name=".app.presentation.ui.SplashScreen"
+            android:name=".app.presentation.ui.GetStartedScreen"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.App.Starting"
@@ -70,9 +58,6 @@
             android:name=".receiver.AlarmReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>

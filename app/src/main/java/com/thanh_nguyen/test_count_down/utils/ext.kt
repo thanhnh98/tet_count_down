@@ -133,6 +133,6 @@ fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(this, 
 
 fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getColorCompat(color))
 
-fun Activity.showToastMessage(msg: String){
+fun Context.showToastMessage(msg: String){
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }

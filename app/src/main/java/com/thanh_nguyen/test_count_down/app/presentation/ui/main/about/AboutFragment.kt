@@ -96,7 +96,7 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
                         "\n" +
                         "Vậy nhé, cùng nhau từng ngày đón tết 2022 thôi nào.",
                 activity?.getDrawable(R.drawable.img_background),
-                "Cùng về nhà với vòng tay ba mẹ! (Nguồn: Internet)"
+                ""
             ),
         ))
     }

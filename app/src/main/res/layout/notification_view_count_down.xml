@@ -53,15 +53,15 @@
 
     <ImageView
         android:id="@+id/img_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_32dp"
+        android:layout_height="@dimen/_32dp"
         android:src="@drawable/ic_close"
         android:padding="@dimen/_8dp"
         android:layout_gravity="right"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:orientation="vertical"
         android:gravity="center"
         android:paddingHorizontal="@dimen/_6dp"

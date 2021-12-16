@@ -17,7 +17,9 @@
             android:alpha="0"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:tint="@color/white"/>
+            android:tint="@color/white"
+            tools:alpha="1"
+            />
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
@@ -38,6 +40,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="@dimen/_16dp"
             android:alpha="0"
+            tools:alpha="1"
             />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -51,6 +54,7 @@
             android:layout_marginBottom="@dimen/_16dp"
             android:scaleX="-1"
             android:alpha="0"
+            tools:alpha="1"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

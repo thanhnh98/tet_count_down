@@ -16,7 +16,6 @@ object PreferencesKey{
     val IS_CLOSED_COUNT_DOWN_NOTI = booleanPreferencesKey("IS_CLOSED_COUNT_DOWN_NOTI")
     val IS_SHOWED_INSTRUCTION = booleanPreferencesKey("IS_SHOWED_INSTRUCTION")
     val IS_MUTED = booleanPreferencesKey("IS_MUTED")
-
 }
 
 object AppSharedPreferences {
@@ -24,10 +23,10 @@ object AppSharedPreferences {
         preferences[key] ?: defaultValue
     }
 
-    private suspend fun <T> setKey(key: Preferences.Key<T>, value: T){
-        App.getInstance().dataStore.edit { prefs ->
+    private suspend fun <T> setKey(key: Preferences.Key<T>, value: T): T?{
+       return App.getInstance().dataStore.edit { prefs ->
             prefs[key] = value
-        }
+        }[key]
     }
 
     val isVisited = getByKey(PreferencesKey.IS_VISITED, false)

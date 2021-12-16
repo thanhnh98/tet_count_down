@@ -9,7 +9,7 @@ import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
-import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
+import com.thanh_nguyen.test_count_down.app.presentation.ui.GetStartedScreen
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
@@ -82,7 +82,7 @@ internal fun updateAppWidget(
             context,
             0,
             Intent(
-                context, SplashScreen::class.java),
+                context, GetStartedScreen::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
     )
@@ -91,7 +91,7 @@ internal fun updateAppWidget(
             context,
             0,
             Intent(
-                context, SplashScreen::class.java),
+                context, GetStartedScreen::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
     )

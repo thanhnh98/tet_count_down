@@ -5,33 +5,27 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui
 
 import android.animation.Animator
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
-import com.thanh_nguyen.test_count_down.common.AdsManager
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
-import com.thanh_nguyen.test_count_down.databinding.ActivitySplashBinding
+import com.thanh_nguyen.test_count_down.databinding.ActivityGetStartedBinding
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import org.kodein.di.generic.instance
 
-@SuppressLint("CustomSplashScreen")
-class SplashScreen: BaseActivity<ActivitySplashBinding>() {
+class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
     private var isGoneToMain = false
 
-    override fun inflateLayout(): Int = R.layout.activity_splash
+    override fun inflateLayout(): Int = R.layout.activity_get_started
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition.
-        val splashScreen = installSplashScreen()
-
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         soundManager.playFireworkSound()
         lifecycleScope.launch {
@@ -107,7 +101,7 @@ class SplashScreen: BaseActivity<ActivitySplashBinding>() {
     }
 
     private fun goToMain(){
-        startActivity(Intent(this@SplashScreen, MainActivity::class.java))
+        startActivity(Intent(this@GetStartedScreen, MainActivity::class.java))
         isGoneToMain = true
         finish()
     }

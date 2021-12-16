@@ -41,6 +41,7 @@
   <androidx.databinding/>
   <androidx.datastore/>
   <androidx.documentfile/>
+  <androidx.draganddrop/>
   <androidx.drawerlayout/>
   <androidx.dynamicanimation/>
   <androidx.emoji/>
@@ -50,6 +51,7 @@
   <androidx.fragment/>
   <androidx.games/>
   <androidx.gaming/>
+  <androidx.glance/>
   <androidx.gridlayout/>
   <androidx.health/>
   <androidx.heifwriter/>

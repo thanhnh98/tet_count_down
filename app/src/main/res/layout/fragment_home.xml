@@ -283,26 +283,45 @@
             android:visibility="gone"
             />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pin"
-            android:layout_width="@dimen/_28dp"
-            android:layout_height="@dimen/_28dp"
-            android:layout_marginRight="@dimen/_16dp"
-            android:layout_marginTop="@dimen/_16dp"
-            android:src="@drawable/ic_pin"
+        <FrameLayout
+            android:id="@+id/fl_img_pin_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintRight_toLeftOf="@id/img_open_widget"
             app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1"
-            />
+            android:padding="@dimen/_6dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_16dp"
+            android:background="@drawable/bg_round_gray_opacity_50">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_sound"
-            android:layout_width="@dimen/_28dp"
-            android:layout_height="@dimen/_28dp"
-            android:src="@drawable/ic_volume_on"
-            android:layout_marginBottom="@dimen/_10dp"
-            app:layout_constraintRight_toRightOf="@id/img_pin"
-            app:layout_constraintBottom_toTopOf="@id/img_pin"
-            />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_pin"
+                android:layout_width="@dimen/_16dp"
+                android:layout_height="@dimen/_16dp"
+                android:src="@drawable/ic_unpin"
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
+
+
+
+        <FrameLayout
+            android:id="@+id/fl_img_sound_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="@id/fl_img_pin_container"
+            app:layout_constraintBottom_toTopOf="@id/fl_img_pin_container"
+            android:padding="@dimen/_6dp"
+            android:layout_marginBottom="@dimen/_6dp"
+            android:background="@drawable/bg_round_gray_opacity_50">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_sound"
+                android:layout_width="@dimen/_16dp"
+                android:layout_height="@dimen/_16dp"
+                android:src="@drawable/ic_volume_on"
+                />
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/container_fireworks"

@@ -8,6 +8,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
+import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
@@ -18,8 +19,12 @@ import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageTransformer
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
+import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.onClick
 import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
+import com.thanh_nguyen.test_count_down.utils.showToastMessage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
@@ -27,6 +32,7 @@ import org.kodein.di.generic.instance
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val soundManager: BackgroundSoundManager by instance()
+    private var isFirstBackPress = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,14 +145,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun setupViewPager() {
-        val fragments = listOf(
+        val fragments = mutableListOf(
             MainStateModel(
                 title = "Home",
                 fragment = HomeFragment()
             ),
             MainStateModel(
-                title = "Handbook",
-                fragment = HandbookFragment()
+                title = "About",
+                fragment = AboutFragment()
             ),
         )
         val adapter = MainStateAdapter(this, fragments)
@@ -160,15 +166,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun inflateLayout(): Int = R.layout.activity_main
 
     override fun onBackPressed() {
-        finish()
+        if (binding.vpMain.currentItem != 0){
+            binding.vpMain.setCurrentItem(0, true)
+        }
+        else
+            onFinish()
     }
 
-    fun getSoftButtonsBarSizePort(): Int {
-        val metrics = DisplayMetrics()
-        this.windowManager.defaultDisplay.getMetrics(metrics)
-        val usableHeight: Int = metrics.heightPixels
-        this.windowManager.defaultDisplay.getRealMetrics(metrics)
-        val realHeight: Int = metrics.heightPixels
-        return if (realHeight > usableHeight) realHeight - usableHeight else 0
+    private fun onFinish() {
+        if (!isFirstBackPress){
+            showToastMessage("Bấm lần nữa để thoát")
+            isFirstBackPress = true
+            lifecycleScope.launch {
+                delay(3000)
+                isFirstBackPress = false
+            }
+        }
+        else {
+            finish()
+        }
     }
 }

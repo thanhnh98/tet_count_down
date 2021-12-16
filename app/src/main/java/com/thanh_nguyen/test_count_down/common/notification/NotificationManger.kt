@@ -11,11 +11,10 @@ import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.PRIORITY_MAX
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import com.thanh_nguyen.test_count_down.R
-import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
+import com.thanh_nguyen.test_count_down.app.presentation.ui.GetStartedScreen
 import com.thanh_nguyen.test_count_down.common.Constants
+import com.thanh_nguyen.test_count_down.provider.AppResourcesProvider
 import com.thanh_nguyen.test_count_down.receiver.ReceiverEvent
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver.Companion.RECEIVER_EVENT
@@ -32,7 +31,7 @@ fun createNotificationKeepAlive(
     isOnGoing: Boolean = false,
 ): Notification{
 
-    val notificationIntent = Intent(context, SplashScreen::class.java)
+    val notificationIntent = Intent(context, GetStartedScreen::class.java)
     val notificationManager: NotificationManager? = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
 
     notificationIntent.flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -45,7 +44,8 @@ fun createNotificationKeepAlive(
     )
 
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
-        .setSmallIcon(R.mipmap.ic_launcher)
+        .setSmallIcon(R.drawable.ic_notification)
+        .setColor(AppResourcesProvider.getColor(R.color.colorPrimaryNotification))
         .setCustomBigContentView(view)
         .setCustomContentView(view)
         .setVibrate(null)
@@ -89,7 +89,7 @@ fun createNotificationCountdownViewAlive(context: Context): RemoteViews{
             context,
             0,
             Intent(
-                context, SplashScreen::class.java),
+                context, GetStartedScreen::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
         )
     )
@@ -124,7 +124,7 @@ fun createNotificationCountdownViewAlive(context: Context): RemoteViews{
 }
 
 fun pushAlertNotification(context: Context){
-    val notificationIntent = Intent(context, SplashScreen::class.java).apply {
+    val notificationIntent = Intent(context, GetStartedScreen::class.java).apply {
         flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
     }
     val notificationManager: NotificationManager? = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
@@ -149,7 +149,8 @@ fun pushAlertNotification(context: Context){
     }
 
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
-        .setSmallIcon(R.mipmap.ic_launcher)
+        .setSmallIcon(R.drawable.ic_notification)
+        .setColor(AppResourcesProvider.getColor(R.color.colorPrimaryNotification))
         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
         .setCustomContentView(notificationLayout)
         .setContentIntent(intent)

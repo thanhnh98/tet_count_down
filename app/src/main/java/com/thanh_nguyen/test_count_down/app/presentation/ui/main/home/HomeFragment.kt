@@ -8,13 +8,11 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.content.ContextCompat.startForegroundService
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
@@ -23,19 +21,15 @@ import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.RemainTimeWidget
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
-import com.thanh_nguyen.test_count_down.app.presentation.ui.SplashScreen
-import com.thanh_nguyen.test_count_down.common.AdsManager
+import com.thanh_nguyen.test_count_down.app.presentation.ui.GetStartedScreen
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
-import com.thanh_nguyen.test_count_down.job
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
@@ -79,11 +73,11 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
             openMenu()
         }
 
-        binding.imgPin.onClick {
+        binding.flImgPinContainer.onClick {
             pinCountDownNoti()
         }
 
-        binding.imgSound.onClick {
+        binding.flImgSoundContainer.onClick {
             changeStatusSound()
         }
     }
@@ -116,10 +110,13 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                                 CountDownForegroundService::class.java
                             )
                         )
-                        activity?.showToastMessage("Đã gỡ bộ đếm, bấm lại để kích hoạt khi bạn nôn nao đến tết nhé")
                     }
                 }
             }.cancel() //cancel after finished
+        }
+        else {
+            activity?.showToastMessage("Tính năng không hỗ trợ trên phiên bản android hiện tại")
+
         }
     }
 
@@ -132,7 +129,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
             val successCallback = PendingIntent.getBroadcast(
                 context,
                 0,
-                Intent(activity, SplashScreen::class.java),
+                Intent(activity, GetStartedScreen::class.java),
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
             appWidgetManager.requestPinAppWidget(myProvider, null, successCallback)

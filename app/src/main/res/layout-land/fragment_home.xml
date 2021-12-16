@@ -152,7 +152,7 @@
                     android:id="@+id/img_pin"
                     android:layout_width="@dimen/_16dp"
                     android:layout_height="@dimen/_16dp"
-                    android:src="@drawable/ic_pin"
+                    android:src="@drawable/ic_unpin"
                     android:layout_gravity="center"
                     />
             </FrameLayout>

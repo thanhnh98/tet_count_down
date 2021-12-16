@@ -8,6 +8,7 @@ import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.utils.closeAlarm
 import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
+import com.thanh_nguyen.test_count_down.utils.showToastMessage
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
@@ -22,6 +23,7 @@ class CountDownForegroundService: BaseService() {
     override fun onCreate() {
         super.onCreate()
         closeAlarm(this)
+        showToastMessage("Đã ghim bộ đếm trên trang thông báo")
         observeEvent {
             AppSharedPreferences.setisClosedCountDownNoti(false)
             while (true){
@@ -46,6 +48,7 @@ class CountDownForegroundService: BaseService() {
     override fun onDestroy() {
         super.onDestroy()
         setAlarmRemindAfterInterval(this)
+        showToastMessage("Đã gỡ bộ đếm, kích hoạt lại khi bạn nôn nao đến tết nhé")
         CoroutineScope(Dispatchers.IO).launch {
             AppSharedPreferences.setisClosedCountDownNoti(true)
             cancel()
