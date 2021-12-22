@@ -37,8 +37,13 @@
         <activity
             android:name=".app.presentation.ui.main.MainActivity"
             android:theme="@style/Theme.BaseProject.FullScreen"
+            android:exported="true"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".app.presentation.ui.GetStartedScreen"
@@ -83,11 +88,7 @@
 
         <activity android:name=".app.presentation.ui.main.TestSocket"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

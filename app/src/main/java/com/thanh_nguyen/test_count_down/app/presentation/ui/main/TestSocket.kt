@@ -23,7 +23,7 @@ class TestSocket: BaseActivity<ActivityTestSocketBinding>() {
             GlobalScope.launch {
                 WebSocketFactory()
 //                    .createSocket("ws://sap-tet-api.herokuapp.com/chat")
-                    .createSocket("ws://192.168.0.97:8080/chat/${System.currentTimeMillis()}")
+                    .createSocket("ws://192.168.0.97:8080/join/${binding.edtId.text.toString()}")
                     .addListener(object: WebSocketAdapter(){
                         override fun onConnected(
                             websocket: WebSocket?,

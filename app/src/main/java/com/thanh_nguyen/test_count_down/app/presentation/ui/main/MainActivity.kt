@@ -12,6 +12,7 @@ import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.game.GameFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.handbook.HandbookFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
@@ -146,6 +147,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setupViewPager() {
         val fragments = mutableListOf(
+            MainStateModel(
+                title = "GameFragment",
+                fragment = GameFragment()
+            ),
             MainStateModel(
                 title = "Home",
                 fragment = HomeFragment()
