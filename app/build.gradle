@@ -142,4 +142,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
     implementation 'androidx.media:media:1.4.3'
+//    implementation "io.ktor:ktor-client-websockets:$ktor_version"
+//    implementation "io.ktor:ktor-client-cio:$ktor_version"
+//    implementation "io.ktor:ktor-client-android:$ktor_version"
+//    implementation "io.ktor:ktor-client-okhttp:$ktor_version"
+//    implementation ('io.socket:socket.io-client:2.0.0') {
+//        exclude group: 'org.json', module: 'json'
+//    }
+//    implementation "com.github.tinder.scarlet:scarlet:$scarlet_version"
+//
+//// Optional
+//    implementation "com.github.tinder.scarlet:scarlet-websocket-okhttp:$scarlet_version"
+//    implementation "com.github.tinder.scarlet:scarlet-stream-adapter-rxjava2:$scarlet_version"
+//    implementation "com.github.tinder.scarlet:scarlet-message-adapter-moshi:$scarlet_version"
+//    implementation "com.github.tinder.scarlet:scarlet-lifecycle-android:$scarlet_version"
+    implementation "com.neovisionaries:nv-websocket-client:2.14"
 }
