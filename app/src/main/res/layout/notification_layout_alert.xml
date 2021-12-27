@@ -7,6 +7,11 @@
     android:background="@drawable/bg_widget"
     android:layout_gravity="center">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_110dp"
+        android:background="@drawable/bg_widget"/>
+
     <ImageView
         android:layout_width="@dimen/_120dp"
         android:layout_height="@dimen/_120dp"
