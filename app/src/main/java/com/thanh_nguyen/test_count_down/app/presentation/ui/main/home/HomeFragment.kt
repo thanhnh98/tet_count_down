@@ -12,6 +12,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.window.SplashScreen
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
@@ -144,7 +145,10 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     private fun setup() {
         observeLiveDataChanged(viewModel.homeData){ data ->
             data.date.apply{
-                if (isForeground){
+                if (isTetOnGoing()){
+                    startActivity(Intent(activity?:return@apply, GetStartedScreen::class.java))
+                }
+                else if (isForeground){
                     with(binding){
                         tvDay.text = day.formatTwoNumber()
                         tvHour.text = hour.formatTwoNumber()

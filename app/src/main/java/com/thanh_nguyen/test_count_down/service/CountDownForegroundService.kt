@@ -1,14 +1,12 @@
 package com.thanh_nguyen.test_count_down.service
 
+import android.content.Intent
 import android.util.Log
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationCountdownViewAlive
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationKeepAlive
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
-import com.thanh_nguyen.test_count_down.utils.closeAlarm
-import com.thanh_nguyen.test_count_down.utils.cmn
-import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
-import com.thanh_nguyen.test_count_down.utils.showToastMessage
+import com.thanh_nguyen.test_count_down.utils.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
@@ -28,15 +26,20 @@ class CountDownForegroundService: BaseService() {
             AppSharedPreferences.setisClosedCountDownNoti(false)
             while (true){
                 try {
-                    startForeground(
-                        FOREGROUND_ID,
-                        createNotificationKeepAlive(
-                            this@CountDownForegroundService,
-                            createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
-                            FOREGROUND_REQUEST_CODE,
-                            FOREGROUND_NOTI_CHANNEL
+                    if (isTetOnGoing()){
+                        stopService(Intent(this, CountDownForegroundService::class.java))
+                    }
+                    else {
+                        startForeground(
+                            FOREGROUND_ID,
+                            createNotificationKeepAlive(
+                                this@CountDownForegroundService,
+                                createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
+                                FOREGROUND_REQUEST_CODE,
+                                FOREGROUND_NOTI_CHANNEL
+                            )
                         )
-                    )
+                    }
                 }catch (e: Exception){
                     e.printStackTrace()
                 }

@@ -18,6 +18,19 @@ class Constants {
         }
     }
 
+
+    class Phrases{
+        companion object{
+            val listWishes = listOf(
+                "Vạn Sự Như Ý" to "Phúc Lộc An Khang",
+                "Phát Tài Phát Lộc" to "Mã Đáo Thành Công",
+                "Vạn Sự Như Ý" to "Gia Chủ Phát Tài",
+                "Năm Tăng Phú Quý" to "Ngày Hưởng Vinh Hoa",
+                "Năm Xuân Như Ý" to "Tuổi Ngày Bình An",
+            )
+        }
+    }
+
     class BundleKey{
         companion object{
             const val EMAIL = "EMAIL"

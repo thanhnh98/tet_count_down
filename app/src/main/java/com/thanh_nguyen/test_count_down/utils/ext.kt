@@ -22,6 +22,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import com.google.gson.Gson
+import com.thanh_nguyen.test_count_down.common.Constants
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
@@ -109,6 +110,7 @@ fun getSecondsUntilDate(endDate: String): Long{
     return TimeUnit.MILLISECONDS.toSeconds(endMillis - currentMillis)
 }
 
+fun isTetOnGoing(): Boolean = getSecondsUntilDate(Constants.EventDate.LUNAR_NEW_YEAR) <= 0
 
 fun getDaysUntilDate(endDate: String): Long{
     val currentMillis = System.currentTimeMillis()

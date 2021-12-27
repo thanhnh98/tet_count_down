@@ -1,0 +1,116 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.BaseProject.AppWidget.Container"
+    android:id="@+id/layout_root"
+    android:theme="@style/Theme.BaseProject.AppWidgetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_110dp"
+    android:background="@drawable/bg_widget"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="@dimen/_120dp"
+        android:layout_height="@dimen/_120dp"
+        android:src="@drawable/flower"
+        android:layout_gravity="right|center_vertical"/>
+    <TextView
+        android:layout_width="@dimen/_120dp"
+        android:layout_height="@dimen/_120dp"
+        android:background="@drawable/bg_view_hide_img"
+        android:layout_gravity="right|center_vertical"/>
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_50dp"
+        android:layout_marginTop="@dimen/_10dp"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_100dp"
+        android:layout_marginTop="@dimen/_25dp"
+        />
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_70dp"
+        android:layout_marginTop="@dimen/_70dp"/>
+
+    <ImageView
+        android:layout_width="@dimen/_16dp"
+        android:layout_height="@dimen/_16dp"
+        android:src="@drawable/flower_small"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_60dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_110dp"
+        android:orientation="vertical"
+        android:gravity="left|center_vertical"
+        android:paddingHorizontal="@dimen/_10dp"
+        android:paddingVertical="@dimen/_10dp">
+
+        <TextView
+            style="@style/Notification.TextView.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Happy new year 2022"
+            android:textAllCaps="true"
+            android:layout_marginTop="@dimen/_10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/Notification.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hôm nay là mùng "/>
+
+            <TextView
+                android:id="@+id/tv_day_remain"
+                style="@style/Notification.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06"
+                android:textSize="@dimen/_24dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                style="@style/Notification.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" tết"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="right|bottom"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/tv_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gray_opacity_50"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Theo dõi"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="@dimen/_6dp"
+                    android:paddingVertical="@dimen/_4dp"
+                    android:textSize="@dimen/_12sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

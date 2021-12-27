@@ -225,4 +225,16 @@
     <style name="FeatureText" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/gilroy_semibold</item>
     </style>
+
+    <style name="TextViewHPNY">
+        <item name="android:layout_width">@dimen/_200dp</item>
+        <item name="android:layout_height">@dimen/_100dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:fontFamily">@font/thuphap</item>
+        <item name="android:gravity">center</item>
+        <item name="android:alpha">0</item>
+    </style>
 </resources>

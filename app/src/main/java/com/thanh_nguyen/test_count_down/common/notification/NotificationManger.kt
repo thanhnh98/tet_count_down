@@ -22,6 +22,7 @@ import com.thanh_nguyen.test_count_down.service.CountDownForegroundService.Compa
 import com.thanh_nguyen.test_count_down.utils.formatTwoNumber
 import com.thanh_nguyen.test_count_down.utils.getDaysUntilDate
 import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
+import com.thanh_nguyen.test_count_down.utils.isTetOnGoing
 
 fun createNotificationKeepAlive(
     context: Context,
@@ -136,8 +137,16 @@ fun pushAlertNotification(context: Context){
         PendingIntent.FLAG_IMMUTABLE
     )
 
-    val notificationLayout = RemoteViews(context.packageName, R.layout.notification_layout_alert).apply {
-        setTextViewText(R.id.tv_day_remain, getDaysUntilDate(Constants.EventDate.LUNAR_NEW_YEAR).toString())
+    val layoutAlert = if (isTetOnGoing()) R.layout.notification_layout_alert_on_tet else R.layout.notification_layout_alert
+
+    val notificationLayout = RemoteViews(context.packageName, layoutAlert).apply {
+        if (isTetOnGoing()){
+            setTextViewText(R.id.tv_day_remain, ((getDaysUntilDate(Constants.EventDate.LUNAR_NEW_YEAR) * -1) + 1).toString())
+        }
+        else
+        {
+            setTextViewText(R.id.tv_day_remain, getDaysUntilDate(Constants.EventDate.LUNAR_NEW_YEAR).toString())
+        }
         setOnClickPendingIntent(R.id.tv_follow, PendingIntent.getBroadcast(
             context,
             3,

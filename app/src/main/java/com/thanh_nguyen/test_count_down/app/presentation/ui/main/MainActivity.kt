@@ -148,10 +148,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun setupViewPager() {
         val fragments = mutableListOf(
             MainStateModel(
-                title = "GameFragment",
-                fragment = GameFragment()
-            ),
-            MainStateModel(
                 title = "Home",
                 fragment = HomeFragment()
             ),
