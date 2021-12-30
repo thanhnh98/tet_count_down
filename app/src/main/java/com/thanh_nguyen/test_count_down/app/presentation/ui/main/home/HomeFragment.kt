@@ -2,17 +2,12 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.home
 
 import android.animation.Animator
 import android.annotation.SuppressLint
-import android.app.PendingIntent
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.window.SplashScreen
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
@@ -20,13 +15,11 @@ import com.airbnb.lottie.LottieAnimationView
 import com.okxe.app.util.convertDpToPixel
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
-import com.thanh_nguyen.test_count_down.RemainTimeWidget
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.GetStartedScreen
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
-import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
@@ -70,10 +63,6 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setupOnClick() {
-        binding.imgOpenWidget.onClick {
-            openMenu()
-        }
-
         binding.flImgPinContainer.onClick {
             pinCountDownNoti()
         }
@@ -118,26 +107,6 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         else {
             activity?.showToastMessage("Tính năng không hỗ trợ trên phiên bản android hiện tại")
 
-        }
-    }
-
-    private fun openMenu(){
-        AppAnalytics.trackEventClickOpenWidget()
-        val appWidgetManager = AppWidgetManager.getInstance(context)
-        val myProvider = ComponentName(activity?:return, RemainTimeWidget::class.java)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && appWidgetManager.isRequestPinAppWidgetSupported) {
-            val successCallback = PendingIntent.getBroadcast(
-                context,
-                0,
-                Intent(activity, GetStartedScreen::class.java),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-            appWidgetManager.requestPinAppWidget(myProvider, null, successCallback)
-            AppAnalytics.trackEventCouldOpenWidget()
-        }
-        else {
-            Toast.makeText(activity, "Thiết bị không hỗ trợ tạo Widget trực tiếp", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -189,6 +158,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                                 R.drawable.ic_volume_off
                             )
                         )
+                        binding.ltMusic?.pauseAnimation()
                         activity?.showToastMessage("Nhạc nền đang tắt")
                     } else {
                         soundManager.playBackgroundSound()
@@ -198,6 +168,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                                 R.drawable.ic_volume_on
                             )
                         )
+                        binding.ltMusic?.playAnimation()
                         activity?.showToastMessage("Nhạc nền đang bật")
                     }
                 }

@@ -4,27 +4,21 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.View
-import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
-import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.game.GameFragment
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.handbook.HandbookFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.ListMusicsFragment
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageTransformer
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
-import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.onClick
 import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
 import com.thanh_nguyen.test_count_down.utils.showToastMessage
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -147,6 +141,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setupViewPager() {
         val fragments = mutableListOf(
+            MainStateModel(
+                title = "ListMusicsFragment",
+                fragment = ListMusicsFragment()
+            ),
             MainStateModel(
                 title = "Home",
                 fragment = HomeFragment()

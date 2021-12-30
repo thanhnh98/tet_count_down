@@ -323,6 +323,29 @@
                 />
         </FrameLayout>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lt_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_fileName="music.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/_16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Happy new year - N.A"
+            app:layout_constraintLeft_toRightOf="@id/lt_music"
+            app:layout_constraintTop_toTopOf="@id/lt_music"
+            app:layout_constraintBottom_toBottomOf="@id/lt_music"
+            android:textColor="@color/white"
+            android:fontFamily="@font/gilroy_normal"
+            android:layout_marginLeft="@dimen/_4dp"
+            />
+
         <FrameLayout
             android:id="@+id/container_fireworks"
             android:layout_width="match_parent"

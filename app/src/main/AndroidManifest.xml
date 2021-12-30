@@ -73,9 +73,6 @@
 
         </service>
 
-<!--        <service android:name=".service.WidgetCountdownService">-->
-
-<!--        </service>-->
         <activity android:name=".app.presentation.ui.main.about.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BaseProject.FullScreen"

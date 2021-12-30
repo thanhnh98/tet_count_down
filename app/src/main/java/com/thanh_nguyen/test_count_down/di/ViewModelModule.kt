@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import bindViewModel
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeViewModel
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutViewModel
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.game.GameViewModel
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.handbook.HandbookViewModel
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.ListMusicsViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.direct
 import org.kodein.di.generic.bind
@@ -33,14 +32,7 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
         AboutViewModel(instance())
     }
 
-    bindViewModel<HandbookViewModel>() with provider {
-        HandbookViewModel()
+    bindViewModel<ListMusicsViewModel>() with provider {
+        ListMusicsViewModel(instance())
     }
-
-
-    bindViewModel<GameViewModel>() with provider {
-        GameViewModel()
-    }
-
-
 }

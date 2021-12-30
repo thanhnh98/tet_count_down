@@ -2,6 +2,7 @@ package com.thanh_nguyen.test_count_down.di
 
 import com.thanh_nguyen.test_count_down.app.data.data_source.remote.AdsRemoteDataSource
 import com.thanh_nguyen.test_count_down.app.data.data_source.remote.EventRemoteDataSource
+import com.thanh_nguyen.test_count_down.app.data.data_source.remote.MusicDownloadDataSource
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -19,5 +20,8 @@ val remoteModule = Kodein.Module(REMOTE_MODULE, false){
     }
     bind() from singleton {
         AdsRemoteDataSource(instance())
+    }
+    bind() from singleton {
+        MusicDownloadDataSource(instance())
     }
 }
