@@ -29,6 +29,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onObserve()
+        binding.tvPlayingMusicName.isSelected = true
     }
 
     private fun onObserve() {
@@ -59,7 +60,9 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         val listItems: MutableList<MusicItemView> = ArrayList()
 
         listData.forEach {
-            listItems.add(MusicItemView(it){})
+            listItems.add(MusicItemView(it) { music ->
+                binding.tvPlayingMusicName.text = music.name + " - " + music.singerName
+            })
         }
         return listItems
     }

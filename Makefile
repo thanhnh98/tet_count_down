@@ -2,6 +2,7 @@ APP=com.thanh_nguyen.tet_count_down
 APP_DEBUG=$(APP).debug
 
 current_dir = $(shell pwd)
+debug_file_path = D:\Github\tet_count_down\app\build\outputs\apk\debug\app-debug.apk
 
 default:
 	@echo "-------------------------------------------------------------------"
@@ -43,7 +44,7 @@ clean:
 run-unit-tests:
 	gradlew test
 
-remove_app:
+uninstall:
 	adb uninstall $(APP_DEBUG)
 
 clean_project:

@@ -6,6 +6,7 @@ import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.common.base.adapter.BindingRecycleViewItem
 import com.thanh_nguyen.test_count_down.databinding.ItemSingleeMusicBinding
 import com.thanh_nguyen.test_count_down.utils.inflateView
+import com.thanh_nguyen.test_count_down.utils.onClick
 
 class MusicItemView(
     private val musicData: MusicModel,
@@ -19,5 +20,9 @@ class MusicItemView(
 
     override fun bindModel(binding: ItemSingleeMusicBinding?, viewHolder: MusicItemViewHolder) {
         binding?.tvName?.text = musicData.name
+        binding?.tvSinger?.text = musicData.singerName
+        binding?.root?.onClick {
+            onItemSelected.invoke(musicData)
+        }
     }
 }

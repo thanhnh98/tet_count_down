@@ -335,7 +335,8 @@
             android:layout_margin="@dimen/_16dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_music_name"
+            android:layout_width="@dimen/_200dp"
             android:layout_height="wrap_content"
             android:text="Happy new year - N.A"
             app:layout_constraintLeft_toRightOf="@id/lt_music"
@@ -343,6 +344,12 @@
             app:layout_constraintBottom_toBottomOf="@id/lt_music"
             android:textColor="@color/white"
             android:fontFamily="@font/gilroy_normal"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
             android:layout_marginLeft="@dimen/_4dp"
             />
 
