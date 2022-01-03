@@ -67,6 +67,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+//    externalNativeBuild { //for specific version
+//        cmake {
+//            version = "cmake-version"
+//        }
+//    }
 }
 
 dependencies {

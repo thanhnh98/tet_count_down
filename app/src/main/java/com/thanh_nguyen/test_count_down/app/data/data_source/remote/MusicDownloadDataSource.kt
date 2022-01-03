@@ -6,4 +6,8 @@ class MusicDownloadDataSource(private val service: MusicService): BaseRemoteData
     fun downloadMusic(fileUrl: String) = getResult {
         service.downloadMusic(fileUrl)
     }
+
+    fun getListMusics() = getResult {
+        service.getListMusics()
+    }
 }

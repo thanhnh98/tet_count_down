@@ -9,11 +9,10 @@ import android.media.MediaPlayer
 import com.thanh_nguyen.test_count_down.R
 
 class BackgroundSoundManager(context: Context) {
-    private val mediaPlayer by lazy {
-        MediaPlayer.create(context, R.raw.hpny).apply {
-            isLooping = true
-        }
+    private var backgroundMusic = MediaPlayer.create(context, R.raw.hpny).apply {
+        isLooping = true
     }
+
     private val fireworkSound by lazy {
         MediaPlayer.create(context, R.raw.fireworks).apply {
             isLooping = true
@@ -27,14 +26,14 @@ class BackgroundSoundManager(context: Context) {
     }
 
     fun playBackgroundSound(){
-        if(!mediaPlayer.isPlaying){
-            mediaPlayer.start()
+        if(!backgroundMusic.isPlaying){
+            backgroundMusic.start()
         }
     }
 
     fun pauseBackgroundSound(){
-        if (mediaPlayer.isPlaying)
-            mediaPlayer.pause()
+        if (backgroundMusic.isPlaying)
+            backgroundMusic.pause()
     }
 
     fun pauseFireworkSound(){
@@ -50,4 +49,12 @@ class BackgroundSoundManager(context: Context) {
         //fireworkSound.stop()
     }
 
+    fun updateBackgroundMusic(mediaPlayer: MediaPlayer){
+        backgroundMusic.stop()
+        backgroundMusic = mediaPlayer.apply {
+            isLooping = true
+        }
+        backgroundMusic.prepare()
+        backgroundMusic.start()
+    }
 }

@@ -5,22 +5,22 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:clickable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ctl_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <include
             layout="@layout/component_collection"
-            app:layout_constraintTop_toBottomOf="@id/btn_download"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="0dp"
             android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/ctl_header"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
-        <TextView
-            android:id="@+id/btn_download"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="download"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
