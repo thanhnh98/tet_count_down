@@ -44,7 +44,8 @@ abstract class BaseRemoteDataSource {
                             null,
                             errorCode = Constants.Exception.CANCELLATION_EXCEPTION
                         ))
-                    else -> emit(error<T>(e.message ?: e.toString(), null, errorCode = null))
+                    else ->
+                        emit(error<T>(e.message ?: e.toString(), null, errorCode = null))
                 }
             }
         }

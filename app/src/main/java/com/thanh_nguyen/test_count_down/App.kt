@@ -21,7 +21,8 @@ class App: Application(), LifecycleObserver, KodeinAware {
         val testDeviceIds = listOf(
             "11A5A306389981CA70B4C70CBE041154",
             "2D754340943AB2A524632B55EEC48816",
-            "7B341CFFF11DF94C6789999704C2A784"
+            "7B341CFFF11DF94C6789999704C2A784",
+            "6B7DE94CA1481A65837BDD3C9E26E1A2"
         )
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)

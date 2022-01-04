@@ -1,7 +1,11 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.model.MusicModel
@@ -10,9 +14,22 @@ import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.Mu
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
+import com.thanh_nguyen.test_count_down.utils.cmn
+import com.thanh_nguyen.test_count_down.utils.createMedia
+import com.thanh_nguyen.test_count_down.utils.onClick
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.activity.result.ActivityResultCallback
+
+import androidx.activity.result.contract.ActivityResultContracts
+
+import androidx.activity.result.ActivityResultLauncher
+import androidx.core.net.toFile
+import com.thanh_nguyen.test_count_down.utils.saveFileToCache
+import java.io.File
 
 
 class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
@@ -30,7 +47,35 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         super.onViewCreated(view, savedInstanceState)
         onObserve()
         binding.tvPlayingMusicName.isSelected = true
+        binding.lnlUploadMusic.onClick {
+            chooseMp3File.launch(Intent.createChooser(
+                Intent().apply {
+                    action = Intent.ACTION_GET_CONTENT
+                    type = "audio/mpeg"
+                },
+                "Chọn nhạc nền"
+            ))
+        }
     }
+
+    var chooseMp3File: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        ActivityResultCallback { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent = result?.data ?:return@ActivityResultCallback
+                val uri: Uri = data.data?:return@ActivityResultCallback
+                val file = File(uri.path).saveFileToCache().apply {
+                    cmn("saved: ${this?.path}")
+                }
+                soundManager.updateBackgroundMusic(
+                    createMedia(
+                        file?.path?.toUri()?:return@ActivityResultCallback
+                    )
+                )
+            }
+        })
+
 
     private fun onObserve() {
         lifecycleScope.launchWhenCreated {
@@ -50,6 +95,15 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                 )
             }
         }
+        lifecycleScope.launch {
+            viewModel.musicDownloaded.collect {
+                soundManager.updateBackgroundMusic(
+                    createMedia(
+                        it.data?.path?.toUri()?:return@collect
+                    )
+                )
+            }
+        }
     }
 
     private fun showListMusics(listData: List<MusicModel>){
@@ -62,8 +116,14 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         listData.forEach {
             listItems.add(MusicItemView(it) { music ->
                 binding.tvPlayingMusicName.text = music.name + " - " + music.singerName
+                viewModel.downloadMusic(it)
             })
         }
         return listItems
+    }
+
+    override fun onRefresh() {
+        super.onRefresh()
+        hideLoading()
     }
 }

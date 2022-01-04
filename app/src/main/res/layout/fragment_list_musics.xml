@@ -23,6 +23,14 @@
             app:lottie_loop="true"
             />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_fileName="fireworks.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -67,6 +75,37 @@
                     android:fontFamily="@font/gilroy_semibold"
                     android:textSize="@dimen/_24sp"
                     />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/lnl_upload_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_solid_corner_primary_opacity"
+                    android:paddingVertical="@dimen/_4dp"
+                    android:paddingHorizontal="@dimen/_8dp"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_playing_music_name"
+                    app:layout_constraintRight_toRightOf="@id/tv_playing_music_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_playing_music_name"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    >
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_upload"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chọn từ máy"
+                        android:textSize="@dimen/_12sp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="@dimen/_4dp"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <FrameLayout
@@ -83,14 +122,5 @@
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:lottie_fileName="fireworks.json"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
