@@ -1,4 +1,4 @@
-package com.okxe.app.util
+package com.thanh_nguyen.test_count_down.utils
 
 import android.content.Context
 import android.content.res.Resources

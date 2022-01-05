@@ -65,12 +65,12 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                 // There are no request codes
                 val data: Intent = result?.data ?:return@ActivityResultCallback
                 val uri: Uri = data.data?:return@ActivityResultCallback
-                val file = File(uri.path).saveFileToCache().apply {
-                    cmn("saved: ${this?.path}")
+                val file = saveFileToCache(File(uri.path)).apply {
+                    cmn("saved: ${this.path}")
                 }
                 soundManager.updateBackgroundMusic(
                     createMedia(
-                        file?.path?.toUri()?:return@ActivityResultCallback
+                        file.path.toUri()?:return@ActivityResultCallback
                     )
                 )
             }

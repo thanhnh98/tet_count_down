@@ -9,10 +9,11 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.net.toUri
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
-import com.okxe.app.util.convertDpToPixel
+import com.thanh_nguyen.test_count_down.utils.convertDpToPixel
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
@@ -24,6 +25,7 @@ import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
@@ -147,32 +149,47 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         }
 
         lifecycleScope.launch {
-            AppSharedPreferences.isMuted.collect { isMuted ->
-                if (isMutedSound != isMuted) {
-                    isMutedSound = isMuted
-                    if (isMuted == true) {
-                        soundManager.pauseBackgroundSound()
-                        binding.imgSound.setImageDrawable(
-                            getDrawable(
-                                activity ?: return@collect,
-                                R.drawable.ic_volume_off
+            AppSharedPreferences
+                .isMuted
+                .combine(AppSharedPreferences.getBackgroundMusic) { isMuted, backgroundMusic ->
+                    isMuted to backgroundMusic
+                }
+                .collect {
+                    val isMuted = it.first
+                    val backgroundMusic = it.second
+//                    if (backgroundMusic != null){
+//                        soundManager.updateBackgroundMusic(createMedia(
+//                            backgroundMusic.uri.toUri()
+//                        ))
+//                    }
+
+                    cmn("music updated ${backgroundMusic?.toJson()}")
+
+                    if (isMutedSound != isMuted) {
+                        isMutedSound = isMuted
+                        if (isMuted == true) {
+                            soundManager.pauseBackgroundSound()
+                            binding.imgSound.setImageDrawable(
+                                getDrawable(
+                                    activity ?: return@collect,
+                                    R.drawable.ic_volume_off
+                                )
                             )
-                        )
-                        binding.ltMusic?.pauseAnimation()
-                        activity?.showToastMessage("Nhạc nền đang tắt")
-                    } else {
-                        soundManager.playBackgroundSound()
-                        binding.imgSound.setImageDrawable(
-                            getDrawable(
-                                activity ?: return@collect,
-                                R.drawable.ic_volume_on
+                            binding.ltMusic?.pauseAnimation()
+                            activity?.showToastMessage("Nhạc nền đang tắt")
+                        } else {
+                            soundManager.playBackgroundSound()
+                            binding.imgSound.setImageDrawable(
+                                getDrawable(
+                                    activity ?: return@collect,
+                                    R.drawable.ic_volume_on
+                                )
                             )
-                        )
-                        binding.ltMusic?.playAnimation()
-                        activity?.showToastMessage("Nhạc nền đang bật")
+                            binding.ltMusic?.playAnimation()
+                            activity?.showToastMessage("Nhạc nền đang bật")
+                        }
                     }
                 }
-            }
         }
     }
 

@@ -3,7 +3,7 @@ package com.thanh_nguyen.test_count_down.common.view.banner
 import androidx.annotation.DimenRes
 import androidx.core.view.ViewCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.okxe.app.util.getScreenWidth
+import com.thanh_nguyen.test_count_down.utils.getScreenWidth
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.utils.cmn

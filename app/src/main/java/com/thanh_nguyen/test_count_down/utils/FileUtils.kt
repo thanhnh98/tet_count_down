@@ -43,27 +43,28 @@ fun saveFileToCache(body: ResponseBody?, fileName: String, overwrite: Boolean = 
     return null
 }
 
-fun File.saveFileToCache(overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File {
-    val desFile = File("${cachePath}${this.name}")
+fun saveFileToCache(sourceFile: File, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File {
+    cmn("file ${sourceFile.path}")
+    val desFile = File("${cachePath}${sourceFile.name}")
 
-    if (!this.exists()) {
-        throw NoSuchFileException(file = this, reason = "The source file doesn't exist.")
+    if (!sourceFile.exists()) {
+        throw NoSuchFileException(file = sourceFile, reason = "The source file doesn't exist.")
     }
 
     if (desFile.exists()) {
         if (!overwrite)
-            throw FileAlreadyExistsException(file = this, other = desFile, reason = "The destination file already exists.")
-        else if (!this.delete())
-            throw FileAlreadyExistsException(file = this, other = desFile, reason = "Tried to overwrite the destination, but failed to delete it.")
+            throw FileAlreadyExistsException(file = sourceFile, other = desFile, reason = "The destination file already exists.")
+        else if (!sourceFile.delete())
+            throw FileAlreadyExistsException(file = sourceFile, other = desFile, reason = "Tried to overwrite the destination, but failed to delete it.")
     }
 
-    if (this.isDirectory) {
+    if (sourceFile.isDirectory) {
         if (!desFile.mkdirs())
-            throw FileSystemException(file = this, other = desFile, reason = "Failed to create target directory.")
+            throw FileSystemException(file = sourceFile, other = desFile, reason = "Failed to create target directory.")
     } else {
         desFile.parentFile?.mkdirs()
 
-        val inputStream = FileInputStream(this)
+        val inputStream = FileInputStream(sourceFile)
         val outputStream = FileOutputStream(desFile)
 
         inputStream.use { input ->
