@@ -7,25 +7,22 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
-import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
+import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.databinding.ActivityGetStartedBinding
-import com.thanh_nguyen.test_count_down.utils.cmn
-import com.thanh_nguyen.test_count_down.utils.getSecondsUntilDate
 import com.thanh_nguyen.test_count_down.utils.isTetOnGoing
 import kotlinx.coroutines.*
 import org.kodein.di.generic.instance
 
 class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
-    private val soundManager: BackgroundSoundManager by instance()
+    private val soundManager: SoundManager by instance()
     private var isGoneToMain = false
 
     override fun inflateLayout(): Int = R.layout.activity_get_started
@@ -175,13 +172,15 @@ class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
     override fun onPause() {
         super.onPause()
         soundManager.pauseFireworkSound()
-        soundManager.pauseBackgroundSound()
+        if (isTetOnGoing())
+            soundManager.pauseBackgroundSound()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         soundManager.stopFireworkSound()
-        soundManager.stopBackgroundSound()
+        if (isTetOnGoing())
+            soundManager.stopBackgroundSound()
     }
 
     private fun animateView(view1: View,

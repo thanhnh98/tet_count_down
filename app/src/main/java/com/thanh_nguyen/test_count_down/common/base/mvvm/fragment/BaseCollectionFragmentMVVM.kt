@@ -39,7 +39,6 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
         scrollListener = object : EndlessRecyclerViewScrollListener(gridLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 if (shouldLoadMore()) {
-                    Log.e("recycler", "Loadmore")
                     viewModel.invokeLoadMore()
                 }
             }
@@ -119,7 +118,6 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
 
     fun smoothScrollingToBottom(){
         recyclerView.smoothScrollToPosition(recyclerView.childCount)
-        Log.e("smooth to scroll","${recyclerView}")
     }
 
     open fun shouldLoadMore(): Boolean = true

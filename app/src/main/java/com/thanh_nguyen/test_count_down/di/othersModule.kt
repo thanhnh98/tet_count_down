@@ -5,16 +5,17 @@
 package com.thanh_nguyen.test_count_down.di
 
 import com.thanh_nguyen.test_count_down.common.AdsManager
-import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
+import com.thanh_nguyen.test_count_down.common.SoundManager
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 private const val OTHER = "OTHER"
 val othersModule = Kodein.Module("OTHER", false) {
-    bind() from singleton {
-        BackgroundSoundManager(instance())
+    bind() from provider {
+        SoundManager()
     }
 
     bind() from singleton {

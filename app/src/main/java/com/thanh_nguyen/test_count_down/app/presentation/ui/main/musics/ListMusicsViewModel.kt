@@ -1,13 +1,19 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics
 
+import android.net.Uri
+import androidx.core.net.toUri
 import androidx.lifecycle.viewModelScope
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.domain.usecases.MusicUsecase
 import com.thanh_nguyen.test_count_down.app.model.ListMusicModel
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.Result
 import com.thanh_nguyen.test_count_down.common.base.mvvm.viewmodel.BaseCollectionViewModel
 import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.saveFileToCache
+import com.thanh_nguyen.test_count_down.utils.toJson
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -21,25 +27,33 @@ class ListMusicsViewModel(
     private var _listMusicsFlow: MutableStateFlow<Result<ListMusicModel>> = MutableStateFlow(Result.loading(null))
     val listMusicsFlow: StateFlow<Result<ListMusicModel>> get() = _listMusicsFlow
 
-    private var _musicDownloaded: MutableStateFlow<Result<File?>> = MutableStateFlow(Result.loading(null))
-    val musicDownloaded: StateFlow<Result<File?>> get() = _musicDownloaded
+    private var _musicSelected: MutableStateFlow<Result<LocalMusicModel?>> = MutableStateFlow(Result.loading(null))
+    val musicSelected: StateFlow<Result<LocalMusicModel?>> get() = _musicSelected
 
     override fun onCreate() {
         super.onCreate()
-        getListMusics()
+        //getListMusics()
     }
 
-    fun downloadMusic(music: MusicModel){
+    fun uploadMusic(uri: Uri){
         viewModelScope.launch {
-            musicUsecase.downloadMusic("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4977930c-98fa-492d-9391-6b78d0dba4a0/HanhPhucXuanNgoi-NooPhuocThinh-6407403_%281%29.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220104%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220104T082541Z&X-Amz-Expires=86400&X-Amz-Signature=124dc1bea2af78b81825309a37fb2935a6fe889fc3d7cf2f222dead1a5c1dc56&X-Amz-SignedHeaders=host&x-id=GetObject").collect { musicData ->
-                _musicDownloaded.value = (
-                    Result.success(
-                        saveFileToCache(
-                            musicData.data,
-                            music.name+".mp3",
-                        )
+            val music = saveFileToCache(
+                uri
+            )?.let {
+                LocalMusicModel(
+                    name = it.name,
+                    uri = it.path.toUri().toString()
+                )
+            }
+
+            music?.apply {
+                _musicSelected.value = Result.success(
+                    LocalMusicModel(
+                        uri = this.uri,
+                        name = this.name
                     )
                 )
+                AppPreferences.saveCurrentBackgroundMusic(this)
             }
         }
     }

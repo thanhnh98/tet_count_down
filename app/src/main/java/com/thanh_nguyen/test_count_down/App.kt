@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleObserver
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.messaging.FirebaseMessaging
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.room.AppRoomDB
 import com.thanh_nguyen.test_count_down.di.appModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -18,6 +19,7 @@ class App: Application(), LifecycleObserver, KodeinAware {
         super.onCreate()
         instance = this
         MobileAds.initialize(this)
+        AppRoomDB(this)
         val testDeviceIds = listOf(
             "11A5A306389981CA70B4C70CBE041154",
             "2D754340943AB2A524632B55EEC48816",

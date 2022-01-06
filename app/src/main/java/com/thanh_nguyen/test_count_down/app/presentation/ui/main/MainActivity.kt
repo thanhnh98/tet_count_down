@@ -5,20 +5,21 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.ListMusicsFragment
-import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
+import com.thanh_nguyen.test_count_down.common.MusicState
+import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageTransformer
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
-import com.thanh_nguyen.test_count_down.utils.onClick
-import com.thanh_nguyen.test_count_down.utils.setAlarmRemindAfterInterval
-import com.thanh_nguyen.test_count_down.utils.showToastMessage
+import com.thanh_nguyen.test_count_down.utils.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -26,13 +27,14 @@ import org.kodein.di.generic.instance
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-    private val soundManager: BackgroundSoundManager by instance()
+    val soundManager: SoundManager by instance()
     private var isFirstBackPress = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         keepOnScreen()
         setupViewPager()
+        setupBackgroundMusic()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             lifecycleScope.launch {
                 AppSharedPreferences.isClosedCountDownNoti.collect{
@@ -72,6 +74,43 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     showSwipeContainer()
             }
         }
+    }
+
+    private fun setupBackgroundMusic() {
+        observeLiveDataChanged(soundManager.musicStateChanged) {
+            when(it){
+                is MusicState.Play -> {
+                    soundManager.playBackgroundSound()
+                    AppPreferences.isBackgroundMuted = false
+                }
+
+                is MusicState.Pause -> {
+                    soundManager.pauseBackgroundSound()
+                    AppPreferences.isBackgroundMuted = true
+                }
+
+                is MusicState.UpdateMusic -> {
+                    soundManager.updateBackgroundMusic(
+                        it.localMusic.uri.toUri(),
+                        it.requestPlay
+                    )
+                }
+
+                is MusicState.Stop -> {
+                    soundManager.stopBackgroundSound()
+                }
+            }
+        }
+
+        val music = AppPreferences.getCurrentBackgroundMusic()
+        val isMuted = AppPreferences.isBackgroundMuted
+
+        if (music == null)
+            soundManager.playBackgroundSound()
+        else
+            soundManager.notifyChangeState(
+                MusicState.UpdateMusic(music, !isMuted)
+            )
     }
 
     private fun showSwipeContainer() {
@@ -127,6 +166,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onResume() {
         super.onResume()
+        if (!AppPreferences.isBackgroundMuted)
+            soundManager.playBackgroundSound()
     }
 
     override fun onPause() {
@@ -136,15 +177,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        soundManager.pauseBackgroundSound()
+        soundManager.stopBackgroundSound()
     }
 
     private fun setupViewPager() {
         val fragments = mutableListOf(
-            MainStateModel(
-                title = "ListMusicsFragment",
-                fragment = ListMusicsFragment()
-            ),
             MainStateModel(
                 title = "Home",
                 fragment = HomeFragment()
@@ -152,6 +189,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             MainStateModel(
                 title = "About",
                 fragment = AboutFragment()
+            ),
+            MainStateModel(
+                title = "ListMusicsFragment",
+                fragment = ListMusicsFragment()
             ),
         )
         val adapter = MainStateAdapter(this, fragments)
@@ -170,6 +211,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         else
             onFinish()
+    }
+
+    fun navigateToTab(position: Int, smooth: Boolean){
+        binding.vpMain.setCurrentItem(position, smooth)
     }
 
     private fun onFinish() {

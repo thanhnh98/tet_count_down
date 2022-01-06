@@ -10,7 +10,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.thanh_nguyen.test_count_down.App
-import com.thanh_nguyen.test_count_down.app.model.MusicModel
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
+import com.thanh_nguyen.test_count_down.utils.cmn
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "AppSharedPreferences")
@@ -35,6 +36,7 @@ object AppSharedPreferences {
             result = GsonBuilder().create().fromJson(dataStr, T::class.java)
         }
         catch (e: Exception){
+            e.printStackTrace()
         }
         result
     }
@@ -64,6 +66,6 @@ object AppSharedPreferences {
     suspend fun setIsMuted(isMuted: Boolean) = setKey(PreferencesKey.IS_MUTED, isMuted)
 
 
-    val getBackgroundMusic = getObjectByKey<MusicModel>(PreferencesKey.BACKGROUND_MUSIC)
-    suspend fun setBackgroundMusic(music: MusicModel) = setObjectKey(PreferencesKey.BACKGROUND_MUSIC, music)
+    val getBackgroundMusic = getObjectByKey<LocalMusicModel>(PreferencesKey.BACKGROUND_MUSIC)
+    suspend fun setBackgroundMusic(music: LocalMusicModel) = setObjectKey(PreferencesKey.BACKGROUND_MUSIC, music)
 }

@@ -336,8 +336,9 @@
 
         <TextView
             android:id="@+id/tv_music_name"
-            android:layout_width="@dimen/_200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="@dimen/_200dp"
             android:text="Happy new year - N.A"
             app:layout_constraintLeft_toRightOf="@id/lt_music"
             app:layout_constraintTop_toTopOf="@id/lt_music"
@@ -352,6 +353,15 @@
             android:scrollHorizontally="true"
             android:layout_marginLeft="@dimen/_4dp"
             />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_16dp"
+            android:layout_height="@dimen/_16dp"
+            app:srcCompat="@drawable/ic_arrow_right"
+            android:layout_marginLeft="@dimen/_4dp"
+            app:layout_constraintLeft_toRightOf="@id/tv_music_name"
+            app:layout_constraintTop_toTopOf="@id/tv_music_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
 
         <FrameLayout
             android:id="@+id/container_fireworks"
