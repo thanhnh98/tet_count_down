@@ -152,6 +152,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
             AppSharedPreferences
                 .isMuted
                 .combine(AppSharedPreferences.getBackgroundMusic) { isMuted, backgroundMusic ->
+                    cmn("music updated ${backgroundMusic?.toJson()}")
                     isMuted to backgroundMusic
                 }
                 .collect {
@@ -163,7 +164,6 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 //                        ))
 //                    }
 
-                    cmn("music updated ${backgroundMusic?.toJson()}")
 
                     if (isMutedSound != isMuted) {
                         isMutedSound = isMuted

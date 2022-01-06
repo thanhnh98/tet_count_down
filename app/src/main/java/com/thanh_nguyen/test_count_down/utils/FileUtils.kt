@@ -1,6 +1,9 @@
 package com.thanh_nguyen.test_count_down.utils
 
 import android.content.Context
+import android.net.Uri
+import android.util.Log
+import androidx.core.net.toUri
 import com.thanh_nguyen.test_count_down.App
 import okhttp3.ResponseBody
 import java.io.File
@@ -43,37 +46,31 @@ fun saveFileToCache(body: ResponseBody?, fileName: String, overwrite: Boolean = 
     return null
 }
 
-fun saveFileToCache(sourceFile: File, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File {
-    cmn("file ${sourceFile.path}")
-    val desFile = File("${cachePath}${sourceFile.name}")
+fun File.saveFileToCache(uri: Uri, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
+    try {
+        val desFile = File("${cachePath}${this.name}")
 
-    if (!sourceFile.exists()) {
-        throw NoSuchFileException(file = sourceFile, reason = "The source file doesn't exist.")
-    }
+        if (this.isDirectory) {
+            if (!desFile.mkdirs())
+                throw FileSystemException(file = this, other = desFile, reason = "Failed to create target directory.")
+        } else {
+            desFile.parentFile?.mkdirs()
 
-    if (desFile.exists()) {
-        if (!overwrite)
-            throw FileAlreadyExistsException(file = sourceFile, other = desFile, reason = "The destination file already exists.")
-        else if (!sourceFile.delete())
-            throw FileAlreadyExistsException(file = sourceFile, other = desFile, reason = "Tried to overwrite the destination, but failed to delete it.")
-    }
+            val parcelFileDescriptor = App.getInstance().contentResolver.openFileDescriptor(uri, "r", null)
+            val inputStream = FileInputStream(parcelFileDescriptor?.fileDescriptor)
+            val outputStream = FileOutputStream(desFile)
 
-    if (sourceFile.isDirectory) {
-        if (!desFile.mkdirs())
-            throw FileSystemException(file = sourceFile, other = desFile, reason = "Failed to create target directory.")
-    } else {
-        desFile.parentFile?.mkdirs()
+            inputStream.use { input ->
+                outputStream.use { output ->
+                    input.copyTo(output, bufferSize)
+                }
 
-        val inputStream = FileInputStream(sourceFile)
-        val outputStream = FileOutputStream(desFile)
-
-        inputStream.use { input ->
-            outputStream.use { output ->
-                input.copyTo(output, bufferSize)
             }
-
         }
-    }
 
-    return desFile
+        return desFile
+    }
+    catch (e: Exception){
+        return  null
+    }
 }

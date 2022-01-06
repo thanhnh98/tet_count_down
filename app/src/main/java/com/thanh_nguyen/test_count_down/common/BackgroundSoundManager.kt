@@ -55,10 +55,16 @@ class BackgroundSoundManager(context: Context) {
     }
 
     fun updateBackgroundMusic(mediaPlayer: MediaPlayer){
-        if (backgroundMusic != mediaPlayer)
+        val isPlaying = backgroundMusic.isPlaying
+        if (backgroundMusic != mediaPlayer) {
             backgroundMusic = mediaPlayer.apply {
                 isLooping = true
             }
+            backgroundMusic.prepare()
+            if (isPlaying){
+                backgroundMusic.start()
+            }
+        }
     }
 
     fun restartBackgroundMusic(){

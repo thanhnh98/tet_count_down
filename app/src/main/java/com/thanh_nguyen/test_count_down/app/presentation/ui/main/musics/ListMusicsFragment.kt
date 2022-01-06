@@ -5,30 +5,26 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.MusicItemView
 import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
-import com.thanh_nguyen.test_count_down.utils.cmn
 import com.thanh_nguyen.test_count_down.utils.createMedia
 import com.thanh_nguyen.test_count_down.utils.onClick
+import com.thanh_nguyen.test_count_down.utils.saveFileToCache
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.activity.result.ActivityResultCallback
-
-import androidx.activity.result.contract.ActivityResultContracts
-
-import androidx.activity.result.ActivityResultLauncher
-import androidx.core.net.toFile
-import com.thanh_nguyen.test_count_down.utils.saveFileToCache
 import java.io.File
 
 
@@ -58,24 +54,22 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         }
     }
 
-    var chooseMp3File: ActivityResultLauncher<Intent> = registerForActivityResult(
+    private var chooseMp3File: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult(),
         ActivityResultCallback { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                // There are no request codes
                 val data: Intent = result?.data ?:return@ActivityResultCallback
                 val uri: Uri = data.data?:return@ActivityResultCallback
-                val file = saveFileToCache(File(uri.path)).apply {
-                    cmn("saved: ${this.path}")
-                }
-                soundManager.updateBackgroundMusic(
-                    createMedia(
-                        file.path.toUri()?:return@ActivityResultCallback
+                val file = File(uri.path)
+                viewModel.uploadMusic(
+                    LocalMusicModel(
+                        uri,
+                        file.name
                     )
                 )
             }
-        })
-
+        }
+    )
 
     private fun onObserve() {
         lifecycleScope.launchWhenCreated {
@@ -99,9 +93,10 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             viewModel.musicDownloaded.collect {
                 soundManager.updateBackgroundMusic(
                     createMedia(
-                        it.data?.path?.toUri()?:return@collect
+                        it.data?.uri?:return@collect
                     )
                 )
+                binding.tvPlayingMusicName.text = it.data.name
             }
         }
     }
@@ -112,13 +107,13 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
 
     private fun createListMusicItems(listData: List<MusicModel>): List<MusicItemView>{
         val listItems: MutableList<MusicItemView> = ArrayList()
-
-        listData.forEach {
-            listItems.add(MusicItemView(it) { music ->
-                binding.tvPlayingMusicName.text = music.name + " - " + music.singerName
-                viewModel.downloadMusic(it)
-            })
-        }
+//
+//        listData.forEach {
+//            listItems.add(MusicItemView(it) { music ->
+//                binding.tvPlayingMusicName.text = music.name + " - " + music.singerName
+//                viewModel.downloadMusic(it)
+//            })
+//        }
         return listItems
     }
 
