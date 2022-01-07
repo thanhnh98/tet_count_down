@@ -46,31 +46,32 @@ fun saveFileToCache(body: ResponseBody?, fileName: String, overwrite: Boolean = 
     return null
 }
 
-fun File.saveFileToCache(uri: Uri, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
+fun saveFileToCache(uri: Uri, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
     try {
-        val desFile = File("${cachePath}${this.name}")
+        val sourceFile = File(uri.path)
+        val desFile = File("${cachePath}${sourceFile.name}")
 
-        if (this.isDirectory) {
+        if (desFile.isDirectory) {
             if (!desFile.mkdirs())
-                throw FileSystemException(file = this, other = desFile, reason = "Failed to create target directory.")
+                throw FileSystemException(file = desFile, other = desFile, reason = "Failed to create target directory.")
         } else {
             desFile.parentFile?.mkdirs()
 
-            val parcelFileDescriptor = App.getInstance().contentResolver.openFileDescriptor(uri, "r", null)
-            val inputStream = FileInputStream(parcelFileDescriptor?.fileDescriptor)
+            val inputStream = App.getInstance().contentResolver.openInputStream(uri)
             val outputStream = FileOutputStream(desFile)
 
             inputStream.use { input ->
                 outputStream.use { output ->
-                    input.copyTo(output, bufferSize)
+                    input?.copyTo(output, bufferSize)
                 }
 
             }
         }
-
+        cmn("${desFile.path}  - \n ${desFile.path.toUri()}")
         return desFile
     }
     catch (e: Exception){
+        e.printStackTrace()
         return  null
     }
 }

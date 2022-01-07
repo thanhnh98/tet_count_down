@@ -8,24 +8,36 @@
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_border_gray.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_gray_opacity_50.xml" value="0.22864583333333333" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_menu.xml" value="0.22864583333333333" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_solid_corner_gray.xml" value="0.2296875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_widget.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_widget_textview.xml" value="0.23958333333333334" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_wish_container.xml" value="0.2296875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/ic_close.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2640625" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/ic_upload.xml" value="0.2296875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/open_widget.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/font/fonts.xml" value="0.2328125" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout-land/fragment_handbook.xml" value="0.10208333333333333" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/activity_game.xml" value="0.10435663627152988" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/activity_main.xml" value="0.36186594202898553" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/activity_splash.xml" value="0.36186594202898553" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/calendar_day_layout.xml" value="0.20260416666666667" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/calendar_day_legend.xml" value="0.21458333333333332" />
-        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_home.xml" value="0.40525587828492393" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/component_collection.xml" value="0.128125" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_about.xml" value="0.17831813576494426" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_handbook.xml" value="0.12487335359675786" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_list_musics.xml" value="0.18" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_profile.xml" value="0.23177083333333334" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_banner.xml" value="0.19166666666666668" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_singlee_music.xml" value="0.25" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_alert_view.xml" value="0.25364583333333335" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_large.xml" value="0.159375" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_layout.xml" value="0.25" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_layout_alert.xml" value="0.25" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_layout_alert_on_tet.xml" value="0.14990942028985507" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_small.xml" value="0.25" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_view_count_down.xml" value="0.14990942028985507" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/remain_time_widget.xml" value="0.2" />
       </map>
     </option>

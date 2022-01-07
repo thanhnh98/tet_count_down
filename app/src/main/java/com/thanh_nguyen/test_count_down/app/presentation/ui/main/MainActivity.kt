@@ -11,7 +11,7 @@ import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPref
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.ListMusicsFragment
-import com.thanh_nguyen.test_count_down.common.BackgroundSoundManager
+import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageTransformer
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
@@ -26,7 +26,7 @@ import org.kodein.di.generic.instance
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-    private val soundManager: BackgroundSoundManager by instance()
+    private val soundManager: SoundManager by instance()
     private var isFirstBackPress = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,6 +127,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onResume() {
         super.onResume()
+        soundManager.playBackgroundSound()
     }
 
     override fun onPause() {
@@ -158,6 +159,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         with(binding.vpMain) {
             this.adapter = adapter
+            this.currentItem = 1
             setPageTransformer(CubeInPageTransformer())
         }
     }
@@ -165,8 +167,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun inflateLayout(): Int = R.layout.activity_main
 
     override fun onBackPressed() {
-        if (binding.vpMain.currentItem != 0){
-            binding.vpMain.setCurrentItem(0, true)
+        if (binding.vpMain.currentItem != 1){
+            binding.vpMain.setCurrentItem(1, true)
         }
         else
             onFinish()

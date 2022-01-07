@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
+import com.thanh_nguyen.test_count_down.utils.cmn
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "AppSharedPreferences")
@@ -35,6 +36,7 @@ object AppSharedPreferences {
             result = GsonBuilder().create().fromJson(dataStr, T::class.java)
         }
         catch (e: Exception){
+            e.printStackTrace()
         }
         result
     }

@@ -23,8 +23,14 @@ test:
 
 run: build install restart
 
+run_fp: build grant_full_permission
+
 install:
-	gradlew.bat installDebug
+	adb install -r -t $(debug_file_path)
+
+grant_full_permission:
+	adb install -r -t -g $(debug_file_path)
+	make restart
 
 build:
 	gradlew.bat assembleDebug
