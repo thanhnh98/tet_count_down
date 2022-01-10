@@ -1,5 +1,10 @@
 package com.thanh_nguyen.test_count_down.di
 
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.LocalMusicDataSource
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.room.AppRoomDB
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.room.AppRoomDB_Impl
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.room.dao.LocalMusicDao
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.room.dao.LocalMusicDao_Impl
 import com.thanh_nguyen.test_count_down.app.data.data_source.remote.AdsRemoteDataSource
 import com.thanh_nguyen.test_count_down.app.data.data_source.remote.EventRemoteDataSource
 import com.thanh_nguyen.test_count_down.app.data.data_source.remote.MusicDownloadDataSource
@@ -24,4 +29,14 @@ val remoteModule = Kodein.Module(REMOTE_MODULE, false){
     bind() from singleton {
         MusicDownloadDataSource(instance())
     }
+
+    bind() from singleton {
+        LocalMusicDataSource(
+            getLocalMusicDao()
+        )
+    }
+}
+
+fun getLocalMusicDao(): LocalMusicDao? {
+    return AppRoomDB.instance?.localMusicDao()
 }

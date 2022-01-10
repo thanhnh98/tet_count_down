@@ -1,8 +1,23 @@
 APP=com.thanh_nguyen.tet_count_down
 APP_DEBUG=$(APP).debug
 current_dir = $(shell pwd)
-
+GRADLEW_PATH = gradlew.bat # Windows
+detected_OS = Windows
+ifeq '$(findstring ;,$(PATH))' ';'
+    detected_OS := Windows
+else
+    detected_OS := $(shell uname 2>/dev/null || echo Unknown)
+    detected_OS := $(patsubst CYGWIN%,Cygwin,$(detected_OS))
+    detected_OS := $(patsubst MSYS%,MSYS,$(detected_OS))
+    detected_OS := $(patsubst MINGW%,MSYS,$(detected_OS))
+endif
 debug_file_path = D:\Github\tet_count_down\app\build\outputs\apk\debug\app-debug.apk
+
+
+ifeq ($(detected_OS),Darwin)        # Mac OS X
+    GRADLEW_PATH := ./gradlew
+    debug_file_path := ./app/build/outputs/apk/debug/app-debug.apk
+endif
 
 default:
 	@echo "-------------------------------------------------------------------"
@@ -33,7 +48,7 @@ grant_full_permission:
 	make restart
 
 build:
-	gradlew.bat assembleDebug
+	$(GRADLEW_PATH) assembleDebug
 
 restart: force_stop open
 

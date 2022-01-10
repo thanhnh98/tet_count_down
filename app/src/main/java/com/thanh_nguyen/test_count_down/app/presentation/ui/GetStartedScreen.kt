@@ -172,13 +172,15 @@ class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
     override fun onPause() {
         super.onPause()
         soundManager.pauseFireworkSound()
-        soundManager.pauseBackgroundSound()
+        if (isTetOnGoing())
+            soundManager.pauseBackgroundSound()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         soundManager.stopFireworkSound()
-        soundManager.stopBackgroundSound()
+        if (isTetOnGoing())
+            soundManager.stopBackgroundSound()
     }
 
     private fun animateView(view1: View,

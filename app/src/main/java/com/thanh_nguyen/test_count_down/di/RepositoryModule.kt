@@ -33,6 +33,7 @@ val repositoryModule = Kodein.Module(REPO_MODULE, false){
 
     bind() from singleton {
         MusicRepositoryImpl(
+            instance(),
             instance()
         )
     }

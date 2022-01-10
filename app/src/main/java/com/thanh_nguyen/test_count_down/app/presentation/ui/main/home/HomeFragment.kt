@@ -18,6 +18,8 @@ import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.GetStartedScreen
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
+import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
@@ -32,7 +34,9 @@ import org.kodein.di.generic.instance
 
 class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by kodeinViewModel()
-    private val soundManager: SoundManager by instance()
+    private val soundManager: SoundManager by lazy {
+        (activity as MainActivity).soundManager
+    }
 
     private var isMutedSound: Boolean = false
 
@@ -60,6 +64,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 
         viewModel.startCountDown()
         viewModel.getWishes()
+        setupBackgroundMusic()
         setup()
         setupOnClick()
     }
@@ -72,14 +77,17 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         binding.flImgSoundContainer.onClick {
             changeStatusSound()
         }
+        binding.tvMusicName?.onClick {
+            (activity as MainActivity).navigateToTab(2, true)
+        }
     }
 
     private fun changeStatusSound() {
-        lifecycleScope.launch {
-            if (isMutedSound)
-                AppSharedPreferences.setIsMuted(false)
-            else
-                AppSharedPreferences.setIsMuted(true)
+        if (isMutedSound) {
+            soundManager.notifyChangeState(MusicState.Play())
+        }
+        else{
+            soundManager.notifyChangeState(MusicState.Pause())
         }
     }
 
@@ -114,7 +122,6 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setup() {
-        setupBackgroundMusic()
         observeLiveDataChanged(viewModel.homeData){ data ->
             data.date.apply{
                 if (isTetOnGoing()){
@@ -151,49 +158,53 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setupBackgroundMusic() {
-        lifecycleScope.launch {
-            AppSharedPreferences
-                .isMuted
-                .combine(AppSharedPreferences.getBackgroundMusic) { isMuted, backgroundMusic ->
-                    cmn("update background")
-                    isMuted to backgroundMusic
+        observeLiveDataChanged(soundManager.musicStateChanged) {
+            binding.tvMusicName?.requestFocus()
+            when(it){
+                is MusicState.Play -> {
+                    isMutedSound = false
+                    updateSoundUI()
+                    binding.ltMusic?.playAnimation()
                 }
-                .collect {
-                    val isMuted = it.first?:false
-                    val backgroundMusic = it.second
-                    cmn("data update: ${isMuted} - ${backgroundMusic?.toJson()}")
-                    backgroundMusic?.apply {
-                        soundManager.updateBackgroundMusic(
-                            backgroundMusic.uri.toUri(),
-                            !isMuted
-                        )
-                    }
 
-                    if (isMuted) {
-                        soundManager.pauseBackgroundSound()
-                        binding.imgSound.setImageDrawable(
-                            getDrawable(
-                                activity ?: return@collect,
-                                R.drawable.ic_volume_off
-                            )
-                        )
-                        binding.ltMusic?.pauseAnimation()
-                        activity?.showToastMessage("Nhạc nền đang tắt")
-                    } else {
-                        soundManager.playBackgroundSound()
-                        binding.imgSound.setImageDrawable(
-                            getDrawable(
-                                activity ?: return@collect,
-                                R.drawable.ic_volume_on
-                            )
-                        )
-                        binding.ltMusic?.playAnimation()
-                        activity?.showToastMessage("Nhạc nền đang bật")
-                    }
-
-                    isMutedSound = isMuted?:false
+                is MusicState.Pause -> {
+                    isMutedSound = true
+                    updateSoundUI()
+                    binding.ltMusic?.pauseAnimation()
                 }
+
+                is MusicState.UpdateMusic -> {
+                    binding.tvMusicName?.text = it.localMusic.name
+                    isMutedSound = !it.requestPlay
+                    updateSoundUI()
+                }
+
+                is MusicState.Stop -> {
+
+                }
+            }
         }
+    }
+
+    private fun updateSoundUI(){
+        if (isMutedSound){
+            binding.imgSound.setImageDrawable(
+                getDrawable(
+                    activity ?: return,
+                    R.drawable.ic_volume_off
+                )
+            )
+            binding.ltMusic?.pauseAnimation()
+        }
+        else
+            binding.imgSound.setImageDrawable(
+                getDrawable(
+                    activity ?: return,
+                    R.drawable.ic_volume_on
+                )
+            )
+        binding.ltMusic?.playAnimation()
+
     }
 
     private fun createLottieView(x: Float, y: Float): LottieAnimationView{
@@ -235,6 +246,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
 
     override fun onResume() {
         super.onResume()
+        binding.tvMusicName?.requestFocus()
     }
 
     override fun onDestroy() {

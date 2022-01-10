@@ -6,23 +6,20 @@ package com.thanh_nguyen.test_count_down.common
 
 import android.media.MediaPlayer
 import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
-import com.thanh_nguyen.test_count_down.utils.cmn
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.utils.createMedia
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 
 class SoundManager {
-    companion object {
-        val DEFAULT_MUSIC = MediaPlayer.create(App.getInstance(), R.raw.hpny).apply {
-            isLooping = true
-        }
+    private val DEFAULT_MUSIC = MediaPlayer.create(App.getInstance(), R.raw.hpny).apply {
+        isLooping = true
     }
 
-    private var _musicState: MutableSharedFlow<MusicState> = MutableSharedFlow()
-    val musicState: SharedFlow<MusicState> = _musicState
+    private var _musicState: MutableLiveData<MusicState> = MutableLiveData()
+    val musicStateChanged: LiveData<MusicState> = _musicState
 
     private var backgroundMusic = DEFAULT_MUSIC
     private var currentBackgroundTrackUri: Uri? = null
@@ -40,14 +37,25 @@ class SoundManager {
     }
 
     fun playBackgroundSound(){
-        if(!backgroundMusic.isPlaying){
+        try {
+            backgroundMusic.start()
+        }
+        catch (e: IllegalStateException){
+            backgroundMusic.reset()
+            backgroundMusic.release()
             backgroundMusic.start()
         }
     }
 
     fun pauseBackgroundSound(){
-        if (backgroundMusic.isPlaying)
+        try {
             backgroundMusic.pause()
+        }
+        catch (e: Exception){
+            backgroundMusic.stop()
+            backgroundMusic.reset()
+            backgroundMusic.release()
+        }
     }
 
     fun pauseFireworkSound(){
@@ -56,7 +64,9 @@ class SoundManager {
     }
 
     fun stopBackgroundSound(){
-        //mediaPlayer.stop()
+        backgroundMusic.stop()
+        backgroundMusic.reset()
+        backgroundMusic.release()
     }
 
     fun stopFireworkSound(){
@@ -87,11 +97,13 @@ class SoundManager {
     fun getBackgroundMusic() = backgroundMusic
 
     fun notifyChangeState(state: MusicState){
-        _musicState.tryEmit(state)
+        _musicState.postValue(state)
     }
 }
 
-enum class MusicState{
-    PLAY,
-    PAUSE
+sealed class MusicState(){
+    class Play() : MusicState()
+    class UpdateMusic(val localMusic: LocalMusicModel, val requestPlay: Boolean = true): MusicState()
+    class Pause() : MusicState()
+    class Stop(): MusicState()
 }

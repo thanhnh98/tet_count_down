@@ -3,6 +3,7 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics
 import android.net.Uri
 import androidx.core.net.toUri
 import androidx.lifecycle.viewModelScope
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.domain.usecases.MusicUsecase
 import com.thanh_nguyen.test_count_down.app.model.ListMusicModel
@@ -35,7 +36,6 @@ class ListMusicsViewModel(
     }
 
     fun uploadMusic(uri: Uri){
-        cmn("upload file")
         viewModelScope.launch {
             val music = saveFileToCache(
                 uri
@@ -43,21 +43,17 @@ class ListMusicsViewModel(
                 LocalMusicModel(
                     name = it.name,
                     uri = it.path.toUri().toString()
-                ).apply {
-                    cmn("saved to cache: ${this?.toJson()}")
-                }
-
+                )
             }
 
             music?.apply {
-                cmn("data: ${this.toJson()}")
                 _musicSelected.value = Result.success(
                     LocalMusicModel(
                         uri = this.uri,
                         name = this.name
                     )
                 )
-                AppSharedPreferences.setBackgroundMusic(this)
+                AppPreferences.saveCurrentBackgroundMusic(this)
             }
         }
     }

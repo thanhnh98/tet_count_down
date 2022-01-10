@@ -12,10 +12,12 @@ import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.model.AboutHeaderDataModel
 import com.thanh_nguyen.test_count_down.app.model.AboutItemDataModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.content.AboutViewItem
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.header.AboutHeaderViewItem
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentAboutBinding
+import com.thanh_nguyen.test_count_down.utils.onClick
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
 
@@ -31,6 +33,10 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
         setupObserver()
         setUpAds()
         setupData()
+
+        binding.vHome.onClick {
+            (activity as MainActivity).navigateToTab(0, true)
+        }
     }
 
     private fun setupObserver() {

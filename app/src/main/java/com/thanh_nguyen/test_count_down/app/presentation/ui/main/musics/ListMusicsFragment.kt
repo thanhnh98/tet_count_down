@@ -12,9 +12,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.MusicItemView
+import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
@@ -26,7 +29,9 @@ import org.kodein.di.generic.instance
 
 
 class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
-    private val soundManager: SoundManager by instance()
+    private val soundManager: SoundManager by lazy {
+        (activity as MainActivity).soundManager
+    }
 
     override fun initClusters() {
         addCluster(MusicItemView::class.java)
@@ -51,6 +56,17 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         binding.lnlUploadMusic.onClick {
             requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
+        binding.vHome.onClick {
+            (activity as MainActivity).navigateToTab(0, true)
+        }
+
+        binding.tvPlayingMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name
+
+        val isMuted = AppPreferences.isBackgroundMuted
+        if (isMuted)
+            binding.ltMusic.pauseAnimation()
+        else
+            binding.ltMusic.playAnimation()
     }
 
     private fun requestPermission(permission: String){
@@ -85,7 +101,6 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent = result?.data ?:return@ActivityResultCallback
                 val uri: Uri = data.data?:return@ActivityResultCallback
-                cmn("selected: $uri")
                 viewModel.uploadMusic(
                     uri,
                 )
@@ -111,9 +126,35 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                 )
             }
         }
+
+        observeLiveDataChanged(soundManager.musicStateChanged) {
+                when(it){
+                    is MusicState.Play -> {
+                        binding.ltMusic.playAnimation()
+                    }
+
+                    is MusicState.Pause -> {
+                        binding.ltMusic.pauseAnimation()
+                    }
+
+                    is MusicState.UpdateMusic -> {
+                        binding.tvPlayingMusicName.text = it.localMusic.name
+                    }
+
+                    is MusicState.Stop -> {
+
+                    }
+                }
+        }
+
         lifecycleScope.launch {
             viewModel.musicSelected.collect {
-                binding.tvPlayingMusicName.text = it.data?.name
+//                binding.tvPlayingMusicName.text = it.data?.name
+                    it.data?.apply {
+                        soundManager.notifyChangeState(
+                            MusicState.UpdateMusic(this)
+                        )
+                    }
             }
         }
     }

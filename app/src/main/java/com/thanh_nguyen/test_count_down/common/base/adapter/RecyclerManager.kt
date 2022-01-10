@@ -21,7 +21,6 @@ class RecyclerManager<T> {
     }
 
     fun addCluster(t: T) {
-        Log.e("add cluster", "$t")
         mClusters.add(t)
         mMapRenderRange[t] = RenderRange(0, 0)
         calculateMapRenderRange()
@@ -140,10 +139,8 @@ class RecyclerManager<T> {
         // first remove old
         val renderRange = mMapRenderRange[t]
         if (renderRange == null){
-            Log.e("replace", "section: ${t} is null")
             return
         }
-        Log.e("replace", "section: ${t} : data: ${items.size}")
         if (renderRange.length > 0) adapter.remove(renderRange.position, renderRange.length)
         mMapRenderRange[t] = RenderRange(renderRange.position, items.size)
         adapter.append(renderRange.position, items)

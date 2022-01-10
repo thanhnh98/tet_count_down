@@ -7,6 +7,5 @@ import android.util.Log
 
 class NetworkReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.e("onreceived network", "ok")
     }
 }
