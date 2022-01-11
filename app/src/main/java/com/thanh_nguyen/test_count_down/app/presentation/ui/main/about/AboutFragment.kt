@@ -9,17 +9,21 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.model.AboutHeaderDataModel
 import com.thanh_nguyen.test_count_down.app.model.AboutItemDataModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.content.AboutViewItem
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.header.AboutHeaderViewItem
+import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentAboutBinding
+import com.thanh_nguyen.test_count_down.utils.observeLiveDataChanged
 import com.thanh_nguyen.test_count_down.utils.onClick
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewModel>() {
 
@@ -37,6 +41,8 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
         binding.vHome.onClick {
             (activity as MainActivity).navigateToTab(0, true)
         }
+
+        binding.tvMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:"Happy new year - V/N"
     }
 
     private fun setupObserver() {
@@ -59,6 +65,25 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
                         )
                     }
                 )
+            }
+        }
+
+        observeLiveDataChanged((activity as MainActivity).soundManager.musicStateChanged){
+            binding.tvMusicName.requestFocus()
+            when(it){
+                is MusicState.Play -> {
+                }
+
+                is MusicState.Pause -> {
+                }
+
+                is MusicState.UpdateMusic -> {
+                    binding.tvMusicName.text = it.localMusic.name
+                }
+
+                is MusicState.Stop -> {
+
+                }
             }
         }
     }
@@ -136,5 +161,10 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
     override fun onRefresh() {
         super.onRefresh()
         hideLoading()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.tvMusicName.requestFocus()
     }
 }

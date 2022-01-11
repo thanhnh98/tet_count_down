@@ -23,7 +23,7 @@ default:
 	@echo "-------------------------------------------------------------------"
 	@echo ".                                                                 ."
 	@echo ". USAGE: make <command> or make <command>_<bebug or release>      ."
-	@echo ".     ex: make run                                                ."
+	@echo ".     ex: make help                                                ."
 	@echo ". by default will be executed on DEV                              ."
 	@echo ". (DEBUG and RELEASE haven't implemented yet)                     ."
 	@echo ".                                                                 ."
@@ -73,3 +73,17 @@ clean_project:
 
 devices:
 	adb devices
+
+help:
+	@echo "01. run"
+	@echo "02. run_fp #run with full permission"
+	@echo "03. install"
+	@echo "04. uninstall"
+	@echo "05. grant_full_permission"
+	@echo "06. build"
+	@echo "07. restart"
+	@echo "08. force_stop"
+	@echo "09. open"
+	@echo "10. clean #clear cache && restart"
+	@echo "11. clean_project #clear all cached files of project"
+	@echo "12. devices"

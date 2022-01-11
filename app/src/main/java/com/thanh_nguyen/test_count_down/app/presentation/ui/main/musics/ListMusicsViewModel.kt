@@ -23,16 +23,18 @@ import java.io.File
 class ListMusicsViewModel(
         private val musicUsecase: MusicUsecase
     ): BaseCollectionViewModel() {
-
-    private var _listMusicsFlow: MutableStateFlow<Result<ListMusicModel>> = MutableStateFlow(Result.loading(null))
-    val listMusicsFlow: StateFlow<Result<ListMusicModel>> get() = _listMusicsFlow
-
     private var _musicSelected: MutableStateFlow<Result<LocalMusicModel?>> = MutableStateFlow(Result.loading(null))
     val musicSelected: StateFlow<Result<LocalMusicModel?>> get() = _musicSelected
 
+    private var _listMusicsLocal: MutableStateFlow<List<LocalMusicModel>> = MutableStateFlow(emptyList())
+    val listMusicsLocal: MutableStateFlow<List<LocalMusicModel>> = _listMusicsLocal
+
+    private var _newMusic: MutableStateFlow<LocalMusicModel?> = MutableStateFlow(null)
+    val newMusic: MutableStateFlow<LocalMusicModel?> = _newMusic
+
     override fun onCreate() {
         super.onCreate()
-        //getListMusics()
+        getListMusicsLocal()
     }
 
     fun uploadMusic(uri: Uri){
@@ -47,21 +49,30 @@ class ListMusicsViewModel(
             }
 
             music?.apply {
-                _musicSelected.value = Result.success(
-                    LocalMusicModel(
-                        uri = this.uri,
-                        name = this.name
-                    )
-                )
-                AppPreferences.saveCurrentBackgroundMusic(this)
+                addMusic(this)
+                updateBackgroundMusic(this)
             }
         }
     }
 
-    fun getListMusics(){
+    fun updateBackgroundMusic(music: LocalMusicModel){
+        AppPreferences.saveCurrentBackgroundMusic(music)
+        _musicSelected.value = Result.success(
+            music
+        )
+    }
+
+    fun addMusic(music: LocalMusicModel){
         viewModelScope.launch {
-            musicUsecase.getListMusics().collect {
-                _listMusicsFlow.value = it
+            musicUsecase.addMusic(music)
+            newMusic.value = music
+        }
+    }
+
+    fun getListMusicsLocal(){
+        viewModelScope.launch {
+            musicUsecase.getListMusicsLocal()?.apply {
+                _listMusicsLocal.value = this
             }
         }
     }

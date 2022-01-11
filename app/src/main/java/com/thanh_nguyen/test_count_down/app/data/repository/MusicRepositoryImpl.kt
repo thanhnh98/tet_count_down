@@ -16,5 +16,6 @@ class MusicRepositoryImpl(
     ): MusicRepository {
     override fun downloadMusic(fileUrl: String): Flow<Result<ResponseBody>> = dataSource.downloadMusic(fileUrl)
     override fun getListMusics(): Flow<Result<ListMusicModel>> = dataSource.getListMusics()
-    override suspend fun getListMusicsLocal(): Flow<List<LocalMusicModel>> = localSource.getListMusicsLocal()
+    override suspend fun getListMusicsLocal(): List<LocalMusicModel>? = localSource.getListMusicsLocal()
+    override suspend fun addMusic(music: LocalMusicModel) = localSource.addMusic(music)
 }

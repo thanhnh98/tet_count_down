@@ -11,7 +11,7 @@ import com.thanh_nguyen.test_count_down.app.model.db_entity.LocalMusicEntity
 abstract class AppRoomDB: RoomDatabase() {
     abstract fun localMusicDao(): LocalMusicDao
     companion object {
-        private var instance: AppRoomDB? = null
+        var instance: AppRoomDB? = null
 
         operator fun invoke(context: Context): AppRoomDB {
             return instance?: synchronized(Any()) {

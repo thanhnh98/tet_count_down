@@ -2,6 +2,7 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items
 
 import android.view.ViewGroup
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.common.base.adapter.BindingRecycleViewItem
 import com.thanh_nguyen.test_count_down.databinding.ItemSingleeMusicBinding
@@ -9,8 +10,8 @@ import com.thanh_nguyen.test_count_down.utils.inflateView
 import com.thanh_nguyen.test_count_down.utils.onClick
 
 class MusicItemView(
-    private val musicData: MusicModel,
-    private val onItemSelected: (MusicModel) -> Unit
+    private val musicData: LocalMusicModel,
+    private val onItemSelected: (LocalMusicModel) -> Unit
 ): BindingRecycleViewItem<ItemSingleeMusicBinding, MusicItemViewHolder>() {
     override fun inflateViewHolder(parent: ViewGroup): MusicItemViewHolder {
         return MusicItemViewHolder(
@@ -20,7 +21,7 @@ class MusicItemView(
 
     override fun bindModel(binding: ItemSingleeMusicBinding?, viewHolder: MusicItemViewHolder) {
         binding?.tvName?.text = musicData.name
-        binding?.tvSinger?.text = musicData.singerName
+        binding?.tvEditableName?.text = musicData.name
         binding?.root?.onClick {
             onItemSelected.invoke(musicData)
         }

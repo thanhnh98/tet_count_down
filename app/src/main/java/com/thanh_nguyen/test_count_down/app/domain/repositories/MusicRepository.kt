@@ -10,5 +10,6 @@ import okhttp3.ResponseBody
 interface MusicRepository {
     fun downloadMusic(fileUrl: String): Flow<Result<ResponseBody>>
     fun getListMusics(): Flow<Result<ListMusicModel>>
-    suspend fun getListMusicsLocal(): Flow<List<LocalMusicModel>>
+    suspend fun getListMusicsLocal(): List<LocalMusicModel>?
+    suspend fun addMusic(music: LocalMusicModel)
 }

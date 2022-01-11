@@ -10,9 +10,12 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface LocalMusicDao {
     @Insert(onConflict = REPLACE)
-    suspend fun addMusic(localMusicEntity: LocalMusicEntity): Flow<Boolean>
+    suspend fun addMusic(localMusicEntity: LocalMusicEntity)
 
     @Query("select * from music")
-    suspend fun getListMusics(): Flow<List<LocalMusicEntity>>
+    suspend fun getListMusics(): List<LocalMusicEntity>
+
+    @Query("select * from music where uri = :uri")
+    suspend fun getSingleMusic(uri: String): List<LocalMusicEntity>
 
 }

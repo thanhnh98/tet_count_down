@@ -12,6 +12,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
@@ -22,12 +24,15 @@ import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollection
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
 class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
+
     private val soundManager: SoundManager by lazy {
         (activity as MainActivity).soundManager
     }
@@ -58,6 +63,14 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         binding.vHome.onClick {
             (activity as MainActivity).navigateToTab(0, true)
         }
+
+        binding.tvPlayingMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:"Happy new year - N/A"
+
+        val isMuted = AppPreferences.isBackgroundMuted
+        if (isMuted)
+            binding.ltMusic.pauseAnimation()
+        else
+            binding.ltMusic.playAnimation()
     }
 
     private fun requestPermission(permission: String){
@@ -101,20 +114,8 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
 
     private fun onObserve() {
         lifecycleScope.launchWhenCreated {
-            viewModel.listMusicsFlow.collect { it ->
-                it.onResultReceived(
-                    onLoading = {
-
-                    },
-                    onError = {
-
-                    },
-                    onSuccess ={ listMusics ->
-                        listMusics.data?.data?.apply {
-                            showListMusics(this)
-                        }
-                    }
-                )
+            viewModel.listMusicsLocal.collect{
+                showListMusicsLocal(it)
             }
         }
 
@@ -143,26 +144,39 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
 //                binding.tvPlayingMusicName.text = it.data?.name
                     it.data?.apply {
                         soundManager.notifyChangeState(
-                            MusicState.UpdateMusic(this)
+                            MusicState.UpdateMusic(this, !AppPreferences.isBackgroundMuted)
                         )
                     }
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.newMusic.collect {
+                it?.apply {
+                    recyclerManager.append(
+                        MusicItemView::class.java,
+                        0,
+                        MusicItemView(this){
+                            viewModel.updateBackgroundMusic(it)
+                        }
+                    )
+                }
+            }
+        }
     }
 
-    private fun showListMusics(listData: List<MusicModel>){
+    private fun showListMusicsLocal(listData: List<LocalMusicModel>){
         recyclerManager.replace(MusicItemView::class.java, createListMusicItems(listData))
     }
 
-    private fun createListMusicItems(listData: List<MusicModel>): List<MusicItemView>{
+    private fun createListMusicItems(listData: List<LocalMusicModel>): List<MusicItemView>{
         val listItems: MutableList<MusicItemView> = ArrayList()
-//
-//        listData.forEach {
-//            listItems.add(MusicItemView(it) { music ->
-//                binding.tvPlayingMusicName.text = music.name + " - " + music.singerName
-//                viewModel.downloadMusic(it)
-//            })
-//        }
+
+        listData.forEach {
+            listItems.add(MusicItemView(it){
+                viewModel.updateBackgroundMusic(it)
+            })
+        }
         return listItems
     }
 

@@ -8,19 +8,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class LocalMusicDataSource(
-    private val dao: LocalMusicDao
+    private val dao: LocalMusicDao?
 ) {
-    suspend fun getListMusicsLocal() = dao.getListMusics().map {
-        it.map { musicLocalEntity ->
-            LocalMusicModel(
-                name = musicLocalEntity.name,
-                uri = musicLocalEntity.uri
-            )
-        }
+    suspend fun getListMusicsLocal() = dao?.getListMusics()?.map { musicLocalEntity ->
+        LocalMusicModel(
+            name = musicLocalEntity.name,
+            uri = musicLocalEntity.uri
+        )
     }
 
     suspend fun addMusic(localMusic: LocalMusicModel){
-        dao.addMusic(
+        dao?.addMusic(
             LocalMusicEntity(
                 name = localMusic.name,
                 uri = localMusic.uri

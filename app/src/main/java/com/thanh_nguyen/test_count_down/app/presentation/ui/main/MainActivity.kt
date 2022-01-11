@@ -77,6 +77,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun setupBackgroundMusic() {
+
+        lifecycleScope.launchWhenCreated {
+
+        }
+
         observeLiveDataChanged(soundManager.musicStateChanged) {
             when(it){
                 is MusicState.Play -> {
