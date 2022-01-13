@@ -80,6 +80,19 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         binding.tvMusicName?.onClick {
             (activity as MainActivity).navigateToTab(2, true)
         }
+        binding.icGotoMusic?.onClick {
+            (activity as MainActivity).navigateToTab(2, true)
+        }
+        binding.icShare?.onClick {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Cùng đợi đến tết thôiii...\nhttps://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
     }
 
     private fun changeStatusSound() {

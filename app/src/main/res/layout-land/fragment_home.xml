@@ -14,6 +14,47 @@
             />
 
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lt_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_fileName="music.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/_16dp"/>
+
+        <TextView
+            android:id="@+id/tv_music_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/_200dp"
+            android:text="Happy new year - N.A"
+            app:layout_constraintLeft_toRightOf="@id/lt_music"
+            app:layout_constraintTop_toTopOf="@id/lt_music"
+            app:layout_constraintBottom_toBottomOf="@id/lt_music"
+            android:textColor="@color/white"
+            android:fontFamily="@font/gilroy_normal"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
+            android:layout_marginLeft="@dimen/_4dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_goto_music"
+            android:layout_width="@dimen/_16dp"
+            android:layout_height="@dimen/_16dp"
+            app:srcCompat="@drawable/ic_arrow_right"
+            android:layout_marginLeft="@dimen/_4dp"
+            app:layout_constraintLeft_toRightOf="@id/tv_music_name"
+            app:layout_constraintTop_toTopOf="@id/tv_music_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lt_firework"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -173,6 +214,27 @@
                     android:layout_width="@dimen/_16dp"
                     android:layout_height="@dimen/_16dp"
                     android:src="@drawable/ic_volume_on"
+                    app:layout_constraintRight_toLeftOf="@id/fl_img_pin_container"
+                    app:layout_constraintTop_toTopOf="@id/fl_img_pin_container"
+                    />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/fl_img_share_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/fl_img_sound_container"
+                app:layout_constraintTop_toTopOf="@id/fl_img_sound_container"
+                android:padding="@dimen/_6dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/bg_round_gray_opacity_50">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_share"
+                    android:layout_width="@dimen/_16dp"
+                    android:layout_height="@dimen/_16dp"
+                    android:src="@drawable/ic__share"
                     app:layout_constraintRight_toLeftOf="@id/fl_img_pin_container"
                     app:layout_constraintTop_toTopOf="@id/fl_img_pin_container"
                     />

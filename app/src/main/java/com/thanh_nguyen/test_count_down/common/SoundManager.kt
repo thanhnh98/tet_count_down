@@ -30,6 +30,14 @@ class SoundManager {
         }
     }
 
+    fun initBackgroundMusic(mediaPlayer: MediaPlayer){
+        stopBackgroundSound()
+        backgroundMusic = mediaPlayer.apply {
+            isLooping = true
+            prepare()
+        }
+    }
+
     fun playFireworkSound(){
         if (!fireworkSound.isPlaying) {
             fireworkSound.start()

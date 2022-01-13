@@ -43,19 +43,20 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/percent_container"
+                android:id="@+id/container_remove_img"
                 android:layout_width="@dimen/_24dp"
                 android:layout_height="@dimen/_24dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/_6dp"
                 >
                 <ImageView
-                    android:id="@+id/tv_percent"
+                    android:id="@+id/img_remove"
                     android:layout_width="16dp"
                     android:layout_height="@dimen/_16dp"
                     android:textColor="@color/white"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:src="@drawable/ic_delete_24"
+                    android:layout_gravity="top|center_horizontal"
+                    android:src="@drawable/ic_close"
                     />
             </FrameLayout>
 
@@ -64,7 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/img_container"
-                app:layout_constraintRight_toLeftOf="@id/percent_container"
+                app:layout_constraintRight_toLeftOf="@id/container_remove_img"
                 app:layout_constraintTop_toTopOf="@id/img_container"
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/white"
@@ -82,7 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="@id/tv_editable_name"
-                app:layout_constraintRight_toLeftOf="@id/percent_container"
+                app:layout_constraintRight_toLeftOf="@id/container_remove_img"
                 app:layout_constraintTop_toBottomOf="@id/tv_editable_name"
                 app:layout_constraintBottom_toBottomOf="@id/img_container"
                 android:textColor="@color/white"

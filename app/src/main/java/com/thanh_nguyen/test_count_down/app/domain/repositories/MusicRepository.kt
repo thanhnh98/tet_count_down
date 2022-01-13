@@ -12,4 +12,5 @@ interface MusicRepository {
     fun getListMusics(): Flow<Result<ListMusicModel>>
     suspend fun getListMusicsLocal(): List<LocalMusicModel>?
     suspend fun addMusic(music: LocalMusicModel)
+    suspend fun deleteMusic(music: LocalMusicModel)
 }

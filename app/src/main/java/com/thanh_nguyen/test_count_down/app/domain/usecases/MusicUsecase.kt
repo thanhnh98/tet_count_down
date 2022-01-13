@@ -8,4 +8,5 @@ class MusicUsecase(private val musicRepository: MusicRepository) {
     fun getListMusics() = musicRepository.getListMusics()
     suspend fun getListMusicsLocal() = musicRepository.getListMusicsLocal()
     suspend fun addMusic(localMusicModel: LocalMusicModel) = musicRepository.addMusic(localMusicModel)
+    suspend fun deleteMusic(localMusicModel: LocalMusicModel) = musicRepository.deleteMusic(localMusicModel)
 }

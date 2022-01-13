@@ -23,7 +23,6 @@ import com.thanh_nguyen.test_count_down.utils.observeLiveDataChanged
 import com.thanh_nguyen.test_count_down.utils.onClick
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewModel>() {
 
@@ -42,6 +41,10 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
             (activity as MainActivity).navigateToTab(0, true)
         }
 
+        binding.tvMusicName.onClick {
+            (activity as MainActivity).navigateToTab(2, true)
+        }
+
         binding.tvMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:"Happy new year - V/N"
     }
 
@@ -57,7 +60,7 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
                     },
                     onSuccess = {
                         binding.lnlAds.addView(
-                            createAdsView(getString(R.string.key_ads_banner)).apply {
+                            createAdsView(getString(R.string.key_ads_banner_about)).apply {
                                 loadAd(AdRequest.Builder().build().apply {
                                     Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
                                 })

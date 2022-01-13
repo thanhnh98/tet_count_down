@@ -33,6 +33,6 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
     }
 
     bindViewModel<ListMusicsViewModel>() with provider {
-        ListMusicsViewModel(instance())
+        ListMusicsViewModel(instance(), instance())
     }
 }

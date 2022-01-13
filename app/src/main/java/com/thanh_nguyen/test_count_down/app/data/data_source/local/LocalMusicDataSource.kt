@@ -12,6 +12,7 @@ class LocalMusicDataSource(
 ) {
     suspend fun getListMusicsLocal() = dao?.getListMusics()?.map { musicLocalEntity ->
         LocalMusicModel(
+            id = musicLocalEntity.id,
             name = musicLocalEntity.name,
             uri = musicLocalEntity.uri
         )
@@ -24,5 +25,9 @@ class LocalMusicDataSource(
                 uri = localMusic.uri
             )
         )
+    }
+
+    suspend fun deleteMusic(localMusic: LocalMusicModel){
+        dao?.deleteMusic(localMusic.id)
     }
 }

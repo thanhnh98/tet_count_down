@@ -3,6 +3,7 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main
 import android.animation.Animator
 import android.content.Intent
 import android.os.Build
+import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
@@ -10,9 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
+import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.AboutFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.home.HomeFragment
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.ListMusicsFragment
+import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
@@ -20,6 +23,7 @@ import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageT
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -77,11 +81,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun setupBackgroundMusic() {
-
-        lifecycleScope.launchWhenCreated {
-
-        }
-
         observeLiveDataChanged(soundManager.musicStateChanged) {
             when(it){
                 is MusicState.Play -> {
@@ -95,10 +94,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
                 is MusicState.UpdateMusic -> {
-                    soundManager.updateBackgroundMusic(
-                        it.localMusic.uri.toUri(),
-                        it.requestPlay
-                    )
+                    try {
+                        soundManager.updateBackgroundMusic(
+                            it.localMusic.uri.toUri(),
+                            it.requestPlay
+                        )
+                    }catch (e: Exception){
+                        requestMusicDefault()
+                    }
                 }
 
                 is MusicState.Stop -> {
@@ -107,15 +110,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
         }
 
-        val music = AppPreferences.getCurrentBackgroundMusic()
-        val isMuted = AppPreferences.isBackgroundMuted
+        createFileCachedFromAsset(R.raw.hpny, "Happy New Year - N/A").apply {
+            if (this != null){
+                soundManager.initBackgroundMusic(
+                    createMedia(this.toUri())
+                )
+            }
+            val music = AppPreferences.getCurrentBackgroundMusic()
+            val isMuted = AppPreferences.isBackgroundMuted
 
-        if (music == null)
-            soundManager.playBackgroundSound()
-        else
-            soundManager.notifyChangeState(
-                MusicState.UpdateMusic(music, !isMuted)
-            )
+            if (music == null)
+                soundManager.playBackgroundSound()
+            else
+                soundManager.notifyChangeState(
+                    MusicState.UpdateMusic(music, !isMuted)
+                )
+        }
     }
 
     private fun showSwipeContainer() {
@@ -233,6 +243,32 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         else {
             finish()
+        }
+    }
+
+    fun requestMusicDefault(){
+        createFileCachedFromAsset(R.raw.hpny, Constants.DEFAULT_MUSIC_NAME).apply {
+            if (this != null) {
+                val music = LocalMusicModel(
+                    uri = this.toUri().toString(),
+                    name = Constants.DEFAULT_MUSIC_NAME
+                )
+
+                AppPreferences.saveCurrentBackgroundMusic(
+                    music
+                )
+
+                soundManager.initBackgroundMusic(
+                    createMedia(this.toUri())
+                )
+
+                soundManager.notifyChangeState(
+                    MusicState.UpdateMusic(
+                        music,
+                        !AppPreferences.isBackgroundMuted
+                    )
+                )
+            }
         }
     }
 }

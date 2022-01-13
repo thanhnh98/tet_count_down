@@ -5,30 +5,32 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
-import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
+import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.MusicDefaultItemView
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.MusicItemView
+import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.kodein.di.generic.instance
 
 
 class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
@@ -39,6 +41,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
 
     override fun initClusters() {
         addCluster(MusicItemView::class.java)
+        addCluster(MusicDefaultItemView::class.java)
     }
 
     override fun inflateLayout(): Int = R.layout.fragment_list_musics
@@ -56,6 +59,9 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onObserve()
+        setUpAds()
+        showDefaultMusicItem()
+
         binding.tvPlayingMusicName.isSelected = true
         binding.lnlUploadMusic.onClick {
             requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -71,6 +77,10 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             binding.ltMusic.pauseAnimation()
         else
             binding.ltMusic.playAnimation()
+    }
+
+    private fun setUpAds() {
+        viewModel.getAdsInfo()
     }
 
     private fun requestPermission(permission: String){
@@ -119,6 +129,27 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             }
         }
 
+        lifecycleScope.launchWhenCreated {
+            viewModel.adsInfo.collect {
+                it.onResultReceived(
+                    onLoading = {
+
+                    },
+                    onError = {
+
+                    },
+                    onSuccess = {
+                        binding.lnlAds.addView(
+                            createAdsView(getString(R.string.key_ads_banner_music)).apply {
+                                loadAd(AdRequest.Builder().build().apply {
+                                    Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
+                                })
+                            }
+                        )
+                    }
+                )
+            }
+        }
         observeLiveDataChanged(soundManager.musicStateChanged) {
                 when(it){
                     is MusicState.Play -> {
@@ -156,12 +187,25 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                     recyclerManager.append(
                         MusicItemView::class.java,
                         0,
-                        MusicItemView(this){
-                            viewModel.updateBackgroundMusic(it)
-                        }
+                        MusicItemView(
+                            this,
+                            onItemSelected = {
+                                viewModel.updateBackgroundMusic(it)
+                            },
+                            onRemoveItemSelected = {
+                                viewModel.removeMusic(it)
+                            },
+                        )
                     )
                 }
             }
+        }
+    }
+
+    private fun createAdsView(adsId: String): AdView {
+        return AdView(activity).apply {
+            adSize = AdSize.BANNER
+            adUnitId = adsId
         }
     }
 
@@ -169,13 +213,28 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         recyclerManager.replace(MusicItemView::class.java, createListMusicItems(listData))
     }
 
+    private fun showDefaultMusicItem(){
+        recyclerManager.replace(MusicDefaultItemView::class.java, MusicDefaultItemView{
+            if (AppPreferences.getCurrentBackgroundMusic()?.name != Constants.DEFAULT_MUSIC_NAME) {
+                (activity as MainActivity).requestMusicDefault()
+            }
+        })
+    }
+
     private fun createListMusicItems(listData: List<LocalMusicModel>): List<MusicItemView>{
         val listItems: MutableList<MusicItemView> = ArrayList()
 
         listData.forEach {
-            listItems.add(MusicItemView(it){
-                viewModel.updateBackgroundMusic(it)
-            })
+            listItems.add(
+                MusicItemView(
+                    it,
+                    onItemSelected = {
+                        viewModel.updateBackgroundMusic(it)
+                    },
+                    onRemoveItemSelected = {
+                        viewModel.removeMusic(it)
+                    })
+            )
         }
         return listItems
     }

@@ -1,14 +1,20 @@
 package com.thanh_nguyen.test_count_down.utils
 
 import android.content.Context
+import android.content.res.AssetManager
 import android.net.Uri
 import android.util.Log
+import androidx.annotation.RawRes
+import androidx.browser.customtabs.CustomTabsClient.getPackageName
 import androidx.core.net.toUri
 import com.thanh_nguyen.test_count_down.App
+import com.thanh_nguyen.test_count_down.App.Companion.getResources
+import com.thanh_nguyen.test_count_down.R
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.InputStream
 
 private val separator = File.separator
 private val cachePath = "${App.getInstance().cacheDir.path}${separator}musics$separator"
@@ -44,6 +50,54 @@ fun saveFileToCache(body: ResponseBody?, fileName: String, overwrite: Boolean = 
     }
 
     return null
+}
+
+fun findCacheByUri(uri: Uri): File?{
+    val sourceFile = File(uri.path)
+    val desFile = File("${cachePath}${sourceFile.name}")
+    return if (desFile.exists()) desFile else null
+}
+
+fun deleteFile(uri: Uri): Boolean{
+    return try {
+        val sourceFile = File(uri.path)
+        sourceFile.delete()
+    }catch (e: Exception){
+        false
+    }
+
+}
+
+fun createFileCachedFromAsset(@RawRes id: Int, saveAsName: String): File?{
+    try {
+        val bufferSize: Int = DEFAULT_BUFFER_SIZE
+        val desFile = File("${cachePath}${saveAsName}")
+
+        if (findCacheByUri(desFile.toUri()) != null)
+            return desFile
+
+        if (desFile.isDirectory) {
+            if (!desFile.mkdirs())
+                throw FileSystemException(file = desFile, other = desFile, reason = "Failed to create target directory.")
+        } else {
+            desFile.parentFile?.mkdirs()
+
+            val inputStream: InputStream = App.getInstance().resources.openRawResource(id)
+            val outputStream = FileOutputStream(desFile)
+
+            inputStream.use { input ->
+                outputStream.use { output ->
+                    input.copyTo(output, bufferSize)
+                }
+
+            }
+        }
+        return desFile
+    }
+    catch (e: Exception){
+        e.printStackTrace()
+        return null
+    }
 }
 
 fun saveFileToCache(uri: Uri, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {

@@ -5,6 +5,7 @@ import com.thanh_nguyen.test_count_down.R
 class Constants {
     companion object{
         const val APP_ID = "3809D924-093D-466B-9E7D-BF7823718FB9"
+        const val DEFAULT_MUSIC_NAME = "Happy New Year - N/A"
 
         val GLOBAL_SOUND = listOf(
             R.raw.hpny,

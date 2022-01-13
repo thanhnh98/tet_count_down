@@ -15,7 +15,7 @@ interface LocalMusicDao {
     @Query("select * from music")
     suspend fun getListMusics(): List<LocalMusicEntity>
 
-    @Query("select * from music where uri = :uri")
-    suspend fun getSingleMusic(uri: String): List<LocalMusicEntity>
+    @Query("delete from music where id = :id")
+    suspend fun deleteMusic(id: Int)
 
 }
