@@ -72,9 +72,13 @@ class SoundManager {
     }
 
     fun stopBackgroundSound(){
-        backgroundMusic.stop()
-        backgroundMusic.reset()
-        backgroundMusic.release()
+        try {
+            backgroundMusic.stop()
+            backgroundMusic.reset()
+            backgroundMusic.release()
+        }catch (e: java.lang.Exception){
+            
+        }
     }
 
     fun stopFireworkSound(){

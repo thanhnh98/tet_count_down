@@ -5,16 +5,19 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsClient.getPackageName
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
@@ -91,7 +94,12 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                 chooseMp3File()
             },
             shouldShowRequestPermissionRationable = {
-                activity?.showToastMessage("shouldShowRequestPermissionRationable")
+                activity?.showToastMessage("Cho phép quyền truy cập bộ nhớ đi")
+                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    data = Uri.fromParts("package", App.getInstance().packageName, null)
+                    startActivity(this)
+                }
             },
             requestPermission = { permission ->
                 requestPermissionLauncher.launch(permission)

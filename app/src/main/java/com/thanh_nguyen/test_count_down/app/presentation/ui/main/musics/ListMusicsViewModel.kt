@@ -6,13 +6,10 @@ import androidx.core.net.toUri
 import androidx.lifecycle.viewModelScope
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
-import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.domain.usecases.AdsUseCase
 import com.thanh_nguyen.test_count_down.app.domain.usecases.MusicUsecase
 import com.thanh_nguyen.test_count_down.app.model.AdsInfoModel
-import com.thanh_nguyen.test_count_down.app.model.ListMusicModel
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
-import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.Result
 import com.thanh_nguyen.test_count_down.common.base.mvvm.viewmodel.BaseCollectionViewModel
 import com.thanh_nguyen.test_count_down.utils.*
@@ -20,7 +17,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.io.File
 
 class ListMusicsViewModel(
         private val musicUsecase: MusicUsecase,
