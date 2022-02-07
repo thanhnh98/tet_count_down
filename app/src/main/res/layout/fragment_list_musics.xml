@@ -79,7 +79,7 @@
                     android:id="@+id/tv_playing_music_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Happy new year - N.A"
+                    android:text="@string/default_music_name"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lt_music"

@@ -73,7 +73,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             (activity as MainActivity).navigateToTab(0, true)
         }
 
-        binding.tvPlayingMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:"Happy new year - N/A"
+        binding.tvPlayingMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:Constants.DEFAULT_MUSIC_NAME
 
         val isMuted = AppPreferences.isBackgroundMuted
         if (isMuted)

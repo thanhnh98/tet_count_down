@@ -14,7 +14,7 @@ import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.utils.createMedia
 
 class SoundManager {
-    private val DEFAULT_MUSIC = MediaPlayer.create(App.getInstance(), R.raw.hpny).apply {
+    private val DEFAULT_MUSIC = MediaPlayer.create(App.getInstance(), R.raw.background_music).apply {
         isLooping = true
     }
 

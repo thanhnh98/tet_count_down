@@ -21,24 +21,24 @@ class CountDownForegroundService: BaseService() {
     override fun onCreate() {
         super.onCreate()
         closeAlarm(this)
-        showToastMessage("Đã ghim bộ đếm trên trang thông báo")
+//        showToastMessage("Đã ghim bộ đếm trên trang thông báo")
         observeEvent {
             AppSharedPreferences.setisClosedCountDownNoti(false)
             while (true){
                 try {
-                    if (isTetOnGoing()){
-                        stopService(Intent(this, CountDownForegroundService::class.java))
+                    if (isTetOnGoing() || getDaysUntilDate() > 99){
+                        //stopService(Intent(this, CountDownForegroundService::class.java))
                     }
                     else {
-                        startForeground(
-                            FOREGROUND_ID,
-                            createNotificationKeepAlive(
-                                this@CountDownForegroundService,
-                                createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
-                                FOREGROUND_REQUEST_CODE,
-                                FOREGROUND_NOTI_CHANNEL
-                            )
-                        )
+//                        startForeground(
+//                            FOREGROUND_ID,
+//                            createNotificationKeepAlive(
+//                                this@CountDownForegroundService,
+//                                createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
+//                                FOREGROUND_REQUEST_CODE,
+//                                FOREGROUND_NOTI_CHANNEL
+//                            )
+//                        )
                     }
                 }catch (e: Exception){
                     e.printStackTrace()
@@ -51,10 +51,10 @@ class CountDownForegroundService: BaseService() {
     override fun onDestroy() {
         super.onDestroy()
         setAlarmRemindAfterInterval(this)
-        showToastMessage("Đã gỡ bộ đếm, kích hoạt lại khi bạn nôn nao đến tết nhé")
-        CoroutineScope(Dispatchers.IO).launch {
-            AppSharedPreferences.setisClosedCountDownNoti(true)
-            cancel()
-        }
+//        showToastMessage("Đã gỡ bộ đếm, kích hoạt lại khi bạn nôn nao đến tết nhé")
+//        CoroutineScope(Dispatchers.IO).launch {
+//            AppSharedPreferences.setisClosedCountDownNoti(true)
+//            cancel()
+//        }
     }
 }

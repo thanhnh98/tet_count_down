@@ -117,12 +117,16 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                         )
                     }
                     else{
-                        activity?.stopService(
-                            Intent(
-                                activity ?: return@collect,
-                                CountDownForegroundService::class.java
+                        try {
+                            activity?.stopService(
+                                Intent(
+                                    activity ?: return@collect,
+                                    CountDownForegroundService::class.java
+                                )
                             )
-                        )
+                        }catch (e: Exception){
+                            e.printStackTrace()
+                        }
                     }
                 }
             }.cancel() //cancel after finished

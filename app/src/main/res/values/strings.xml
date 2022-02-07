@@ -15,4 +15,12 @@
     <string name="second">Giây</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">Happy new year</string>
+    <string name="big_title">Đón tết Quý Mão\n2023</string>
+    <string name="default_music_name">Hopes and Dreams</string>
+
+<!--    About-->
+    <string name="about_header_title">Năm Quý Mão có gì?</string>
+    <string name="about_header_content">Tuổi Quý Mão cuộc sống có chút thăng trầm, của cái có lại hết, khi tuổi trẻ thì nghèo, về trung vận và hậu vận thì khá hơn nhiều. Hốc số phú quý học hành thành đạt, thông minh khéo léo, cử chỉ lời nói mềm mỏng, dịu dang, xử lý không ngoan, nếu sinh vào giờ tốt.</string>
+    <string name="about_block_1_title">Tết 2023 vào ngày nào?</string>
+    <string name="about_block_1_content">Tết nguyên đán âm lịch 2023 - Tết Quý Mão vào ngày 22/1/2023 dương lịch - tức ngày mùng 1 tết âm lịch.</string>
 </resources>

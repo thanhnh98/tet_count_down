@@ -110,7 +110,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
         }
 
-        createFileCachedFromAsset(R.raw.hpny, "Happy New Year - N/A").apply {
+        createFileCachedFromAsset(R.raw.background_music, Constants.DEFAULT_MUSIC_NAME).apply {
             if (this != null){
                 soundManager.initBackgroundMusic(
                     createMedia(this.toUri())
@@ -247,7 +247,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     fun requestMusicDefault(){
-        createFileCachedFromAsset(R.raw.hpny, Constants.DEFAULT_MUSIC_NAME).apply {
+        createFileCachedFromAsset(R.raw.background_music, Constants.DEFAULT_MUSIC_NAME).apply {
             if (this != null) {
                 val music = LocalMusicModel(
                     uri = this.toUri().toString(),

@@ -67,7 +67,7 @@
             style="@style/Notification.TextView.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Happy new year 2022"
+            android:text="Happy new year 2023"
             android:textAllCaps="true"
             android:layout_marginTop="@dimen/_10dp"
             />

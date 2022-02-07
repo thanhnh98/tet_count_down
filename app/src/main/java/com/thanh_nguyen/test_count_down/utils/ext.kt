@@ -112,7 +112,7 @@ fun getSecondsUntilDate(endDate: String): Long{
 
 fun isTetOnGoing(): Boolean = getSecondsUntilDate(Constants.EventDate.LUNAR_NEW_YEAR) <= 0
 
-fun getDaysUntilDate(endDate: String): Long{
+fun getDaysUntilDate(endDate: String = Constants.EventDate.LUNAR_NEW_YEAR): Long{
     val currentMillis = System.currentTimeMillis()
     val endMillis = endDate.toCalendar().timeInMillis
     return TimeUnit.MILLISECONDS.toDays(endMillis - currentMillis)

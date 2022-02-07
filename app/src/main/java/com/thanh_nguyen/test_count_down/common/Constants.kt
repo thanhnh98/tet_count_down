@@ -5,11 +5,9 @@ import com.thanh_nguyen.test_count_down.R
 class Constants {
     companion object{
         const val APP_ID = "3809D924-093D-466B-9E7D-BF7823718FB9"
-        const val DEFAULT_MUSIC_NAME = "Happy New Year - N/A"
-
-        val GLOBAL_SOUND = listOf(
-            R.raw.hpny,
-        ) .random()
+        const val DEFAULT_MUSIC_NAME = "Hopeful Freedom"
+        const val NAME_OF_YEAR = "Quý Mão"
+        const val NEW_YEAR = "2023"
     }
 
 
@@ -40,6 +38,6 @@ class Constants {
     }
 
     object EventDate{
-        const val LUNAR_NEW_YEAR = "01/02/2022"
+        const val LUNAR_NEW_YEAR = "22/01/2023"
     }
 }

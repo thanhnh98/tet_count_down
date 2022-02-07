@@ -55,7 +55,7 @@
                 android:layout_width="@dimen/_200dp"
                 android:layout_height="wrap_content"
                 android:maxWidth="@dimen/_200dp"
-                android:text="Happy new year - N.A"
+                android:text="@string/default_music_name"
                 android:textColor="@color/white"
                 android:fontFamily="@font/gilroy_normal"
                 android:layout_marginLeft="@dimen/_6dp"
