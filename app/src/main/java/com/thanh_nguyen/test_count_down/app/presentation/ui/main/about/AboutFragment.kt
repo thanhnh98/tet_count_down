@@ -1,9 +1,11 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui.main.about
 
 import android.annotation.SuppressLint
+import android.content.res.loader.ResourcesProvider
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -115,6 +117,8 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
             AboutItemDataModel(
                 title = getString(R.string.about_block_1_title),
                 content = getString(R.string.about_block_1_content),
+                imgDrawable = AppCompatResources.getDrawable(activity?:return, R.drawable.lich_nghi_tet),
+                imgSource = "Lịch tết 2023"
             )
         ))
     }

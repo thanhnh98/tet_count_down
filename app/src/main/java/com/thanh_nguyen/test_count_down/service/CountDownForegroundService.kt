@@ -23,27 +23,29 @@ class CountDownForegroundService: BaseService() {
         closeAlarm(this)
 //        showToastMessage("Đã ghim bộ đếm trên trang thông báo")
         observeEvent {
-            AppSharedPreferences.setisClosedCountDownNoti(false)
-            while (true){
-                try {
-                    if (isTetOnGoing() || getDaysUntilDate() > 99){
-                        //stopService(Intent(this, CountDownForegroundService::class.java))
+            if (isTetOnGoing() || getDaysUntilDate() > 99) {
+                stopService(Intent(this, CountDownForegroundService::class.java))
+                AppSharedPreferences.setisClosedCountDownNoti(true)
+            } else {
+                AppSharedPreferences.setisClosedCountDownNoti(false)
+                while (true) {
+                    try {
+                        startForeground(
+                            FOREGROUND_ID,
+                            createNotificationKeepAlive(
+                                this@CountDownForegroundService,
+                                createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
+                                FOREGROUND_REQUEST_CODE,
+                                FOREGROUND_NOTI_CHANNEL
+                            )
+                        )
+                    } catch (e: Exception) {
+                        AppSharedPreferences.setisClosedCountDownNoti(true)
+                        stopService(Intent(this, CountDownForegroundService::class.java))
+                        e.printStackTrace()
                     }
-                    else {
-//                        startForeground(
-//                            FOREGROUND_ID,
-//                            createNotificationKeepAlive(
-//                                this@CountDownForegroundService,
-//                                createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
-//                                FOREGROUND_REQUEST_CODE,
-//                                FOREGROUND_NOTI_CHANNEL
-//                            )
-//                        )
-                    }
-                }catch (e: Exception){
-                    e.printStackTrace()
+                    delay(1000)
                 }
-                delay(1000)
             }
         }
     }

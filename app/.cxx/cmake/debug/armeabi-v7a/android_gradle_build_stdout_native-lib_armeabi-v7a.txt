@@ -1,0 +1,7 @@
+ninja: Entering directory `D:\Github\tet_count_down\app\.cxx\cmake\debug\armeabi-v7a'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+../../../../src/main/cpp/native-lib.cpp:6:14: warning: 'Java_com_thanh_nguyen_test_count_down_MainActivity_stringFromJNI' has C-linkage specified, but returns user-defined type 'std::string' (aka 'basic_string<char, char_traits<char>, allocator<char> >') which is incompatible with C [-Wreturn-type-c-linkage]
+std::string  Java_com_thanh_nguyen_test_count_down_MainActivity_stringFromJNI(JNIEnv *env, jobject object) {
+             ^
+1 warning generated.
+[2/2] Linking CXX shared library ..\..\..\..\build\intermediates\cmake\debug\obj\armeabi-v7a\libnative-lib.so

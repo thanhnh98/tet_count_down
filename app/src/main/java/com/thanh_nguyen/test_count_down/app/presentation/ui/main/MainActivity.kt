@@ -43,7 +43,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             lifecycleScope.launch {
                 AppSharedPreferences.isClosedCountDownNoti.collect{
                     if (it != true){
-                        startForegroundService(Intent(this@MainActivity, CountDownForegroundService::class.java))
+                        try {
+                            startForegroundService(
+                                Intent(
+                                    this@MainActivity,
+                                    CountDownForegroundService::class.java
+                                )
+                            )
+                        }catch (e: Exception){
+
+                        }
                     }else
                         setAlarmRemindAfterInterval(this@MainActivity)
                 }

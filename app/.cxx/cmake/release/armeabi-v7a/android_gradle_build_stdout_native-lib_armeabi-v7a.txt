@@ -1,0 +1,23 @@
+ninja: Entering directory `D:\Github\tet_count_down\app\.cxx\cmake\release\armeabi-v7a'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+FAILED: CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o 
+C:\Users\Thanh\AppData\Local\Android\Sdk\ndk\21.4.7075529\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=armv7-none-linux-androideabi23 --gcc-toolchain=C:/Users/Thanh/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Thanh/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC -MD -MT CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o -MF CMakeFiles\native-lib.dir\src\main\cpp\native-lib.cpp.o.d -o CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o -c ../../../../src/main/cpp/native-lib.cpp
+../../../../src/main/cpp/native-lib.cpp:6:1: error: unknown type name 'string'; did you mean 'jstring'?
+string  Java_com_thanh_nguyen_test_count_down_MainActivity_stringFromJNI(JNIEnv *env, jobject object) {
+^~~~~~
+jstring
+C:/Users/Thanh/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include\jni.h:64:25: note: 'jstring' declared here
+typedef _jstring*       jstring;
+                        ^
+../../../../src/main/cpp/native-lib.cpp:7:5: error: unknown type name 'string'; did you mean 'jstring'?
+    string hello = "Hello from Jni";
+    ^~~~~~
+    jstring
+C:/Users/Thanh/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include\jni.h:64:25: note: 'jstring' declared here
+typedef _jstring*       jstring;
+                        ^
+../../../../src/main/cpp/native-lib.cpp:7:12: error: cannot initialize a variable of type 'jstring' (aka '_jstring *') with an lvalue of type 'const char [15]'
+    string hello = "Hello from Jni";
+           ^       ~~~~~~~~~~~~~~~~
+3 errors generated.
+ninja: build stopped: subcommand failed.
