@@ -6,9 +6,11 @@
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_border_gray.xml" value="0.21875" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_gradient_corner.xml" value="0.22760416666666666" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_gray_opacity_50.xml" value="0.22864583333333333" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_menu.xml" value="0.22864583333333333" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_solid_corner_gray.xml" value="0.2296875" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_solid_corner_primary.xml" value="0.22760416666666666" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_widget.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_widget_textview.xml" value="0.23958333333333334" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/bg_wish_container.xml" value="0.2296875" />
@@ -18,19 +20,22 @@
         <entry key="..\:/Github/tet_count_down/app/src/main/res/drawable/open_widget.xml" value="0.21875" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/font/fonts.xml" value="0.2328125" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout-land/fragment_handbook.xml" value="0.10208333333333333" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout-land/fragment_home.xml" value="0.22" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/activity_game.xml" value="0.10435663627152988" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/activity_main.xml" value="0.36186594202898553" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/activity_splash.xml" value="0.36186594202898553" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/calendar_day_layout.xml" value="0.20260416666666667" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/calendar_day_legend.xml" value="0.21458333333333332" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/component_collection.xml" value="0.128125" />
-        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_about.xml" value="0.17831813576494426" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_about.xml" value="0.22" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_handbook.xml" value="0.12487335359675786" />
-        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_list_musics.xml" value="0.18" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_home.xml" value="0.34566473988439306" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_list_musics.xml" value="0.25" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/fragment_profile.xml" value="0.23177083333333334" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_about_header.xml" value="0.13496376811594202" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_about_section_data.xml" value="0.2833333333333333" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_banner.xml" value="0.19166666666666668" />
-        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_singlee_music.xml" value="0.25" />
+        <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/item_singlee_music.xml" value="0.3002232142857143" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_alert_view.xml" value="0.25364583333333335" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_large.xml" value="0.159375" />
         <entry key="..\:/Github/tet_count_down/app/src/main/res/layout/notification_layout.xml" value="0.25" />
@@ -47,5 +52,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressABINotification">
+    <option name="modulesWithSuppressedNotConfigured">
+      <set>
+        <option value="BaseProject.app" />
+      </set>
+    </option>
   </component>
 </project>

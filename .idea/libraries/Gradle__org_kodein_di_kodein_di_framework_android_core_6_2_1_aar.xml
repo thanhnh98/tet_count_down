@@ -21,6 +21,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7cf1aa9ea5605dbef65a83c29ccdbff8/jetified-kodein-di-framework-android-core-6.2.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7cf1aa9ea5605dbef65a83c29ccdbff8/jetified-kodein-di-framework-android-core-6.2.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7cf1aa9ea5605dbef65a83c29ccdbff8/jetified-kodein-di-framework-android-core-6.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/190ad6a30c3903ddf00b185ccae0117b/jetified-kodein-di-framework-android-core-6.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/190ad6a30c3903ddf00b185ccae0117b/jetified-kodein-di-framework-android-core-6.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/190ad6a30c3903ddf00b185ccae0117b/jetified-kodein-di-framework-android-core-6.2.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
