@@ -76,7 +76,7 @@ suspend fun getAllMusic(): List<LocalMusicModel>{
                 try{
                     AppProvider.getContentResolver().loadThumbnail(
                         contentUri,
-                        Size(50, 50),
+                        Size(500, 500),
                         null
                     )
                 }
@@ -87,7 +87,6 @@ suspend fun getAllMusic(): List<LocalMusicModel>{
                 null
             }
 
-            CMN("$id: $displayName $artist $title $duration $contentUri $thumbnail ")
             musics.add(
                 LocalMusicModel(
                     uri = contentUri.toString(),

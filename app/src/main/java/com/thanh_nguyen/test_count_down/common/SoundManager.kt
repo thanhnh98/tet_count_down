@@ -22,7 +22,6 @@ class SoundManager {
     val musicStateChanged: LiveData<MusicState> = _musicState
 
     private var backgroundMusic = DEFAULT_MUSIC
-    private var currentBackgroundTrackUri: Uri? = null
 
     private val fireworkSound by lazy {
         MediaPlayer.create(App.getInstance(), R.raw.fireworks).apply {
@@ -86,16 +85,14 @@ class SoundManager {
     }
 
     fun updateBackgroundMusic(uri: Uri, requestPlay: Boolean = false){
-        if (this.currentBackgroundTrackUri != uri){
-            this.currentBackgroundTrackUri = uri
-            backgroundMusic.stop()
-            backgroundMusic.reset()
-            backgroundMusic.release()
-            backgroundMusic = createMedia(uri).apply {
-                isLooping = true
-                prepare()
-            }
+        backgroundMusic.stop()
+        backgroundMusic.reset()
+        backgroundMusic.release()
+        backgroundMusic = createMedia(uri).apply {
+            isLooping = true
+            prepare()
         }
+
         if (requestPlay)
            playBackgroundSound()
     }

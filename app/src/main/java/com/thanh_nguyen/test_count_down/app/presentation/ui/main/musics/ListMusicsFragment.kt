@@ -41,11 +41,6 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
         (activity as MainActivity).soundManager
     }
 
-//    override fun initClusters() {
-//        addCluster(MusicItemView::class.java)
-//        addCluster(MusicDefaultItemView::class.java)
-//    }
-
     override fun inflateLayout(): Int = R.layout.fragment_list_musics
 
     override val viewModel: ListMusicsViewModel by kodeinViewModel()
@@ -124,19 +119,6 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
             .show(activity?.supportFragmentManager?:return)
     }
 
-//    private var chooseMp3Result: ActivityResultLauncher<Intent> = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult(),
-//        ActivityResultCallback { result ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//                val data: Intent = result?.data ?:return@ActivityResultCallback
-//                val uri: Uri = data.data?:return@ActivityResultCallback
-//                CMN("REEAL URI $uri")
-//                viewModel.uploadMusic(
-//                    uri,
-//                )
-//            }
-//        }
-//    )
 
     private fun onObserve() {
         lifecycleScope.launchWhenCreated {

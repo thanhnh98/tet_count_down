@@ -95,8 +95,10 @@ fun createFileCachedFromAsset(@RawRes id: Int, saveAsName: String): File?{
 
 fun saveFileToCache(uri: Uri, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
     try {
-        val sourceFile = File(uri.path)
         val desFile = File("${cachePath}bg_music.mp3")
+//
+//        if (desFile.exists())
+//            deleteFile(uri)
 
         if (desFile.isDirectory) {
             if (!desFile.mkdirs())
@@ -114,7 +116,6 @@ fun saveFileToCache(uri: Uri, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
 
             }
         }
-        CMN("${desFile.path}  - \n ${desFile.path.toUri()}")
         return desFile
     }
     catch (e: Exception){

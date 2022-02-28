@@ -33,16 +33,17 @@ class ListMusicsViewModel(
     }
 
     fun updateBackgroundMusic(music: LocalMusicModel){
+        val cached = music.clone()
         viewModelScope.launch {
             saveFileToCache(
-                music.uri.toUri()
+                cached.uri.toUri()
             )?.let { cachedUri ->
-                music.uri = cachedUri.toString()
+                cached.uri = cachedUri.toString()
             }
         }
-        AppPreferences.saveCurrentBackgroundMusic(music)
+        AppPreferences.saveCurrentBackgroundMusic(cached)
         _musicSelected.value = Result.success(
-            music
+            cached
         )
     }
 

@@ -10,4 +10,16 @@ class LocalMusicModel(
     val artist: String? = null,
     val duration: Long? = null,
     val thumbnail: Bitmap? = null,
-): BaseModel()
+): BaseModel(){
+    fun clone(): LocalMusicModel{
+        return LocalMusicModel(
+            this.id,
+            this.uri,
+            this.name,
+            this.title,
+            this.artist,
+            this.duration,
+            this.thumbnail
+        )
+    }
+}
