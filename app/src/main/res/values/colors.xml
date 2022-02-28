@@ -4,7 +4,7 @@
     <color name="colorPrimaryNotification">#DD170C</color>
     <color name="colorPrimaryDark">#8e0000</color>
     <color name="colorPrimaryLight">#ff5f52</color>
-    <color name="colorAccent">#FF03DAC5</color>
+    <color name="colorAccent">#8e0000</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

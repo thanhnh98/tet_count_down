@@ -25,79 +25,25 @@ class ListMusicsViewModel(
     private var _musicSelected: MutableStateFlow<Result<LocalMusicModel?>> = MutableStateFlow(Result.loading(null))
     val musicSelected: StateFlow<Result<LocalMusicModel?>> get() = _musicSelected
 
-    private var _listMusicsLocal: MutableStateFlow<List<LocalMusicModel>> = MutableStateFlow(emptyList())
-    val listMusicsLocal: MutableStateFlow<List<LocalMusicModel>> = _listMusicsLocal
-
-    private var _newMusic: MutableStateFlow<LocalMusicModel?> = MutableStateFlow(null)
-    val newMusic: MutableStateFlow<LocalMusicModel?> = _newMusic
-
     private var _adsInfo: MutableStateFlow<Result<AdsInfoModel>> = MutableStateFlow(Result.loading())
     val adsInfo: StateFlow<Result<AdsInfoModel>> get() = _adsInfo
 
     override fun onCreate() {
         super.onCreate()
-        getListMusicsLocal()
-    }
-
-    fun uploadMusic(uri: Uri){
-        viewModelScope.launch {
-            val fileCached = findCacheByUri(uri)
-
-            if (fileCached != null) {
-                Toast.makeText(App.getInstance(), "bài hát ${fileCached.name} đã tồn tại", Toast.LENGTH_SHORT).show()
-                return@launch
-            }
-
-            val music = saveFileToCache(
-                uri
-            )?.let {
-                LocalMusicModel(
-                    name = it.name,
-                    uri = it.path.toUri().toString()
-                )
-            }
-
-            music?.apply {
-                addMusic(this)
-                updateBackgroundMusic(this)
-            }
-        }
     }
 
     fun updateBackgroundMusic(music: LocalMusicModel){
+        viewModelScope.launch {
+            saveFileToCache(
+                music.uri.toUri()
+            )?.let { cachedUri ->
+                music.uri = cachedUri.toString()
+            }
+        }
         AppPreferences.saveCurrentBackgroundMusic(music)
         _musicSelected.value = Result.success(
             music
         )
-    }
-
-    fun addMusic(music: LocalMusicModel){
-        viewModelScope.launch {
-            musicUsecase.addMusic(music)
-            newMusic.value = music
-        }
-    }
-
-    fun removeMusic(music: LocalMusicModel){
-        viewModelScope.launch {
-            if (music.uri == AppPreferences.getCurrentBackgroundMusic()?.uri) {
-                Toast.makeText(App.getInstance(), "Không thể xóa bài hát đang phát", Toast.LENGTH_SHORT).show()
-                return@launch
-            }
-
-            musicUsecase.deleteMusic(music)
-            deleteFile(music.uri.toUri())
-            getListMusicsLocal()
-            Toast.makeText(App.getInstance(), "Đã xóa", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun getListMusicsLocal(){
-        viewModelScope.launch {
-            musicUsecase.getListMusicsLocal()?.apply {
-                _listMusicsLocal.value = this
-            }
-        }
     }
 
     fun getAdsInfo(){

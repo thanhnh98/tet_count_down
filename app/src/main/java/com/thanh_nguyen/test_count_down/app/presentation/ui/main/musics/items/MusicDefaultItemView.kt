@@ -19,9 +19,8 @@ class MusicDefaultItemView(
     }
 
     override fun bindModel(binding: ItemSingleeMusicBinding?, viewHolder: MusicItemViewHolder) {
-        binding?.tvName?.text = "Mặc định"
-        binding?.tvEditableName?.text = Constants.DEFAULT_MUSIC_NAME
-        binding?.imgRemove?.visibility = View.INVISIBLE
+        binding?.tvName?.text = Constants.DEFAULT_MUSIC_SINGER_NAME
+        binding?.tvEditableName?.text = "${Constants.DEFAULT_MUSIC_NAME} (Mặc định)"
         binding?.root?.onClick {
             onSelectedItem.invoke()
         }

@@ -34,7 +34,8 @@ class AutoRotateCircleImageView: AppCompatImageView {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        path.addCircle( width/2f, width/2f, width/2f, Path.Direction.CCW)
+        val radius = height.coerceAtMost(width)/2f
+        path.addCircle( radius, radius, radius, Path.Direction.CCW)
         try {
             canvas?.clipPath(path?:return)
         } catch (exception: UnsupportedOperationException) {

@@ -93,10 +93,10 @@ fun createFileCachedFromAsset(@RawRes id: Int, saveAsName: String): File?{
     }
 }
 
-fun saveFileToCache(uri: Uri, overwrite: Boolean = true, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
+fun saveFileToCache(uri: Uri, bufferSize: Int = DEFAULT_BUFFER_SIZE): File? {
     try {
         val sourceFile = File(uri.path)
-        val desFile = File("${cachePath}${sourceFile.name}")
+        val desFile = File("${cachePath}bg_music.mp3")
 
         if (desFile.isDirectory) {
             if (!desFile.mkdirs())

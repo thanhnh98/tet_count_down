@@ -1,11 +1,11 @@
 package com.thanh_nguyen.test_count_down.common
 
-import com.thanh_nguyen.test_count_down.R
 
 class Constants {
     companion object{
         const val APP_ID = "3809D924-093D-466B-9E7D-BF7823718FB9"
         const val DEFAULT_MUSIC_NAME = "Hopeful Freedom"
+        const val DEFAULT_MUSIC_SINGER_NAME= "Asher Fulero"
         const val NAME_OF_YEAR = "Quý Mão"
         const val NEW_YEAR = "2023"
     }

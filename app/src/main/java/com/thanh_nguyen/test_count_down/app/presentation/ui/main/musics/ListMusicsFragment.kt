@@ -2,7 +2,6 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics
 
 import android.Manifest
 import android.animation.Animator
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,11 +9,9 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabsClient.getPackageName
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -24,30 +21,30 @@ import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.app.model.response.onResultReceived
+import com.thanh_nguyen.test_count_down.app.presentation.dialog.MusicChoosingBottomDialog
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.MusicDefaultItemView
-import com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items.MusicItemView
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
-import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
+import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
+import com.thanh_nguyen.test_count_down.provider.AppProvider
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
+class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
 
     private val soundManager: SoundManager by lazy {
         (activity as MainActivity).soundManager
     }
 
-    override fun initClusters() {
-        addCluster(MusicItemView::class.java)
-        addCluster(MusicDefaultItemView::class.java)
-    }
+//    override fun initClusters() {
+//        addCluster(MusicItemView::class.java)
+//        addCluster(MusicDefaultItemView::class.java)
+//    }
 
     override fun inflateLayout(): Int = R.layout.fragment_list_musics
 
@@ -65,24 +62,29 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         super.onViewCreated(view, savedInstanceState)
         onObserve()
         setUpAds()
-        showDefaultMusicItem()
-
-        binding.tvPlayingMusicName.isSelected = true
-        binding.lnlUploadMusic.onClick {
-            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
+        bindMusicData(AppPreferences.getCurrentBackgroundMusic())
         binding.vHome.onClick {
             (activity as MainActivity).navigateToTab(0, true)
         }
-
-        binding.tvPlayingMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:Constants.DEFAULT_MUSIC_NAME
-
         val isMuted = AppPreferences.isBackgroundMuted
         if (isMuted)
             binding.ltMusic.pauseAnimation()
         else
             binding.ltMusic.playAnimation()
+    }
+
+    private fun bindMusicData(currentBackgroundMusic: LocalMusicModel?) {
+        binding.tvPlayingMusicName.isSelected = true
+        binding.tvPlayingMusicName.text = currentBackgroundMusic?.title?:Constants.DEFAULT_MUSIC_NAME
+        binding.tvSingerName.text = currentBackgroundMusic?.artist?:Constants.DEFAULT_MUSIC_SINGER_NAME
+        binding.lnlUploadMusic.onClick {
+            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
         animateView(binding.imgThumbnail)
+        if (currentBackgroundMusic?.thumbnail == null)
+            binding.imgThumbnail.setImageDrawable(AppProvider.getDrawable(R.drawable.ic_baseline_music_note_24))
+        else
+            binding.imgThumbnail.setImageBitmap(currentBackgroundMusic.thumbnail)
     }
 
     private fun setUpAds() {
@@ -111,33 +113,35 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
     }
 
     private fun chooseMp3File(){
-        chooseMp3Result.launch(Intent.createChooser(
-            Intent().apply {
-                action = Intent.ACTION_GET_CONTENT
-                type = "audio/*"
-            },
-            "Chọn nhạc nền"
-        ))
+        MusicChoosingBottomDialog
+            .invoke()
+            .onItemSelected {
+                viewModel.updateBackgroundMusic(music = it)
+            }
+            .onDefaultItemSelected {
+                (activity as MainActivity).requestMusicDefault()
+            }
+            .show(activity?.supportFragmentManager?:return)
     }
 
-    private var chooseMp3Result: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult(),
-        ActivityResultCallback { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent = result?.data ?:return@ActivityResultCallback
-                val uri: Uri = data.data?:return@ActivityResultCallback
-                CMN("REEAL URI $uri")
-                viewModel.uploadMusic(
-                    uri,
-                )
-            }
-        }
-    )
+//    private var chooseMp3Result: ActivityResultLauncher<Intent> = registerForActivityResult(
+//        ActivityResultContracts.StartActivityForResult(),
+//        ActivityResultCallback { result ->
+//            if (result.resultCode == Activity.RESULT_OK) {
+//                val data: Intent = result?.data ?:return@ActivityResultCallback
+//                val uri: Uri = data.data?:return@ActivityResultCallback
+//                CMN("REEAL URI $uri")
+//                viewModel.uploadMusic(
+//                    uri,
+//                )
+//            }
+//        }
+//    )
 
     private fun onObserve() {
         lifecycleScope.launchWhenCreated {
             getAllMusic().apply {
-                showListMusicsLocal(this)
+//                showListMusicsLocal(this)
             }
         }
 
@@ -173,7 +177,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                     }
 
                     is MusicState.UpdateMusic -> {
-                        binding.tvPlayingMusicName.text = it.localMusic.name
+                        bindMusicData(it.localMusic)
                     }
 
                     is MusicState.Stop -> {
@@ -192,26 +196,6 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
                     }
             }
         }
-
-        lifecycleScope.launch {
-            viewModel.newMusic.collect {
-                it?.apply {
-                    recyclerManager.append(
-                        MusicItemView::class.java,
-                        0,
-                        MusicItemView(
-                            this,
-                            onItemSelected = {
-                                viewModel.updateBackgroundMusic(it)
-                            },
-                            onRemoveItemSelected = {
-                                viewModel.removeMusic(it)
-                            },
-                        )
-                    )
-                }
-            }
-        }
     }
 
     private fun createAdsView(adsId: String): AdView {
@@ -221,40 +205,10 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         }
     }
 
-    private fun showListMusicsLocal(listData: List<LocalMusicModel>){
-        recyclerManager.replace(MusicItemView::class.java, createListMusicItems(listData))
-    }
-
-    private fun showDefaultMusicItem(){
-        recyclerManager.replace(MusicDefaultItemView::class.java, MusicDefaultItemView{
-            if (AppPreferences.getCurrentBackgroundMusic()?.name != Constants.DEFAULT_MUSIC_NAME) {
-                (activity as MainActivity).requestMusicDefault()
-            }
-        })
-    }
-
-    private fun createListMusicItems(listData: List<LocalMusicModel>): List<MusicItemView>{
-        val listItems: MutableList<MusicItemView> = ArrayList()
-
-        listData.forEach {
-            listItems.add(
-                MusicItemView(
-                    it,
-                    onItemSelected = {
-                        viewModel.updateBackgroundMusic(it)
-                    },
-                    onRemoveItemSelected = {
-                        viewModel.removeMusic(it)
-                    })
-            )
-        }
-        return listItems
-    }
-
     private fun animateView(view1: View){
         view1.animate()
-            .rotationBy(360f)
-            .setDuration(5000L)
+            .rotationBy(720f)
+            .setDuration(20000L)
             .apply {
                 interpolator = LinearInterpolator()
             }
@@ -277,8 +231,8 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             .start()
     }
 
-    override fun onRefresh() {
-        super.onRefresh()
-        hideLoading()
-    }
+//    override fun onRefresh() {
+//        super.onRefresh()
+//        hideLoading()
+//    }
 }

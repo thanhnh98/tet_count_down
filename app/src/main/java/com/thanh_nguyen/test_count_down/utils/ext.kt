@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -132,6 +133,7 @@ fun daysOfWeekFromLocale(): Array<DayOfWeek> {
 }
 
 fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(this, color)
+fun Context.getDrawableCompat(@DrawableRes color: Int) = ContextCompat.getDrawable(this, color)
 
 fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getColorCompat(color))
 

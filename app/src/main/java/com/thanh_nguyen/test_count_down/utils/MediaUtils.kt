@@ -27,7 +27,7 @@ fun createMedia(uri: Uri): MediaPlayer{
     }
 }
 
-fun getAllMusic(): List<LocalMusicModel>{
+suspend fun getAllMusic(): List<LocalMusicModel>{
     val selection: String = MediaStore.Audio.Media.IS_MUSIC.toString() + " != 0"
 
     val projection = arrayOf(
