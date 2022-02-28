@@ -1,18 +1,11 @@
 package com.thanh_nguyen.test_count_down.utils
 
-import android.content.Context
-import android.content.res.AssetManager
 import android.net.Uri
-import android.util.Log
 import androidx.annotation.RawRes
-import androidx.browser.customtabs.CustomTabsClient.getPackageName
 import androidx.core.net.toUri
 import com.thanh_nguyen.test_count_down.App
-import com.thanh_nguyen.test_count_down.App.Companion.getResources
-import com.thanh_nguyen.test_count_down.R
 import okhttp3.ResponseBody
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStream
 
@@ -121,7 +114,7 @@ fun saveFileToCache(uri: Uri, overwrite: Boolean = true, bufferSize: Int = DEFAU
 
             }
         }
-        cmn("${desFile.path}  - \n ${desFile.path.toUri()}")
+        CMN("${desFile.path}  - \n ${desFile.path.toUri()}")
         return desFile
     }
     catch (e: Exception){

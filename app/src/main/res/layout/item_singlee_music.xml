@@ -35,8 +35,8 @@
 
                 <com.thanh_nguyen.test_count_down.common.view.RoundCornerImageView
                     android:id="@+id/img_cover"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="40dp"
+                    android:layout_height="@dimen/_40dp"
                     android:src="@drawable/ic_baseline_music_note_24"
                     android:layout_gravity="center"
                     />

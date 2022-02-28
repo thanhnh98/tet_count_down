@@ -6,7 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.thanh_nguyen.test_count_down.utils.getScreenWidth
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
-import com.thanh_nguyen.test_count_down.utils.cmn
+import com.thanh_nguyen.test_count_down.utils.CMN
 import kotlinx.coroutines.*
 
 class BannerViewPagerHelper(
@@ -123,7 +123,7 @@ class BannerViewPagerHelper(
     fun enableAutoScrolling(autoScrollJob: Job, interval: Long): BannerViewPagerHelper {
         GlobalScope.launch(Dispatchers.IO + autoScrollJob) {
             delay(interval)
-            cmn("is isIdling: $isIdling")
+            CMN("is isIdling: $isIdling")
             if (isIdling) {
                 with(Dispatchers.Main){
                     viewPager2.setCurrentItem(currentPosition + 1, true)

@@ -1,6 +1,7 @@
 package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics
 
 import android.Manifest
+import android.animation.Animator
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.view.animation.LinearInterpolator
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -80,6 +82,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             binding.ltMusic.pauseAnimation()
         else
             binding.ltMusic.playAnimation()
+        animateView(binding.imgThumbnail)
     }
 
     private fun setUpAds() {
@@ -111,7 +114,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
         chooseMp3Result.launch(Intent.createChooser(
             Intent().apply {
                 action = Intent.ACTION_GET_CONTENT
-                type = "audio/mpeg"
+                type = "audio/*"
             },
             "Chọn nhạc nền"
         ))
@@ -123,6 +126,7 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent = result?.data ?:return@ActivityResultCallback
                 val uri: Uri = data.data?:return@ActivityResultCallback
+                CMN("REEAL URI $uri")
                 viewModel.uploadMusic(
                     uri,
                 )
@@ -132,8 +136,8 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
 
     private fun onObserve() {
         lifecycleScope.launchWhenCreated {
-            viewModel.listMusicsLocal.collect{
-                showListMusicsLocal(it)
+            getAllMusic().apply {
+                showListMusicsLocal(this)
             }
         }
 
@@ -245,6 +249,32 @@ class ListMusicsFragment: BaseCollectionFragmentMVVM<FragmentListMusicsBinding, 
             )
         }
         return listItems
+    }
+
+    private fun animateView(view1: View){
+        view1.animate()
+            .rotationBy(360f)
+            .setDuration(5000L)
+            .apply {
+                interpolator = LinearInterpolator()
+            }
+            .setListener(object: Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    animateView(view1)
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                }
+
+            })
+            .start()
     }
 
     override fun onRefresh() {

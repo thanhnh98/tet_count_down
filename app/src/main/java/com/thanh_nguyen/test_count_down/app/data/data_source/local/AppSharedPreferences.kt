@@ -11,14 +11,13 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
-import com.thanh_nguyen.test_count_down.utils.cmn
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "AppSharedPreferences")
 
 object PreferencesKey{
     val IS_VISITED = booleanPreferencesKey("isVisited")
-    val IS_CLOSED_COUNT_DOWN_NOTI = booleanPreferencesKey("IS_CLOSED_COUNT_DOWN_NOTI")
+    val IS_ENABLE_COUNT_DOWN_NOTI = booleanPreferencesKey("IS_ENABLE_COUNT_DOWN_NOTI")
     val IS_SHOWED_INSTRUCTION = booleanPreferencesKey("IS_SHOWED_INSTRUCTION")
     val IS_MUTED = booleanPreferencesKey("IS_MUTED")
     val BACKGROUND_MUSIC = stringPreferencesKey("BACKGROUND_MUSIC")
@@ -56,8 +55,8 @@ object AppSharedPreferences {
     val isVisited = getByKey(PreferencesKey.IS_VISITED, false)
     suspend fun setIsVisited(isVisited: Boolean) = setKey(PreferencesKey.IS_VISITED, isVisited)
 
-    val isClosedCountDownNoti = getByKey(PreferencesKey.IS_CLOSED_COUNT_DOWN_NOTI, false)
-    suspend fun setisClosedCountDownNoti(isClosedCountDownNoti: Boolean) = setKey(PreferencesKey.IS_CLOSED_COUNT_DOWN_NOTI, isClosedCountDownNoti)
+    val isEnabledCountDownNoti = getByKey(PreferencesKey.IS_ENABLE_COUNT_DOWN_NOTI, false)
+    suspend fun setIsEnableCountDownNoti(isClosedCountDownNoti: Boolean) = setKey(PreferencesKey.IS_ENABLE_COUNT_DOWN_NOTI, isClosedCountDownNoti)
 
     val isShowedInstruction = getByKey(PreferencesKey.IS_SHOWED_INSTRUCTION, false)
     suspend fun setIsShowedInstruction(isShowedInstruction: Boolean) = setKey(PreferencesKey.IS_SHOWED_INSTRUCTION, isShowedInstruction)

@@ -3,7 +3,6 @@ package com.thanh_nguyen.test_count_down.service
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import com.thanh_nguyen.test_count_down.utils.cmn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,7 +19,7 @@ open class BaseService: Service() {
     }
 
     fun observeEvent(invoker: (suspend () -> Unit)){
-        job = CoroutineScope(Dispatchers.IO).launch{
+        job = CoroutineScope(Dispatchers.Main).launch{
             invoker.invoke()
         }
     }

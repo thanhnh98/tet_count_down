@@ -1,14 +1,14 @@
 package com.thanh_nguyen.test_count_down.service
 
 import android.content.Intent
-import android.util.Log
+import com.thanh_nguyen.test_count_down.App
+import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationCountdownViewAlive
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationKeepAlive
-import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
+import com.thanh_nguyen.test_count_down.provider.AppProvider
 import com.thanh_nguyen.test_count_down.utils.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 
 
 class CountDownForegroundService: BaseService() {
@@ -21,30 +21,38 @@ class CountDownForegroundService: BaseService() {
     override fun onCreate() {
         super.onCreate()
         closeAlarm(this)
-//        showToastMessage("Đã ghim bộ đếm trên trang thông báo")
+        val currentService = Intent(this, CountDownForegroundService::class.java)
         observeEvent {
-            if (isTetOnGoing() || getDaysUntilDate() > 99) {
-                stopService(Intent(this, CountDownForegroundService::class.java))
-                AppSharedPreferences.setisClosedCountDownNoti(true)
-            } else {
-                AppSharedPreferences.setisClosedCountDownNoti(false)
-                while (true) {
+            if (isTetOnGoing()) {
+                with(Dispatchers.IO) {
                     try {
-                        startForeground(
-                            FOREGROUND_ID,
-                            createNotificationKeepAlive(
-                                this@CountDownForegroundService,
-                                createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
-                                FOREGROUND_REQUEST_CODE,
-                                FOREGROUND_NOTI_CHANNEL
-                            )
-                        )
+                        stopService(currentService)
+                        AppSharedPreferences.setIsEnableCountDownNoti(false)
                     } catch (e: Exception) {
-                        AppSharedPreferences.setisClosedCountDownNoti(true)
-                        stopService(Intent(this, CountDownForegroundService::class.java))
-                        e.printStackTrace()
+                        CMN("failed: ${e.message}")
                     }
-                    delay(1000)
+                }
+            } else {
+                showToastMessage(AppProvider.getString(R.string.toast_msg_turn_on_count_down))
+                with(Dispatchers.IO) {
+                    while (true) {
+                        try {
+                            startForeground(
+                                FOREGROUND_ID,
+                                createNotificationKeepAlive(
+                                    this@CountDownForegroundService,
+                                    createNotificationCountdownViewAlive(context = this@CountDownForegroundService),
+                                    FOREGROUND_REQUEST_CODE,
+                                    FOREGROUND_NOTI_CHANNEL
+                                )
+                            )
+                            AppSharedPreferences.setIsEnableCountDownNoti(true)
+                        } catch (e: Exception) {
+                            stopService(currentService)
+                            e.printStackTrace()
+                        }
+                        delay(1000)
+                    }
                 }
             }
         }
@@ -53,10 +61,10 @@ class CountDownForegroundService: BaseService() {
     override fun onDestroy() {
         super.onDestroy()
         setAlarmRemindAfterInterval(this)
-//        showToastMessage("Đã gỡ bộ đếm, kích hoạt lại khi bạn nôn nao đến tết nhé")
-//        CoroutineScope(Dispatchers.IO).launch {
-//            AppSharedPreferences.setisClosedCountDownNoti(true)
-//            cancel()
-//        }
+        showToastMessage(AppProvider.getString(R.string.toast_msg_turn_off_count_down))
+        CoroutineScope(Dispatchers.IO).launch {
+            AppSharedPreferences.setIsEnableCountDownNoti(false)
+            cancel()
+        }
     }
 }

@@ -12,7 +12,7 @@ class LocalMusicDataSource(
 ) {
     suspend fun getListMusicsLocal() = dao?.getListMusics()?.map { musicLocalEntity ->
         LocalMusicModel(
-            id = musicLocalEntity.id,
+            id = musicLocalEntity?.id,
             name = musicLocalEntity.name,
             uri = musicLocalEntity.uri
         )

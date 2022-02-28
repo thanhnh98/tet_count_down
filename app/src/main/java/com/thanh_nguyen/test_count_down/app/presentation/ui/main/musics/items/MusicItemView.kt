@@ -3,7 +3,6 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.musics.items
 import android.view.ViewGroup
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
-import com.thanh_nguyen.test_count_down.app.model.MusicModel
 import com.thanh_nguyen.test_count_down.common.base.adapter.BindingRecycleViewItem
 import com.thanh_nguyen.test_count_down.databinding.ItemSingleeMusicBinding
 import com.thanh_nguyen.test_count_down.utils.inflateView
@@ -21,13 +20,16 @@ class MusicItemView(
     }
 
     override fun bindModel(binding: ItemSingleeMusicBinding?, viewHolder: MusicItemViewHolder) {
-        binding?.tvName?.text = musicData.name
-        binding?.tvEditableName?.text = musicData.name
+        binding?.tvName?.text = musicData.artist
+        binding?.tvEditableName?.text = musicData.title
         binding?.root?.onClick {
             onItemSelected.invoke(musicData)
         }
         binding?.imgRemove?.onClick {
             onRemoveItemSelected.invoke(musicData)
+        }
+        musicData.thumbnail?.apply {
+            binding?.imgCover?.setImageBitmap(this)
         }
     }
 }

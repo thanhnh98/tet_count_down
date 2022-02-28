@@ -3,7 +3,6 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main
 import android.animation.Animator
 import android.content.Intent
 import android.os.Build
-import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
@@ -23,7 +22,6 @@ import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageT
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -41,8 +39,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         setupBackgroundMusic()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             lifecycleScope.launch {
-                AppSharedPreferences.isClosedCountDownNoti.collect{
-                    if (it != true){
+                AppSharedPreferences.isEnabledCountDownNoti.collect{ currentState ->
+                    if (currentState == true){
                         try {
                             startForegroundService(
                                 Intent(
@@ -53,8 +51,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         }catch (e: Exception){
 
                         }
-                    }else
+                    }
+                    else {
+                        stopService(
+                            Intent(
+                                this@MainActivity,
+                                CountDownForegroundService::class.java
+                            )
+                        )
                         setAlarmRemindAfterInterval(this@MainActivity)
+                    }
                 }
             }
         }

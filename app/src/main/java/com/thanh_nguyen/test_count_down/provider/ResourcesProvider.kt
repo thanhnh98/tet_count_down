@@ -4,7 +4,7 @@ import androidx.annotation.ColorInt
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.utils.getColorCompat
 
-class AppResourcesProvider{
+class AppProvider{
 
    companion object {
        @ColorInt
@@ -17,5 +17,7 @@ class AppResourcesProvider{
        fun getDimen(resId: Int): Float = App.getInstance().resources.getDimension(resId)
 
        fun getDimenInt(resId: Int) = App.getInstance().resources.getDimensionPixelSize(resId)
+
+       fun getContentResolver() = App.getInstance().contentResolver
    }
 }

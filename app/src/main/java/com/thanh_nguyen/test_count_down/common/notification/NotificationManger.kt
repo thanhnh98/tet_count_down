@@ -8,13 +8,14 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.view.View
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.PRIORITY_MAX
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.presentation.ui.GetStartedScreen
 import com.thanh_nguyen.test_count_down.common.Constants
-import com.thanh_nguyen.test_count_down.provider.AppResourcesProvider
+import com.thanh_nguyen.test_count_down.provider.AppProvider
 import com.thanh_nguyen.test_count_down.receiver.ReceiverEvent
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver
 import com.thanh_nguyen.test_count_down.receiver.UpdateCountDownServiceReceiver.Companion.RECEIVER_EVENT
@@ -46,7 +47,7 @@ fun createNotificationKeepAlive(
 
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
         .setSmallIcon(R.drawable.ic_notification)
-        .setColor(AppResourcesProvider.getColor(R.color.colorPrimaryNotification))
+        .setColor(AppProvider.getColor(R.color.colorPrimaryNotification))
         .setCustomBigContentView(view)
         .setCustomContentView(view)
         .setVibrate(null)
@@ -102,6 +103,10 @@ fun createNotificationCountdownViewAlive(context: Context): RemoteViews{
 
     views.setTextViewText(R.id.tv_day_1, dayText.subSequence(0,1))
     views.setTextViewText(R.id.tv_day_2, dayText.subSequence(1,2))
+    if (dayText.length > 2){
+        views.setViewVisibility(R.id.tv_day_3, View.VISIBLE)
+        views.setTextViewText(R.id.tv_day_3, dayText.subSequence(2,3))
+    }
 
     views.setTextViewText(R.id.tv_hour_1, hourText.subSequence(0,1))
     views.setTextViewText(R.id.tv_hour_2, hourText.subSequence(1,2))
@@ -159,7 +164,7 @@ fun pushAlertNotification(context: Context){
 
     val notificationBuilder = NotificationCompat.Builder(context, "TET")
         .setSmallIcon(R.drawable.ic_notification)
-        .setColor(AppResourcesProvider.getColor(R.color.colorPrimaryNotification))
+        .setColor(AppProvider.getColor(R.color.colorPrimaryNotification))
         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
         .setCustomContentView(notificationLayout)
         .setContentIntent(intent)

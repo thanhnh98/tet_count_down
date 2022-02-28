@@ -80,7 +80,7 @@ inline fun <reified T, reified LD: LiveData<T>> AppCompatActivity.observeLiveDat
     liveData.observe(this, observer)
 }
 
-fun cmn(msg: String){
+fun CMN(msg: String){
     Log.e("CMN", msg)
 }
 

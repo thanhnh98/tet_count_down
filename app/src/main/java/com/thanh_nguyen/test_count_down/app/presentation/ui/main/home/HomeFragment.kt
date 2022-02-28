@@ -24,9 +24,8 @@ import com.thanh_nguyen.test_count_down.databinding.FragmentHomeBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
 class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by kodeinViewModel()
@@ -103,28 +102,25 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     private fun pinCountDownNoti(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             lifecycleScope.launch {
-                AppSharedPreferences.isClosedCountDownNoti.stateIn(this).collect { isClosed ->
-                    if(isClosed == true) {
-                        activity?.startForegroundService(
-                            Intent(
-                                activity ?: return@collect,
-                                CountDownForegroundService::class.java
-                            )
-                        )
-                    }
-                    else{
-                        try {
-                            activity?.stopService(
+                AppSharedPreferences
+                    .isEnabledCountDownNoti
+                    .collect{ currentState ->
+                        if (currentState != true) {
+                            activity?.startForegroundService(
                                 Intent(
-                                    activity ?: return@collect,
+                                    activity,
                                     CountDownForegroundService::class.java
                                 )
                             )
-                        }catch (e: Exception){
-                            e.printStackTrace()
+                        } else {
+                            activity?.stopService(
+                                Intent(
+                                    activity,
+                                    CountDownForegroundService::class.java
+                                )
+                            )
                         }
                     }
-                }
             }.cancel() //cancel after finished
         }
         else {
@@ -160,8 +156,8 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
         }
 
         lifecycleScope.launch {
-            AppSharedPreferences.isClosedCountDownNoti.collect { isClosed ->
-                if (isClosed == true){
+            AppSharedPreferences.isEnabledCountDownNoti.collect { isEnable ->
+                if (isEnable != true){
                     binding.imgPin.setImageDrawable(App.getResources().getDrawable(R.drawable.ic_unpin, null))
                 }
                 else

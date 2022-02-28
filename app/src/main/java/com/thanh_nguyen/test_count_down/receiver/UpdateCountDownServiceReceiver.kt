@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Build
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
-import com.thanh_nguyen.test_count_down.utils.cmn
 
 class UpdateCountDownServiceReceiver: BroadcastReceiver() {
     companion object {
