@@ -29,6 +29,7 @@ import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
+import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.provider.AppProvider
 import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
@@ -189,6 +190,7 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
 
                     is MusicState.UpdateMusic -> {
                         bindMusicData(it.localMusic)
+                        AppAnalytics.trackChangeMusic(it.localMusic.title)
                     }
 
                     is MusicState.Stop -> {
