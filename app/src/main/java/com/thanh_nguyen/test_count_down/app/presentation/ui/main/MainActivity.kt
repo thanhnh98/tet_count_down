@@ -268,7 +268,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     uri = this.toUri().toString(),
                     name = Constants.DEFAULT_MUSIC_NAME,
                     title = Constants.DEFAULT_MUSIC_NAME,
-                    artist = Constants.DEFAULT_MUSIC_SINGER_NAME
+                    artist = Constants.DEFAULT_MUSIC_SINGER_NAME,
                 )
 
                 AppPreferences.saveCurrentBackgroundMusic(

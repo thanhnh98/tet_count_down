@@ -33,13 +33,11 @@ class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
         soundManager.playFireworkSound()
         lifecycleScope.launch {
             delay(2000)
-            with(Dispatchers.Main){
-                AppSharedPreferences.setIsVisited(true)
-                if (isTetOnGoing())
-                    onTetGoing()
-                else
-                    goToMain()
-            }
+            AppSharedPreferences.setIsVisited(true) 
+            if (isTetOnGoing())
+                onTetGoing()
+            else
+                goToMain()
         }
 
         binding.imgHpny.animate()

@@ -77,11 +77,11 @@ class RecyclerManager<T> {
     fun update(t: T, position: Int) {
         var position = position
         val renderRange = mMapRenderRange[t]
-        position = position + renderRange!!.position
+        position += renderRange!!.position
         adapter.notifyItemChanged(position)
     }
 
-    fun update(t: T, position: Int, item: RecycleViewItem<out RecyclerView.ViewHolder>) {
+    private fun update(t: T, position: Int, item: RecycleViewItem<out RecyclerView.ViewHolder>) {
         replace(t, position, item)
     }
 

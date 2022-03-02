@@ -5,7 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:background="@color/md_red_800"
-        android:padding="@dimen/_16dp">
+        android:padding="@dimen/_16dp"
+        app:fadeInAppearance="@{1}"
+        >
 
         <TextView
             android:id="@+id/tv_first_char"

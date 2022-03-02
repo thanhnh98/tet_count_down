@@ -48,7 +48,11 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
             (activity as MainActivity).navigateToTab(2, true)
         }
 
-        binding.tvMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.name?:Constants.DEFAULT_MUSIC_NAME
+        binding.icGotoMusic.onClick {
+            (activity as MainActivity).navigateToTab(2, true)
+        }
+
+        binding.tvMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.title?:Constants.DEFAULT_MUSIC_NAME
     }
 
     private fun setupObserver() {
@@ -84,7 +88,7 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
                 }
 
                 is MusicState.UpdateMusic -> {
-                    binding.tvMusicName.text = it.localMusic.name
+                    binding.tvMusicName.text = it.localMusic.title
                 }
 
                 is MusicState.Stop -> {

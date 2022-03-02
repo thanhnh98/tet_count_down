@@ -75,6 +75,9 @@ clean_project:
 devices:
 	adb devices
 
+lint:
+	gradlew lint
+
 help:
 	@echo "01. run"
 	@echo "02. run_fp #run with full permission"

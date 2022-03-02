@@ -11,8 +11,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class TestSocket: BaseActivity<ActivityTestSocketBinding>() {
-
-
     override fun inflateLayout(): Int = R.layout.activity_test_socket
 
     override fun onCreate(savedInstanceState: Bundle?) {

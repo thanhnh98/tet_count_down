@@ -28,27 +28,25 @@ class ListMusicsViewModel(
     private var _adsInfo: MutableStateFlow<Result<AdsInfoModel>> = MutableStateFlow(Result.loading())
     val adsInfo: StateFlow<Result<AdsInfoModel>> get() = _adsInfo
 
-    override fun onCreate() {
-        super.onCreate()
-    }
-
     fun updateBackgroundMusic(music: LocalMusicModel){
-        val cached = music.clone()
-        viewModelScope.launch {
+        doOnIOContext {
+            val cached = music.clone()
+
             saveFileToCache(
                 cached.uri.toUri()
             )?.let { cachedUri ->
                 cached.uri = cachedUri.toString()
             }
+
+            AppPreferences.saveCurrentBackgroundMusic(cached)
+            _musicSelected.value = Result.success(
+                cached
+            )
         }
-        AppPreferences.saveCurrentBackgroundMusic(cached)
-        _musicSelected.value = Result.success(
-            cached
-        )
     }
 
     fun getAdsInfo(){
-        viewModelScope.launch {
+        doOnIOContext {
             adsUseCase.getAdsInfo().collect {
                 _adsInfo.emit(it)
             }

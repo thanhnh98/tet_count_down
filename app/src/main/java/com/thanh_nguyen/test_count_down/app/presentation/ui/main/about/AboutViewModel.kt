@@ -21,7 +21,7 @@ class AboutViewModel(
     val adsInfo: StateFlow<Result<AdsInfoModel>> get() = _adsInfo
 
     fun getAdsInfo(){
-        viewModelScope.launch {
+        doOnIOContext {
             adsUseCase.getAdsInfo().collect {
                 _adsInfo.emit(it)
             }

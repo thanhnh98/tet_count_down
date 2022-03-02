@@ -24,6 +24,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import com.google.gson.Gson
 import com.thanh_nguyen.test_count_down.common.Constants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
@@ -139,4 +143,17 @@ fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getCol
 
 fun Context.showToastMessage(msg: String){
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
+
+fun getDayOfWeek(stt: Int): String{
+    return when(stt){
+        Calendar.SUNDAY -> "CN"
+        Calendar.MONTH -> "Thứ 2"
+        Calendar.TUESDAY -> "Thứ 3"
+        Calendar.WEDNESDAY -> "Thứ 4"
+        Calendar.THURSDAY -> "Thứ 5"
+        Calendar.FRIDAY -> "Thứ 6"
+        Calendar.SATURDAY -> "Thứ 7"
+        else -> "..."
+    }
 }

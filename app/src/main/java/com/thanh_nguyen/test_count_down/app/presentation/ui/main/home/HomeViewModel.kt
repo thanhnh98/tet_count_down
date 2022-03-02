@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeViewModel(
     private val eventUseCase: EventUseCase
@@ -31,7 +32,7 @@ class HomeViewModel(
     }
 
     private suspend fun onTick(){
-        with(Dispatchers.IO){
+        withContext(Dispatchers.IO){
             val minuteSec = 60
             val hourSec = minuteSec * 60
             val daySec = hourSec * 24
@@ -56,10 +57,8 @@ class HomeViewModel(
     }
 
     fun getWishes(){
-        viewModelScope.launch {
+        doOnIOContext {
             eventUseCase.getWishes().collect {
-                it.data?.apply {
-                }
                 if (it.data == null)
                     _wishesData.postValue(WishModel(data = listOf("Happy new year")))
                 else

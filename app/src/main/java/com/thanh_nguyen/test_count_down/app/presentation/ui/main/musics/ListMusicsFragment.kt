@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.view.ViewPropertyAnimator
 import android.view.animation.LinearInterpolator
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -33,15 +34,19 @@ import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusicsViewModel>() {
+
+    private var diskAnimateController: ViewPropertyAnimator? = null
 
     private val soundManager: SoundManager by lazy {
         (activity as MainActivity).soundManager
     }
 
     override fun inflateLayout(): Int = R.layout.fragment_list_musics
+
 
     override val viewModel: ListMusicsViewModel by kodeinViewModel()
     private val requestPermissionLauncher =
@@ -58,14 +63,30 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
         onObserve()
         setUpAds()
         bindMusicData(AppPreferences.getCurrentBackgroundMusic())
+        bindVolumeData(AppPreferences.isBackgroundMuted)
         binding.vHome.onClick {
             (activity as MainActivity).navigateToTab(0, true)
         }
-        val isMuted = AppPreferences.isBackgroundMuted
-        if (isMuted)
+        binding.vMute.onClick {
+            if (AppPreferences.isBackgroundMuted) {
+                soundManager.notifyChangeState(MusicState.Play())
+            }
+            else{
+                soundManager.notifyChangeState(MusicState.Pause())
+            }
+        }
+
+    }
+
+    private fun bindVolumeData(isMuted: Boolean){
+        if (isMuted){
+            binding.imgMute.setImageResource(R.drawable.ic_volume_off)
             binding.ltMusic.pauseAnimation()
-        else
+        }
+        else{
+            binding.imgMute.setImageResource(R.drawable.ic_volume_on)
             binding.ltMusic.playAnimation()
+        }
     }
 
     private fun bindMusicData(currentBackgroundMusic: LocalMusicModel?) {
@@ -75,11 +96,23 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
         binding.lnlUploadMusic.onClick {
             requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
+        binding.imgThumbnail.onClick {
+            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
         animateView(binding.imgThumbnail)
-        if (currentBackgroundMusic?.thumbnail == null)
-            binding.imgThumbnail.setImageDrawable(AppProvider.getDrawable(R.drawable.ic_baseline_music_note_24))
-        else
-            binding.imgThumbnail.setImageBitmap(currentBackgroundMusic.thumbnail)
+        val thumbnail = currentBackgroundMusic?.getThumbnailBitmap()
+        if (thumbnail == null) {
+            loadImage(
+                AppProvider.getDrawable(R.drawable.music_disk),
+                binding.imgThumbnail
+            )
+        }
+        else{
+            loadImage(
+                thumbnail,
+                binding.imgThumbnail
+            )
+        }
     }
 
     private fun setUpAds() {
@@ -109,7 +142,9 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
 
     private fun chooseMp3File(){
         MusicChoosingBottomDialog
-            .invoke()
+            .invoke(
+                AppPreferences.getCurrentBackgroundMusic()
+            )
             .onItemSelected {
                 viewModel.updateBackgroundMusic(music = it)
             }
@@ -121,12 +156,6 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
 
 
     private fun onObserve() {
-        lifecycleScope.launchWhenCreated {
-            getAllMusic().apply {
-//                showListMusicsLocal(this)
-            }
-        }
-
         lifecycleScope.launchWhenCreated {
             viewModel.adsInfo.collect {
                 it.onResultReceived(
@@ -151,11 +180,11 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
         observeLiveDataChanged(soundManager.musicStateChanged) {
                 when(it){
                     is MusicState.Play -> {
-                        binding.ltMusic.playAnimation()
+                        bindVolumeData(false)
                     }
 
                     is MusicState.Pause -> {
-                        binding.ltMusic.pauseAnimation()
+                        bindVolumeData(true)
                     }
 
                     is MusicState.UpdateMusic -> {
@@ -188,7 +217,7 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
     }
 
     private fun animateView(view1: View){
-        view1.animate()
+        diskAnimateController = view1.animate()
             .rotationBy(720f)
             .setDuration(20000L)
             .apply {
@@ -210,7 +239,7 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
                 }
 
             })
-            .start()
+        diskAnimateController?.start()
     }
 
 //    override fun onRefresh() {

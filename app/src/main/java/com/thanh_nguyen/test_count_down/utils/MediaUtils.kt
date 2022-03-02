@@ -12,6 +12,7 @@ import androidx.core.content.ContentResolverCompat
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
 import com.thanh_nguyen.test_count_down.provider.AppProvider
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 
@@ -49,7 +50,7 @@ suspend fun getAllMusic(): List<LocalMusicModel>{
          null
     )
 
-    val musics: MutableList<LocalMusicModel> = ArrayList()
+    val musics = mutableListOf<Deferred<LocalMusicModel>>()
 
     cursor?.use { cursor ->
         // Cache column indices.
@@ -60,46 +61,48 @@ suspend fun getAllMusic(): List<LocalMusicModel>{
         val durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)
 
         while (cursor.moveToNext()) {
+            coroutineScope {
+                val localMusicModel = async {
+                    val id = cursor.getLong(idColumn)
+                    val artist = cursor.getString(artistColumn)
+                    val title = cursor.getString(titleColumn)
+                    val displayName = cursor.getString(displayNameColumn)
+                    val duration = cursor.getLong(durationColumn)
 
-            val id = cursor.getLong(idColumn)
-            val artist = cursor.getString(artistColumn)
-            val title = cursor.getString(titleColumn)
-            val displayName = cursor.getString(displayNameColumn)
-            val duration = cursor.getLong(durationColumn)
+                    val contentUri: Uri = ContentUris.withAppendedId(
+                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        id
+                    )
 
-            val contentUri: Uri = ContentUris.withAppendedId(
-                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                id
-            )
-
-            val thumbnail = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                try{
-                    AppProvider.getContentResolver().loadThumbnail(
-                        contentUri,
-                        Size(500, 500),
+                    val thumbnail = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        try{
+                            val thumbnailBitmap = AppProvider.getContentResolver().loadThumbnail(
+                                contentUri,
+                                Size(500, 500),
+                                null
+                            )
+                            encodeToBase64(thumbnailBitmap)
+                        }
+                        catch (e: Exception){
+                            null
+                        }
+                    } else {
                         null
+                    }
+                    LocalMusicModel(
+                        uri = contentUri.toString(),
+                        name = displayName,
+                        title = title,
+                        artist = artist,
+                        duration = duration,
+                        thumbnailBase64 = thumbnail,
                     )
                 }
-                catch (e: Exception){
-                    null
-                }
-            } else {
-                null
+                musics.add(localMusicModel)
             }
-
-            musics.add(
-                LocalMusicModel(
-                    uri = contentUri.toString(),
-                    name = displayName,
-                    title = title,
-                    artist = artist,
-                    duration = duration,
-                    thumbnail = thumbnail
-                )
-            )
         }
     }
-    return musics.filter {
+    return musics.awaitAll().filter {
         it.uri.isNotEmpty() && it.name.contains(".mp3") && it.duration?:0 > 0
     }
 }

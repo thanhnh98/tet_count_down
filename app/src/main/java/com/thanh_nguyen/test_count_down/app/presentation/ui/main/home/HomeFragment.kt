@@ -3,6 +3,7 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main.home
 import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.icu.util.ChineseCalendar
 import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
@@ -26,6 +27,9 @@ import com.thanh_nguyen.test_count_down.utils.*
 import kodeinViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.util.*
 
 class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by kodeinViewModel()
@@ -164,6 +168,44 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                     binding.imgPin.setImageDrawable(App.getResources().getDrawable(R.drawable.ic_pin, null))
             }
         }
+
+        buildCalendar()
+    }
+
+    private fun buildCalendar() {
+        lifecycleScope.launchWhenCreated {
+            val calendar = Calendar.getInstance()
+            val date = Date(calendar.timeInMillis)
+
+            doOnIO{
+                val dayOfWeek = getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK))
+                val dayOfMonth  = calendar.get(Calendar.DAY_OF_MONTH)
+                val month = (calendar.get(Calendar.MONTH) + 1) % 12
+                val year = calendar.get(Calendar.YEAR)
+                launch {
+                    doOnMain {
+                        binding.tvCalendar?.text = "$dayOfWeek, $dayOfMonth/$month/$year"
+                        binding.tvCalendar?.fadeInAppearance()
+                    }
+                }
+            }
+
+            doOnIO {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    val chineseCalendar = ChineseCalendar(date)
+                    val chineseMonth = (chineseCalendar.get(Calendar.MONTH) + 1) % 12
+                    val chineseDay = chineseCalendar.get(Calendar.DAY_OF_MONTH)
+                    launch {
+                        doOnMain {
+                            binding.tvChineseCalendar?.visibility = View.VISIBLE
+                            binding.tvChineseCalendar?.text = "($chineseDay/$chineseMonth âm lịch)"
+                            binding.tvChineseCalendar?.fadeInAppearance()
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private fun setupBackgroundMusic() {
@@ -183,7 +225,7 @@ class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
                 }
 
                 is MusicState.UpdateMusic -> {
-                    binding.tvMusicName?.text = it.localMusic.name
+                    binding.tvMusicName?.text = it.localMusic.title
                     isMutedSound = !it.requestPlay
                     updateSoundUI()
                 }

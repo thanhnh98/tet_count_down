@@ -52,7 +52,7 @@
 
             <TextView
                 android:id="@+id/tv_music_name"
-                android:layout_width="@dimen/_200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="@dimen/_200dp"
                 android:text="@string/default_music_name"
@@ -70,6 +70,16 @@
                 android:clickable="true"
                 android:scrollHorizontally="true"
                 />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_goto_music"
+                android:layout_width="@dimen/_16dp"
+                android:layout_height="@dimen/_16dp"
+                app:srcCompat="@drawable/ic_arrow_right"
+                android:layout_marginLeft="@dimen/_4dp"
+                app:layout_constraintLeft_toRightOf="@id/tv_music_name"
+                app:layout_constraintTop_toTopOf="@id/tv_music_name"
+                app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
 
             <FrameLayout
                 android:layout_width="match_parent"

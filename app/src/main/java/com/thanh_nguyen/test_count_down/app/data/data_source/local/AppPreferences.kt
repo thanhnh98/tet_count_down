@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.google.gson.GsonBuilder
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.app.model.LocalMusicModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 object AppPreferences {
     val preferences: SharedPreferences = App.getInstance().getSharedPreferences("SapTetPreferences", Context.MODE_PRIVATE)
@@ -13,6 +15,7 @@ object AppPreferences {
 
     private val IS_MUTED = "IS_MUTED"
     private val BACKGROUND_MUSIC = "BACKGROUND_MUSIC"
+    private val COVER_BACKGROUND_MUSIC = "COVER_BACKGROUND_MUSIC"
 
     var isBackgroundMuted: Boolean
         set(isBackgroundMuted){
