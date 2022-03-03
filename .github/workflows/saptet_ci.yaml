@@ -29,3 +29,11 @@ jobs:
 
         - name: list Apks Debug
           run: ls -lrt app/build/outputs/apk/debug
+
+        - name: Deploy to Firebase
+          uses: wzieba/Firebase-Distribution-Github-Action@v1
+          with:
+            appId: ${{secrets.FIREBASE_APP_ID}}
+            token: ${{secrets.FIREBASE_TOKEN}}
+            groups: testers
+            file: app/build/outputs/apk/debug/app-debug.apk
