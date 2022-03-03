@@ -3,7 +3,7 @@ on:
   push:
     branches: [ ci_cd_demo ]
     tags:
-      - dev.firebase
+      - dev.firebase.*
 
 jobs:
     Explore-GitHub-Actions:
