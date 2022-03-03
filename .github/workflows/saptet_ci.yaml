@@ -26,3 +26,6 @@ jobs:
 
         - name: Execute Gradle build
           run: ./gradlew assembleDebug
+
+        - name: list Apks Debug
+          run: ls -lrt app/build/outputs/apk/debug
