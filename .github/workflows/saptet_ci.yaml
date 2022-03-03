@@ -2,11 +2,10 @@ name: saptet ci/cd
 on:
   push:
     branches: [ci_cd_demo]
-    tags:
-      - dev.firebase.*
 
 jobs:
     Explore-GitHub-Actions:
+      if: "contains(github.event.commits[0].message, '[execute ci]')"
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
