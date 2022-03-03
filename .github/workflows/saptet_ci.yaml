@@ -1,7 +1,9 @@
 name: saptet ci/cd
 on:
   push:
-    branches: [ci_cd_demo]
+    branches: [ ci_cd_demo ]
+    tags:
+      - dev.firebase
 
 jobs:
     Explore-GitHub-Actions:
@@ -37,4 +39,4 @@ jobs:
             token: ${{secrets.FIREBASE_TOKEN}}
             groups: testers
             file: app/build/outputs/apk/debug/app-debug.apk
-            releaseNotes: 'updated by thanhnh'
+            releaseNotes: 'hahahaha đây là thanh'
