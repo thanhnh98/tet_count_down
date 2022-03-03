@@ -26,10 +26,10 @@ android {
             Properties localProps = new Properties()
             localProps.load(new FileInputStream(file('../local.properties')))
 
-            storeFile localProps['storeFile'] ? file(localProps['storeFile']) : null
-            keyAlias localProps['keyAlias']
-            keyPassword localProps['keyPassword']
-            storePassword localProps['storePassword']
+//            storeFile localProps['storeFile'] ? file(localProps['storeFile']) : null
+//            keyAlias localProps['keyAlias']
+//            keyPassword localProps['keyPassword']
+//            storePassword localProps['storePassword']
         }
     }
 
