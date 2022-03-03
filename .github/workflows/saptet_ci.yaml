@@ -37,3 +37,4 @@ jobs:
             token: ${{secrets.FIREBASE_TOKEN}}
             groups: testers
             file: app/build/outputs/apk/debug/app-debug.apk
+            releaseNotes: 'updated by thanhnh'
