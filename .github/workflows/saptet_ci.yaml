@@ -1,7 +1,7 @@
 name: saptet ci/cd
 on:
   push:
-    branches: [ ci_cd_demo ]
+    branches: [ci_cd_demo]
     tags:
       - dev.firebase.*
 
