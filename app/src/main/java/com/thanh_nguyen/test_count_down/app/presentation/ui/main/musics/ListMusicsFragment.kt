@@ -29,6 +29,7 @@ import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentListMusicsBinding
+import com.thanh_nguyen.test_count_down.external.KeyStore
 import com.thanh_nguyen.test_count_down.external.firebase.AppAnalytics
 import com.thanh_nguyen.test_count_down.provider.AppProvider
 import com.thanh_nguyen.test_count_down.utils.*
@@ -168,7 +169,7 @@ class ListMusicsFragment: BaseFragmentMVVM<FragmentListMusicsBinding, ListMusics
                     },
                     onSuccess = {
                         binding.lnlAds.addView(
-                            createAdsView(getString(R.string.key_ads_banner_music)).apply {
+                            createAdsView(KeyStore.getAdsBannerMusic()).apply {
                                 loadAd(AdRequest.Builder().build().apply {
                                     Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
                                 })

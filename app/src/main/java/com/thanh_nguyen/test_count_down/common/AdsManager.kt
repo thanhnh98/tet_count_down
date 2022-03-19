@@ -14,6 +14,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.BuildConfig
 import com.thanh_nguyen.test_count_down.R
+import com.thanh_nguyen.test_count_down.external.KeyStore
 import com.thanh_nguyen.test_count_down.utils.NullableOnClick
 
 class AdsManager(private val context: Context) {
@@ -21,7 +22,7 @@ class AdsManager(private val context: Context) {
     fun prepareAds(): AdsManager{
         InterstitialAd.load(
             context,
-            App.getString(R.string.key_ads_interstitial),
+            KeyStore.getAdsInterstitial(),
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {

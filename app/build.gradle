@@ -66,11 +66,14 @@ android {
         jvmTarget = '1.8'
     }
 
-//    externalNativeBuild { //for specific version
+    externalNativeBuild { //for specific version
+        ndkBuild {
+            path 'src/main/jni/Android.mk'//path of Android.mk file
+        }
 //        cmake {
 //            version = "cmake-version"
 //        }
-//    }
+    }
 }
 
 dependencies {

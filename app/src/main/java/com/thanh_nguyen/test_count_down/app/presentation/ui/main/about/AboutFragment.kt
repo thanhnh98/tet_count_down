@@ -22,6 +22,7 @@ import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.common.MusicState
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentAboutBinding
+import com.thanh_nguyen.test_count_down.external.KeyStore
 import com.thanh_nguyen.test_count_down.utils.observeLiveDataChanged
 import com.thanh_nguyen.test_count_down.utils.onClick
 import kodeinViewModel
@@ -67,7 +68,7 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
                     },
                     onSuccess = {
                         binding.lnlAds.addView(
-                            createAdsView(getString(R.string.key_ads_banner_about)).apply {
+                            createAdsView(KeyStore.getAdsBannerAbout()).apply {
                                 loadAd(AdRequest.Builder().build().apply {
                                     Log.e("CHECKING IS ADS TEST DEVICE", "${isTestDevice(context)}")
                                 })

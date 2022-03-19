@@ -1,0 +1,1 @@
+/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/release/obj/local/armeabi-v7a
