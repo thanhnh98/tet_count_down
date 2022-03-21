@@ -44,6 +44,7 @@ android {
         release {
             debuggable false
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
             signingConfig signingConfigs.release

@@ -32,7 +32,7 @@
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
-    "keys-debug-x86": {
+    "secret_keys-debug-x86": {
       "buildCommandComponents": [
         "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/ndk-build",
         "NDK_PROJECT_PATH\u003dnull",
@@ -44,12 +44,12 @@
         "APP_PLATFORM\u003dandroid-24",
         "NDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
         "NDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/lib",
-        "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libkeys.so"
+        "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libsecret_keys.so"
       ],
       "toolchain": "toolchain-x86",
       "abi": "x86",
-      "artifactName": "keys",
-      "output": "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libkeys.so"
+      "artifactName": "secret_keys",
+      "output": "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libsecret_keys.so"
     }
   },
   "toolchains": {

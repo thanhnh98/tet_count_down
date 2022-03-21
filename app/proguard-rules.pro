@@ -26,3 +26,4 @@
 
 -dontwarn android.databinding.**
 -keep class android.databinding.** { *; }
+-keep class com.thanh_nguyen.test_count_down.**{*;}

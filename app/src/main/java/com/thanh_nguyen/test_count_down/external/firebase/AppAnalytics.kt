@@ -5,6 +5,7 @@ import androidx.core.os.bundleOf
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.BuildConfig
+import com.thanh_nguyen.test_count_down.utils.toSlug
 
 class AppAnalytics {
     companion object {
@@ -29,15 +30,13 @@ class AppAnalytics {
         fun trackChangeMusic(musicName: String?){
             logEvent(Event.ChangeMusic(
                 bundleOf(
-                    "music_name" to musicName
+                    "music_name" to musicName?.toSlug()
                 )
             ))
         }
 
         private fun logEvent(event: Event){
-            if (!BuildConfig.DEBUG){
-                firebaseAnalytic.logEvent(event.action, event.params)
-            }
+            firebaseAnalytic.logEvent(event.action, event.params)
         }
     }
 }
