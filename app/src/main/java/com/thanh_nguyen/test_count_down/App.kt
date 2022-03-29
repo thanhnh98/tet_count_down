@@ -1,5 +1,6 @@
 package com.thanh_nguyen.test_count_down
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.res.Resources
 import androidx.annotation.StringRes
@@ -9,16 +10,20 @@ import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.messaging.FirebaseMessaging
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.room.AppRoomDB
 import com.thanh_nguyen.test_count_down.di.appModule
+import io.branch.referral.Branch
+import io.branch.referral.BranchApp
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
 import java.util.*
 
-class App: Application(), LifecycleObserver, KodeinAware {
+class App: BranchApp(), LifecycleObserver, KodeinAware {
+    @SuppressLint("MissingPermission")
     override fun onCreate() {
         super.onCreate()
         instance = this
         MobileAds.initialize(this)
+        Branch.getAutoInstance(this)
         AppRoomDB(this)
         val testDeviceIds = listOf(
             "11A5A306389981CA70B4C70CBE041154",

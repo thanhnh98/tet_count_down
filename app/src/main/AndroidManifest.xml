@@ -39,6 +39,11 @@
             android:name="@string/key_ads_app_id"
             android:value="@string/key_ads" /> <!-- <service -->
 
+        <!-- Branch init -->
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_pc4MFMsEaW0hAbcqgRNehjjjqAenlbPd" />
+        <!-- Branch testing (TestMode "true" to simulate fresh installs on dev environment) -->
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
+
         <activity
             android:name=".app.presentation.ui.main.MainActivity"
             android:theme="@style/Theme.BaseProject.FullScreen"
@@ -51,11 +56,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.App.Starting"
             android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Branch URI scheme -->
+            <intent-filter>
+                <data android:scheme="saptet" android:host="open" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
 
