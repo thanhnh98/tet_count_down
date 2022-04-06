@@ -13,12 +13,15 @@ import androidx.lifecycle.lifecycleScope
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.MainActivity
-import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.Constants
+import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.databinding.ActivityGetStartedBinding
+import com.thanh_nguyen.test_count_down.utils.CMN
 import com.thanh_nguyen.test_count_down.utils.isTetOnGoing
-import kotlinx.coroutines.*
+import com.thanh_nguyen.test_count_down.utils.toJson
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
@@ -209,5 +212,10 @@ class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
             .scaleX(scaleX)
             .scaleY(scaleY)
             .start()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        CMN("on new intent ${intent?.data?.toJson()}")
     }
 }

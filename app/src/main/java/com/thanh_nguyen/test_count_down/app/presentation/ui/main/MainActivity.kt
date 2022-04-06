@@ -2,11 +2,13 @@ package com.thanh_nguyen.test_count_down.app.presentation.ui.main
 
 import android.animation.Animator
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppPreferences
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
@@ -34,6 +36,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseDynamicLinks.getInstance()
+            .getDynamicLink(intent)
+            .addOnSuccessListener(this) { pendingDynamicLinkData ->
+                // Get deep link from result (may be null if no link is found)
+                var deepLink: Uri? = null
+                if (pendingDynamicLinkData != null) {
+                    deepLink = pendingDynamicLinkData.link
+                }
+
+                CMN("deeplink receieved ${deepLink}")
+            }
         keepOnScreen()
         setupViewPager()
         setupBackgroundMusic()
@@ -287,5 +300,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 )
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
     }
 }

@@ -1,60 +1,60 @@
 {
   "buildFiles": [
-    "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
-    "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk"
+    "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+    "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk"
   ],
   "cleanCommandsComponents": [
     [
-      "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/ndk-build",
+      "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\ndk-build.cmd",
       "NDK_PROJECT_PATH\u003dnull",
-      "APP_BUILD_SCRIPT\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
-      "NDK_APPLICATION_MK\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk",
+      "APP_BUILD_SCRIPT\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+      "NDK_APPLICATION_MK\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk",
       "APP_ABI\u003dx86",
       "NDK_ALL_ABIS\u003dx86",
       "NDK_DEBUG\u003d1",
       "APP_PLATFORM\u003dandroid-24",
-      "NDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
-      "NDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/lib",
+      "NDK_OUT\u003dD:/Github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
+      "NDK_LIBS_OUT\u003dD:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\lib",
       "clean"
     ]
   ],
   "buildTargetsCommandComponents": [
-    "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/ndk-build",
+    "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\ndk-build.cmd",
     "NDK_PROJECT_PATH\u003dnull",
-    "APP_BUILD_SCRIPT\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
-    "NDK_APPLICATION_MK\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk",
+    "APP_BUILD_SCRIPT\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+    "NDK_APPLICATION_MK\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk",
     "APP_ABI\u003dx86",
     "NDK_ALL_ABIS\u003dx86",
     "NDK_DEBUG\u003d1",
     "APP_PLATFORM\u003dandroid-24",
-    "NDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
-    "NDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/lib",
+    "NDK_OUT\u003dD:/Github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
+    "NDK_LIBS_OUT\u003dD:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\lib",
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
-    "keys-debug-x86": {
+    "secret_keys-debug-x86": {
       "buildCommandComponents": [
-        "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/ndk-build",
+        "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\ndk-build.cmd",
         "NDK_PROJECT_PATH\u003dnull",
-        "APP_BUILD_SCRIPT\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
-        "NDK_APPLICATION_MK\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk",
+        "APP_BUILD_SCRIPT\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+        "NDK_APPLICATION_MK\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk",
         "APP_ABI\u003dx86",
         "NDK_ALL_ABIS\u003dx86",
         "NDK_DEBUG\u003d1",
         "APP_PLATFORM\u003dandroid-24",
-        "NDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
-        "NDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/lib",
-        "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libkeys.so"
+        "NDK_OUT\u003dD:/Github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
+        "NDK_LIBS_OUT\u003dD:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\lib",
+        "D:/Github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libsecret_keys.so"
       ],
       "toolchain": "toolchain-x86",
       "abi": "x86",
-      "artifactName": "keys",
-      "output": "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libkeys.so"
+      "artifactName": "secret_keys",
+      "output": "D:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86\\libsecret_keys.so"
     }
   },
   "toolchains": {
     "toolchain-x86": {
-      "cCompilerExecutable": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang"
+      "cCompilerExecutable": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\..\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
     }
   },
   "cFileExtensions": [

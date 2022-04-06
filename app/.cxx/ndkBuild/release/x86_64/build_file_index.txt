@@ -1,2 +1,2 @@
-/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk
-/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk
+D:\Github\tet_count_down\app\src\main\jni\Android.mk
+D:\Github\tet_count_down\app\src\main\jni\Application.mk

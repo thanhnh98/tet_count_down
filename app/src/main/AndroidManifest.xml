@@ -44,6 +44,14 @@
             android:theme="@style/Theme.BaseProject.FullScreen"
             android:exported="true"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="saptet.com"
+                    android:scheme="https"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".app.presentation.ui.GetStartedScreen"

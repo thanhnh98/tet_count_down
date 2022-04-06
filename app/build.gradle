@@ -42,7 +42,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            debuggable false
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/thanhnh98/tet-count-down-api/\""
@@ -145,6 +145,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-dynamic-links'
+
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
     implementation 'androidx.media:media:1.4.3'
     implementation "com.neovisionaries:nv-websocket-client:2.14"
@@ -153,4 +155,5 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.0"
     implementation("androidx.room:room-ktx:2.4.0")
     kapt "androidx.room:room-compiler:2.4.0"
+
 }

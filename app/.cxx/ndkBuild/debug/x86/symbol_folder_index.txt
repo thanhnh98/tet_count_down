@@ -1,1 +1,1 @@
-/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86
+D:\Github\tet_count_down\app\build\intermediates\ndkBuild\debug\obj\local\x86
