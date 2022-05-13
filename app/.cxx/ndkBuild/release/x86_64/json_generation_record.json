@@ -2,91 +2,105 @@
   {
     "level": "INFO",
     "message": "Start JSON generation. Platform version: 24 min SDK version: x86_64",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "rebuilding JSON /Users/thanhnh/github/tet_count_down/app/.cxx/ndkBuild/release/x86_64/android_gradle_build.json due to:",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "rebuilding JSON D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\release\\x86_64\\android_gradle_build.json due to:",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+    "tag": "release|x86_64",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
     "message": "- a dependent build file changed",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "  - /Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "  - D:\\Users\\thanhnh\\github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "  - /Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "  - D:\\Users\\thanhnh\\github\\tet_count_down\\app\\src\\main\\jni\\Application.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "keeping json folder \u0027/Users/thanhnh/github/tet_count_down/app/.cxx/ndkBuild/release/x86_64\u0027 but regenerating project",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "removing stale contents from \u0027D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\release\\x86_64\u0027",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "executing ndkBuild Executable : /Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk\nNDK_APPLICATION_MK\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk\nAPP_ABI\u003dx86_64\nNDK_ALL_ABIS\u003dx86_64\nNDK_DEBUG\u003d0\nAPP_PLATFORM\u003dandroid-24\nNDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/release/obj\nNDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/release/lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "created folder \u0027D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\release\\x86_64\u0027",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "Executable : /Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk\nNDK_APPLICATION_MK\u003d/Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk\nAPP_ABI\u003dx86_64\nNDK_ALL_ABIS\u003dx86_64\nNDK_DEBUG\u003d0\nAPP_PLATFORM\u003dandroid-24\nNDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/release/obj\nNDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/release/lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "executing ndkBuild Executable : C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\ndk-build.cmd\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk\nNDK_APPLICATION_MK\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk\nAPP_ABI\u003dx86_64\nNDK_ALL_ABIS\u003dx86_64\nNDK_DEBUG\u003d0\nAPP_PLATFORM\u003dandroid-24\nNDK_OUT\u003dD:/Github/tet_count_down/app/build/intermediates/ndkBuild/release/obj\nNDK_LIBS_OUT\u003dD:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\release\\lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+    "tag": "release|x86_64",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "Executable : C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\ndk-build.cmd\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk\nNDK_APPLICATION_MK\u003dD:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk\nAPP_ABI\u003dx86_64\nNDK_ALL_ABIS\u003dx86_64\nNDK_DEBUG\u003d0\nAPP_PLATFORM\u003dandroid-24\nNDK_OUT\u003dD:/Github/tet_count_down/app/build/intermediates/ndkBuild/release/obj\nNDK_LIBS_OUT\u003dD:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\release\\lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
     "message": "parse and convert ndk-build output to build configuration JSON",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "found application make file /Users/thanhnh/github/tet_count_down/app/src/main/jni/Application.mk",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "found application make file D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Application.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
     "message": "done executing ndkBuild",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "write command file /Users/thanhnh/github/tet_count_down/app/.cxx/ndkBuild/release/x86_64/build_command.txt",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "message": "write command file D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\release\\x86_64\\build_command.txt",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
     "message": "JSON generation completed without problems",
-    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+    "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   }

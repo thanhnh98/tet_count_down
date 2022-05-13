@@ -1,3 +1,4 @@
 rootProject.name = "BaseProject"
 include ':app'
 include ':utils'
+include ':mvvm'
