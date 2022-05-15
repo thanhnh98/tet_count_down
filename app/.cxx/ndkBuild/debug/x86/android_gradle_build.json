@@ -42,14 +42,24 @@
         "NDK_ALL_ABIS\u003dx86",
         "NDK_DEBUG\u003d1",
         "APP_PLATFORM\u003dandroid-24",
+<<<<<<< HEAD
         "NDK_OUT\u003dD:/Github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
         "NDK_LIBS_OUT\u003dD:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\lib",
         "D:/Github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libsecret_keys.so"
+=======
+        "NDK_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj",
+        "NDK_LIBS_OUT\u003d/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/lib",
+        "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libsecret_keys.so"
+>>>>>>> master-2023
       ],
       "toolchain": "toolchain-x86",
       "abi": "x86",
       "artifactName": "secret_keys",
+<<<<<<< HEAD
       "output": "D:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86\\libsecret_keys.so"
+=======
+      "output": "/Users/thanhnh/github/tet_count_down/app/build/intermediates/ndkBuild/debug/obj/local/x86/libsecret_keys.so"
+>>>>>>> master-2023
     }
   },
   "toolchains": {

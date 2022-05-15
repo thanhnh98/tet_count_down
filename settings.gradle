@@ -1,4 +1,8 @@
 rootProject.name = "BaseProject"
 include ':app'
 include ':utils'
+<<<<<<< HEAD
 include ':mvvm'
+=======
+include ':nativelib'
+>>>>>>> master-2023

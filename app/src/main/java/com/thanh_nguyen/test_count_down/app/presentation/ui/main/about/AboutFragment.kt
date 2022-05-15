@@ -20,6 +20,7 @@ import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.cont
 import com.thanh_nguyen.test_count_down.app.presentation.ui.main.about.item.header.AboutHeaderViewItem
 import com.thanh_nguyen.test_count_down.common.Constants
 import com.thanh_nguyen.test_count_down.common.MusicState
+import com.thanh_nguyen.test_count_down.common.SoundManager
 import com.thanh_nguyen.test_count_down.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.test_count_down.databinding.FragmentAboutBinding
 import com.thanh_nguyen.test_count_down.external.KeyStore
@@ -31,6 +32,10 @@ import kotlinx.coroutines.flow.collect
 class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewModel>() {
 
     override val viewModel: AboutViewModel by kodeinViewModel()
+
+    private val soundManager: SoundManager by lazy {
+        (activity as MainActivity).soundManager
+    }
 
     override fun inflateLayout(): Int = R.layout.fragment_about
 
@@ -53,7 +58,25 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
             (activity as MainActivity).navigateToTab(2, true)
         }
 
+        binding.flImgSoundContainer.onClick {
+            if (AppPreferences.isBackgroundMuted) {
+                soundManager.notifyChangeState(MusicState.Play())
+            }
+            else{
+                soundManager.notifyChangeState(MusicState.Pause())
+            }
+        }
+
         binding.tvMusicName.text = AppPreferences.getCurrentBackgroundMusic()?.title?:Constants.DEFAULT_MUSIC_NAME
+    }
+
+    private fun bindVolumeData(isMuted: Boolean){
+        if (isMuted){
+            binding.imgSound.setImageResource(R.drawable.ic_volume_off)
+        }
+        else{
+            binding.imgSound.setImageResource(R.drawable.ic_volume_on)
+        }
     }
 
     private fun setupObserver() {
@@ -83,9 +106,11 @@ class AboutFragment: BaseCollectionFragmentMVVM<FragmentAboutBinding, AboutViewM
             binding.tvMusicName.requestFocus()
             when(it){
                 is MusicState.Play -> {
+                    bindVolumeData(false)
                 }
 
                 is MusicState.Pause -> {
+                    bindVolumeData(true)
                 }
 
                 is MusicState.UpdateMusic -> {

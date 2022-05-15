@@ -1,0 +1,24 @@
+                    Executable : /Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/cmake
+arguments : 
+-H/Users/thanhnh/github/tet_count_down/nativelib/src/main/cpp
+-DCMAKE_FIND_ROOT_PATH=/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/prefab/x86/prefab
+-DCMAKE_BUILD_TYPE=Debug
+-DCMAKE_TOOLCHAIN_FILE=/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake
+-DANDROID_ABI=x86
+-DANDROID_NDK=/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529
+-DANDROID_PLATFORM=android-23
+-DCMAKE_ANDROID_ARCH_ABI=x86
+-DCMAKE_ANDROID_NDK=/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/obj/x86
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/obj/x86
+-DCMAKE_MAKE_PROGRAM=/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/ninja
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_SYSTEM_VERSION=23
+-B/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86
+-GNinja
+jvmArgs : 
+
+
+                    Build command args: []
+                    Version: 1

@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.*
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.util.*
+import kotlin.coroutines.suspendCoroutine
 
 class HomeFragment: BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by kodeinViewModel()

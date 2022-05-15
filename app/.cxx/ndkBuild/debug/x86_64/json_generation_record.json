@@ -8,8 +8,13 @@
   },
   {
     "level": "INFO",
+<<<<<<< HEAD
     "message": "JSON \u0027D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\debug\\x86_64\\android_gradle_build.json\u0027 was up-to-date",
     "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+=======
+    "message": "JSON \u0027/Users/thanhnh/github/tet_count_down/app/.cxx/ndkBuild/debug/x86_64/android_gradle_build.json\u0027 was up-to-date",
+    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+>>>>>>> master-2023
     "tag": "debug|x86_64",
     "diagnosticCode": "UNKNOWN"
   },

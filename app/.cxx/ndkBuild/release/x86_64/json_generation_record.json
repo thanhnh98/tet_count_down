@@ -8,6 +8,7 @@
   },
   {
     "level": "INFO",
+<<<<<<< HEAD
     "message": "rebuilding JSON D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\release\\x86_64\\android_gradle_build.json due to:",
     "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
     "tag": "release|x86_64",
@@ -94,6 +95,10 @@
     "level": "INFO",
     "message": "write command file D:\\Github\\tet_count_down\\app\\.cxx\\ndkBuild\\release\\x86_64\\build_command.txt",
     "file": "D:\\Github\\tet_count_down\\app\\src\\main\\jni\\Android.mk",
+=======
+    "message": "JSON \u0027/Users/thanhnh/github/tet_count_down/app/.cxx/ndkBuild/release/x86_64/android_gradle_build.json\u0027 was up-to-date",
+    "file": "/Users/thanhnh/github/tet_count_down/app/src/main/jni/Android.mk",
+>>>>>>> master-2023
     "tag": "release|x86_64",
     "diagnosticCode": "UNKNOWN"
   },

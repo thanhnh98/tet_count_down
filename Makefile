@@ -78,6 +78,12 @@ devices:
 lint:
 	gradlew lint
 
+dv_start:
+	adb shell setprop debug.firebase.analytics.app $(APP_DEBUG)
+
+dv_stop:
+	adb shell setprop debug.firebase.analytics.app .none.
+
 help:
 	@echo "01. run"
 	@echo "02. run_fp #run with full permission"
