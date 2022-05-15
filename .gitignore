@@ -4,3 +4,6 @@ utils/src/.DS_Store
 local.properties
 **/android/local.properties
 .android/local.properties
+app/.cxx/*
+app/release/*
+nativelib/.cxx/*
