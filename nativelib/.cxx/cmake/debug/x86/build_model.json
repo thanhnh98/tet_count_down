@@ -6,12 +6,12 @@
     "deprecated": false,
     "default": true
   },
-  "originalCxxBuildFolder": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86",
-  "cxxBuildFolder": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86",
+  "originalCxxBuildFolder": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86",
+  "cxxBuildFolder": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86",
   "abiPlatformVersion": 23,
   "cmake": {
-    "cmakeWrappingBaseFolder": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cxx/debug/x86",
-    "cmakeArtifactsBaseFolder": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86",
+    "cmakeWrappingBaseFolder": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cxx\\debug\\x86",
+    "cmakeArtifactsBaseFolder": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86",
     "effectiveConfiguration": {
       "name": "traditional-android-studio-cmake-environment",
       "description": "Composite reified CMakeSettings configuration",
@@ -19,13 +19,13 @@
       "inheritEnvironments": [
         "ndk"
       ],
-      "buildRoot": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86",
-      "cmakeToolchain": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake",
-      "cmakeExecutable": "/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/cmake",
+      "buildRoot": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86",
+      "cmakeToolchain": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake",
+      "cmakeExecutable": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe",
       "variables": [
         {
           "name": "CMAKE_FIND_ROOT_PATH",
-          "value": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/prefab/x86/prefab"
+          "value": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\prefab\\x86\\prefab"
         },
         {
           "name": "CMAKE_BUILD_TYPE",
@@ -33,7 +33,7 @@
         },
         {
           "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake"
+          "value": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake"
         },
         {
           "name": "ANDROID_ABI",
@@ -41,7 +41,7 @@
         },
         {
           "name": "ANDROID_NDK",
-          "value": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529"
+          "value": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529"
         },
         {
           "name": "ANDROID_PLATFORM",
@@ -53,7 +53,7 @@
         },
         {
           "name": "CMAKE_ANDROID_NDK",
-          "value": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529"
+          "value": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529"
         },
         {
           "name": "CMAKE_EXPORT_COMPILE_COMMANDS",
@@ -61,15 +61,15 @@
         },
         {
           "name": "CMAKE_LIBRARY_OUTPUT_DIRECTORY",
-          "value": "/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/obj/x86"
+          "value": "D:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\debug\\obj\\x86"
         },
         {
           "name": "CMAKE_RUNTIME_OUTPUT_DIRECTORY",
-          "value": "/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/obj/x86"
+          "value": "D:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\debug\\obj\\x86"
         },
         {
           "name": "CMAKE_MAKE_PROGRAM",
-          "value": "/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/ninja"
+          "value": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe"
         },
         {
           "name": "CMAKE_SYSTEM_NAME",
@@ -81,7 +81,7 @@
         }
       ]
     },
-    "cmakeServerLogFile": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86/cmake_server_log.txt"
+    "cmakeServerLogFile": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86\\cmake_server_log.txt"
   },
   "variant": {
     "buildSystemArgumentList": [],
@@ -90,8 +90,8 @@
       ""
     ],
     "variantName": "debug",
-    "objFolder": "/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/obj",
-    "soFolder": "/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/lib",
+    "objFolder": "D:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\debug\\obj",
+    "soFolder": "D:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\debug\\lib",
     "isDebuggableEnabled": true,
     "validAbiList": [
       "ARMEABI_V7A",
@@ -103,15 +103,15 @@
     "implicitBuildTargetSet": [],
     "cmakeSettingsConfiguration": "android-gradle-plugin-predetermined-name",
     "module": {
-      "cxxFolder": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx",
+      "cxxFolder": "D:\\Github\\tet_count_down\\nativelib\\.cxx",
       "splitsAbiFilterSet": [],
-      "intermediatesFolder": "/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates",
+      "intermediatesFolder": "D:\\Github\\tet_count_down\\nativelib\\build\\intermediates",
       "gradleModulePathName": ":nativelib",
-      "moduleRootFolder": "/Users/thanhnh/github/tet_count_down/nativelib",
-      "moduleBuildFile": "/Users/thanhnh/github/tet_count_down/nativelib/build.gradle",
-      "makeFile": "/Users/thanhnh/github/tet_count_down/nativelib/src/main/cpp/CMakeLists.txt",
+      "moduleRootFolder": "D:\\Github\\tet_count_down\\nativelib",
+      "moduleBuildFile": "D:\\Github\\tet_count_down\\nativelib\\build.gradle",
+      "makeFile": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
       "buildSystem": "CMAKE",
-      "ndkFolder": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529",
+      "ndkFolder": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529",
       "ndkVersion": "21.4.7075529",
       "ndkSupportedAbiList": [
         "ARMEABI_V7A",
@@ -174,31 +174,31 @@
           "default": true
         }
       ],
-      "originalCmakeToolchainFile": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake",
-      "cmakeToolchainFile": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake",
+      "originalCmakeToolchainFile": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake",
+      "cmakeToolchainFile": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake",
       "cmake": {
         "isValidCmakeAvailable": true,
-        "cmakeExe": "/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/cmake",
+        "cmakeExe": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe",
         "minimumCmakeVersion": "3.18.1",
-        "ninjaExe": "/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/ninja",
+        "ninjaExe": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe",
         "isPreferCmakeFileApiEnabled": true
       },
       "stlSharedObjectMap": {
         "LIBCXX_SHARED": {
-          "ARMEABI_V7A": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/libc++_shared.so",
-          "ARM64_V8A": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so",
-          "X86": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/i686-linux-android/libc++_shared.so",
-          "X86_64": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/x86_64-linux-android/libc++_shared.so"
+          "ARMEABI_V7A": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\arm-linux-androideabi\\libc++_shared.so",
+          "ARM64_V8A": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\aarch64-linux-android\\libc++_shared.so",
+          "X86": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\i686-linux-android\\libc++_shared.so",
+          "X86_64": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\x86_64-linux-android\\libc++_shared.so"
         },
         "LIBCXX_STATIC": {},
         "NONE": {},
         "SYSTEM": {}
       },
       "project": {
-        "rootBuildGradleFolder": "/Users/thanhnh/github/tet_count_down",
-        "cxxFolder": "/Users/thanhnh/github/tet_count_down/.cxx",
-        "compilerSettingsCacheFolder": "/Users/thanhnh/github/tet_count_down/.cxx",
-        "sdkFolder": "/Users/thanhnh/Library/Android/sdk",
+        "rootBuildGradleFolder": "D:\\Github\\tet_count_down",
+        "cxxFolder": "D:\\Github\\tet_count_down\\.cxx",
+        "compilerSettingsCacheFolder": "D:\\Github\\tet_count_down\\.cxx",
+        "sdkFolder": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk",
         "isNativeCompilerSettingsCacheEnabled": false,
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
@@ -207,10 +207,10 @@
       },
       "nativeBuildOutputLevel": "QUIET"
     },
-    "prefabDirectory": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/prefab"
+    "prefabDirectory": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\prefab"
   },
   "buildSettings": {
     "environmentVariables": []
   },
-  "prefabFolder": "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/prefab/x86"
+  "prefabFolder": "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\prefab\\x86"
 }

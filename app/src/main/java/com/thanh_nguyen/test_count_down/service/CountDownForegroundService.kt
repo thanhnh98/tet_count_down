@@ -1,7 +1,6 @@
 package com.thanh_nguyen.test_count_down.service
 
 import android.content.Intent
-import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.app.data.data_source.local.AppSharedPreferences
 import com.thanh_nguyen.test_count_down.common.notification.createNotificationCountdownViewAlive
@@ -29,7 +28,7 @@ class CountDownForegroundService: BaseService() {
                         stopService(currentService)
                         AppSharedPreferences.setIsEnableCountDownNoti(false)
                     } catch (e: Exception) {
-                        CMN("failed: ${e.message}")
+                        WTF("failed: ${e.message}")
                     }
                 }
             } else {

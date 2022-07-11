@@ -1,11 +1,8 @@
 package com.thanh_nguyen.test_count_down
 
-import android.icu.util.ChineseCalendar
-import com.thanh_nguyen.test_count_down.utils.CMN
 import org.junit.Test
 
 import org.junit.Assert.*
-import java.util.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

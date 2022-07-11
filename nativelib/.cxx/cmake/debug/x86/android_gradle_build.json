@@ -1,19 +1,19 @@
 {
   "buildFiles": [
-    "/Users/thanhnh/github/tet_count_down/nativelib/src/main/cpp/CMakeLists.txt"
+    "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
     [
-      "/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/ninja",
+      "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe",
       "-C",
-      "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86",
+      "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86",
       "clean"
     ]
   ],
   "buildTargetsCommandComponents": [
-    "/Users/thanhnh/Library/Android/sdk/cmake/3.18.1/bin/ninja",
+    "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe",
     "-C",
-    "/Users/thanhnh/github/tet_count_down/nativelib/.cxx/cmake/debug/x86",
+    "D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\debug\\x86",
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
@@ -21,14 +21,14 @@
       "toolchain": "toolchain",
       "abi": "x86",
       "artifactName": "nativelib",
-      "output": "/Users/thanhnh/github/tet_count_down/nativelib/build/intermediates/cmake/debug/obj/x86/libnativelib.so",
+      "output": "D:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\debug\\obj\\x86\\libnativelib.so",
       "runtimeFiles": []
     }
   },
   "toolchains": {
     "toolchain": {
-      "cCompilerExecutable": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
-      "cppCompilerExecutable": "/Users/thanhnh/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+      "cCompilerExecutable": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
     }
   },
   "cFileExtensions": [],

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "D:/Github/tet_count_down/nativelib/.cxx/cmake/release/armeabi-v7a",
+  "command": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi23 --gcc-toolchain=C:/Users/Thanh/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Thanh/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dnativelib_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC -o CMakeFiles\\nativelib.dir\\nativelib.cpp.o -c D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\nativelib.cpp",
+  "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\nativelib.cpp"
+}
+]

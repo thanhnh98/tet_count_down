@@ -1,0 +1,1 @@
+D:\Github\tet_count_down\nativelib\build\intermediates\cmake\release\obj\x86_64

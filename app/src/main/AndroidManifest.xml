@@ -74,10 +74,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".service.CountDownForegroundService">
-
-        </service>
-
         <activity android:name=".app.presentation.ui.main.about.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BaseProject.FullScreen"
@@ -87,6 +83,15 @@
             android:exported="true">
 
         </activity>
+
+        <service android:name=".service.CountDownForegroundService"/>
+        <service android:name=".service.AppFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

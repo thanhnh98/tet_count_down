@@ -1,0 +1,86 @@
+[
+  {
+    "level": "INFO",
+    "message": "Start JSON generation. Platform version: 23 min SDK version: armeabi-v7a",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "rebuilding JSON D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json due to:",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "- expected json D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "- missing previous command file D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt, will remove stale json folder",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "removing stale contents from \u0027D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\u0027",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "created folder \u0027D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\u0027",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "executing cmake Executable : C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\n-DCMAKE_FIND_ROOT_PATH\u003dD:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\prefab\\armeabi-v7a\\prefab\n-DCMAKE_BUILD_TYPE\u003dRelease\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DANDROID_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DANDROID_PLATFORM\u003dandroid-23\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_SYSTEM_VERSION\u003d23\n-BD:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\n-GNinja\njvmArgs : \n\n",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "Executable : C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\n-DCMAKE_FIND_ROOT_PATH\u003dD:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\prefab\\armeabi-v7a\\prefab\n-DCMAKE_BUILD_TYPE\u003dRelease\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DANDROID_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DANDROID_PLATFORM\u003dandroid-23\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Github\\tet_count_down\\nativelib\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_SYSTEM_VERSION\u003d23\n-BD:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\n-GNinja\njvmArgs : \n\n",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "done executing cmake",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "write command file D:\\Github\\tet_count_down\\nativelib\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON generation completed without problems",
+    "file": "D:\\Github\\tet_count_down\\nativelib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag": "release|armeabi-v7a",
+    "diagnosticCode": "UNKNOWN"
+  }
+]

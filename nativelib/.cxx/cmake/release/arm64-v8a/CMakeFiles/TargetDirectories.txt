@@ -1,0 +1,3 @@
+D:/Github/tet_count_down/nativelib/.cxx/cmake/release/arm64-v8a/CMakeFiles/nativelib.dir
+D:/Github/tet_count_down/nativelib/.cxx/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Github/tet_count_down/nativelib/.cxx/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir

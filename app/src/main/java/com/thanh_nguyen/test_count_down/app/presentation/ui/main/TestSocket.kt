@@ -5,7 +5,7 @@ import com.neovisionaries.ws.client.*
 import com.thanh_nguyen.test_count_down.R
 import com.thanh_nguyen.test_count_down.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.test_count_down.databinding.ActivityTestSocketBinding
-import com.thanh_nguyen.test_count_down.utils.CMN
+import com.thanh_nguyen.test_count_down.utils.WTF
 import com.thanh_nguyen.test_count_down.utils.onClick
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -27,12 +27,12 @@ class TestSocket: BaseActivity<ActivityTestSocketBinding>() {
                             headers: MutableMap<String, MutableList<String>>?
                         ) {
                             super.onConnected(websocket, headers)
-                            CMN("connected")
+                            WTF("connected")
                         }
 
                         override fun onTextFrame(websocket: WebSocket?, frame: WebSocketFrame?) {
                             super.onTextFrame(websocket, frame)
-                            CMN("FRAME: ${frame?.isTextFrame} -> ${frame?.payloadText}")
+                            WTF("FRAME: ${frame?.isTextFrame} -> ${frame?.payloadText}")
                         }
                     })
                     .connect()

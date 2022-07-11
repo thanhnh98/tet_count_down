@@ -6,7 +6,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.thanh_nguyen.test_count_down.utils.getScreenWidth
 import com.thanh_nguyen.test_count_down.App
 import com.thanh_nguyen.test_count_down.R
-import com.thanh_nguyen.test_count_down.utils.CMN
 import kotlinx.coroutines.*
 
 class BannerViewPagerHelper(

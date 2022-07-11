@@ -1,1 +1,1 @@
-/Users/thanhnh/github/tet_count_down/nativelib/src/main/cpp/CMakeLists.txt
+D:\Github\tet_count_down\nativelib\src\main\cpp\CMakeLists.txt

@@ -85,8 +85,8 @@ inline fun <reified T, reified LD: LiveData<T>> AppCompatActivity.observeLiveDat
     liveData.observe(this, observer)
 }
 
-fun CMN(msg: String){
-    Log.e("CMN", msg)
+fun WTF(msg: String){
+    Log.e("WTF", msg)
 }
 
 fun Long.formatTwoNumber(): String{
