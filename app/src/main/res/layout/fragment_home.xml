@@ -14,398 +14,404 @@
             android:scaleType="centerCrop"
             />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lt_flower"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:alpha="0"
-            tools:alpha="1"
-            app:fadeInAppearance="@{1}"
-            app:lottie_scale="1"
-            app:lottie_fileName="new_year.json"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_horizontal_1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.55"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_horizontal_2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.75"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_horizontal_3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.95"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintGuide_percent="0.5"/>
-
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/ltv_tiger"
-            android:layout_width="@dimen/_160dp"
-            android:layout_height="@dimen/_160dp"
-            app:lottie_fileName="main_lottie.json"
-            app:lottie_loop="true"
-            app:lottie_autoPlay="true"
-            app:fadeInAppearance="@{1}"
-            app:layout_constraintBottom_toTopOf="@id/ctl_day"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ctl_day"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/gl_vertical"
-            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
-            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_2"
-            >
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_month"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_day"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewTop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/gl_month"
-                android:text="00"
-                android:gravity="center"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewBottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gl_month"
-                android:text="@string/day"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_40dp"
-            android:layout_marginBottom="@dimen/_40dp"
-            android:layout_marginHorizontal="@dimen/_16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_title"
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lt_flower"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16dp"
-                style="@style/TextViewTitle"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/big_title"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_calendar"
-                style="@style/TextViewSemiBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:text="(Tết nguyên đán)"
-                android:alpha="0"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_chinese_calendar"
-                style="@style/TextViewNormal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:text="(Tết nguyên đán)"
-                android:alpha="0"
-                app:layout_constraintTop_toBottomOf="@id/tv_calendar"
-                />
-
-            <TextView
-                style="@style/TextViewWish"
-                android:id="@+id/tv_wish"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_16dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_chinese_calendar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/bg_wish_container"
-                android:layout_marginTop="@dimen/_8dp"
-                android:text="Mỗi sáng thức dậy, bạn có thêm một cơ hội mới, cố gắng nắm bắt nhé. Good day!"
                 android:alpha="0"
                 tools:alpha="1"
+                app:fadeInAppearance="@{1}"
+                app:lottie_scale="1"
+                app:lottie_fileName="new_year.json"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ctl_hour"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_16dp"
-            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
-            app:layout_constraintLeft_toRightOf="@id/gl_vertical"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_2"
-            >
-
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_day"
+                android:id="@+id/gl_horizontal_1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_hour"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewTop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/gl_day"
-                android:text="00"
-                android:gravity="center"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewBottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gl_day"
-                android:text="@string/hour"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_horizontal_2"
-            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_3"
-            app:layout_constraintRight_toLeftOf="@id/gl_vertical"
-            >
-
+                app:layout_constraintGuide_percent="0.55"/>
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_minute"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:id="@+id/gl_horizontal_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_minute"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewTop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/gl_minute"
-                android:text="00"
-                android:gravity="center"
-                />
-
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewBottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gl_minute"
-                android:text="@string/minute"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/gl_vertical"
-            app:layout_constraintBottom_toBottomOf="@id/gl_horizontal_3"
-            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_2"
-            >
-
+                app:layout_constraintGuide_percent="0.75"/>
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_second"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:id="@+id/gl_horizontal_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6"
-                />
+                app:layout_constraintGuide_percent="0.95"/>
 
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
-                android:id="@+id/tv_second"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                style="@style/TextViewTop"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/gl_second"
-                android:text="00"
-                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintGuide_percent="0.5"/>
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltv_tiger"
+                android:layout_width="@dimen/_160dp"
+                android:layout_height="@dimen/_160dp"
+                app:lottie_fileName="main_lottie.json"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                app:fadeInAppearance="@{1}"
+                app:layout_constraintBottom_toTopOf="@id/ctl_day"
+                app:layout_constraintLeft_toLeftOf="parent"
                 />
 
-            <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctl_day"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/gl_vertical"
+                app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
+                app:layout_constraintBottom_toTopOf="@id/gl_horizontal_2"
+                >
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.6"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewTop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/gl_month"
+                    android:text="00"
+                    android:gravity="center"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewBottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gl_month"
+                    android:text="@string/day"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                style="@style/TextViewBottom"
+                android:layout_marginTop="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:layout_marginHorizontal="@dimen/_16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1">
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16dp"
+                    style="@style/TextViewTitle"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/big_title"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_calendar"
+                    style="@style/TextViewSemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="(Tết nguyên đán)"
+                    android:alpha="0"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_chinese_calendar"
+                    style="@style/TextViewNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="(Tết nguyên đán)"
+                    android:alpha="0"
+                    app:layout_constraintTop_toBottomOf="@id/tv_calendar"
+                    />
+
+                <TextView
+                    style="@style/TextViewWish"
+                    android:id="@+id/tv_wish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_chinese_calendar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/bg_wish_container"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:text="Mỗi sáng thức dậy, bạn có thêm một cơ hội mới, cố gắng nắm bắt nhé. Good day!"
+                    android:alpha="0"
+                    tools:alpha="1"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctl_hour"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_16dp"
+                app:layout_constraintTop_toBottomOf="@id/gl_horizontal_1"
+                app:layout_constraintLeft_toRightOf="@id/gl_vertical"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/gl_horizontal_2"
+                >
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.6"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_hour"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewTop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/gl_day"
+                    android:text="00"
+                    android:gravity="center"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewBottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gl_day"
+                    android:text="@string/hour"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_horizontal_2"
+                app:layout_constraintBottom_toTopOf="@id/gl_horizontal_3"
+                app:layout_constraintRight_toLeftOf="@id/gl_vertical"
+                >
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_minute"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.6"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_minute"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewTop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/gl_minute"
+                    android:text="00"
+                    android:gravity="center"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewBottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gl_minute"
+                    android:text="@string/minute"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/gl_vertical"
+                app:layout_constraintBottom_toBottomOf="@id/gl_horizontal_3"
+                app:layout_constraintTop_toBottomOf="@id/gl_horizontal_2"
+                >
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_second"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.6"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:id="@+id/tv_second"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewTop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/gl_second"
+                    android:text="00"
+                    android:gravity="center"
+                    />
+
+                <com.thanh_nguyen.test_count_down.common.view.TextViewEx
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    style="@style/TextViewBottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gl_second"
+                    android:text="@string/second"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gl_second"
-                android:text="@string/second"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_3">
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_open_widget"
-            android:layout_width="@dimen/_28dp"
-            android:layout_height="@dimen/_28dp"
-            android:layout_marginRight="@dimen/_16dp"
-            android:src="@drawable/ic_open_widget"
-            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_3"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="gone"
-            />
-
-        <FrameLayout
-            android:id="@+id/fl_img_pin_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toLeftOf="@id/img_open_widget"
-            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1"
-            android:padding="@dimen/_6dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:layout_marginRight="@dimen/_16dp"
-            android:background="@drawable/bg_round_gray_opacity_50">
+                app:layout_constraintTop_toBottomOf="@id/gl_horizontal_3">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_pin"
-                android:layout_width="@dimen/_16dp"
-                android:layout_height="@dimen/_16dp"
-                android:src="@drawable/ic_unpin"
-                android:layout_gravity="center"
+                android:id="@+id/img_open_widget"
+                android:layout_width="@dimen/_28dp"
+                android:layout_height="@dimen/_28dp"
+                android:layout_marginRight="@dimen/_16dp"
+                android:src="@drawable/ic_open_widget"
+                app:layout_constraintTop_toBottomOf="@id/gl_horizontal_3"
+                app:layout_constraintRight_toRightOf="parent"
+                android:visibility="gone"
                 />
-        </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_img_pin_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/img_open_widget"
+                app:layout_constraintBottom_toTopOf="@id/gl_horizontal_1"
+                android:padding="@dimen/_6dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_16dp"
+                android:background="@drawable/bg_round_gray_opacity_50">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_pin"
+                    android:layout_width="@dimen/_16dp"
+                    android:layout_height="@dimen/_16dp"
+                    android:src="@drawable/ic_unpin"
+                    android:layout_gravity="center"
+                    />
+            </FrameLayout>
 
 
 
-        <FrameLayout
-            android:id="@+id/fl_img_sound_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="@id/fl_img_pin_container"
-            app:layout_constraintBottom_toTopOf="@id/fl_img_pin_container"
-            android:padding="@dimen/_6dp"
-            android:layout_marginBottom="@dimen/_6dp"
-            android:background="@drawable/bg_round_gray_opacity_50">
+            <FrameLayout
+                android:id="@+id/fl_img_sound_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="@id/fl_img_pin_container"
+                app:layout_constraintBottom_toTopOf="@id/fl_img_pin_container"
+                android:padding="@dimen/_6dp"
+                android:layout_marginBottom="@dimen/_6dp"
+                android:background="@drawable/bg_round_gray_opacity_50">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_sound"
+                    android:layout_width="@dimen/_16dp"
+                    android:layout_height="@dimen/_16dp"
+                    android:src="@drawable/ic_volume_on"
+                    />
+            </FrameLayout>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lt_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:lottie_fileName="music.json"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginHorizontal="@dimen/_16dp"/>
+
+            <TextView
+                android:id="@+id/tv_music_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="@dimen/_200dp"
+                android:text="@string/default_music_name"
+                app:layout_constraintLeft_toRightOf="@id/lt_music"
+                app:layout_constraintTop_toTopOf="@id/lt_music"
+                app:layout_constraintBottom_toBottomOf="@id/lt_music"
+                android:textColor="@color/white"
+                android:fontFamily="@font/gilroy_normal"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit ="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scrollHorizontally="true"
+                android:layout_marginLeft="@dimen/_4dp"
+                />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_sound"
+                android:id="@+id/ic_goto_music"
                 android:layout_width="@dimen/_16dp"
                 android:layout_height="@dimen/_16dp"
-                android:src="@drawable/ic_volume_on"
+                app:srcCompat="@drawable/ic_arrow_right"
+                android:layout_marginLeft="@dimen/_4dp"
+                app:layout_constraintLeft_toRightOf="@id/tv_music_name"
+                app:layout_constraintTop_toTopOf="@id/tv_music_name"
+                app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_share"
+                android:layout_width="@dimen/_16dp"
+                android:layout_height="@dimen/_16dp"
+                app:srcCompat="@drawable/ic__share"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_margin="@dimen/_16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_music_name"
+                app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
+
+            <FrameLayout
+                android:id="@+id/container_fireworks"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 />
-        </FrameLayout>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lt_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:lottie_fileName="music.json"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_16dp"/>
-
-        <TextView
-            android:id="@+id/tv_music_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="@dimen/_200dp"
-            android:text="@string/default_music_name"
-            app:layout_constraintLeft_toRightOf="@id/lt_music"
-            app:layout_constraintTop_toTopOf="@id/lt_music"
-            app:layout_constraintBottom_toBottomOf="@id/lt_music"
-            android:textColor="@color/white"
-            android:fontFamily="@font/gilroy_normal"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit ="marquee_forever"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"
-            android:layout_marginLeft="@dimen/_4dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_goto_music"
-            android:layout_width="@dimen/_16dp"
-            android:layout_height="@dimen/_16dp"
-            app:srcCompat="@drawable/ic_arrow_right"
-            android:layout_marginLeft="@dimen/_4dp"
-            app:layout_constraintLeft_toRightOf="@id/tv_music_name"
-            app:layout_constraintTop_toTopOf="@id/tv_music_name"
-            app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_share"
-            android:layout_width="@dimen/_16dp"
-            android:layout_height="@dimen/_16dp"
-            app:srcCompat="@drawable/ic__share"
-            android:layout_marginLeft="@dimen/_4dp"
-            android:layout_margin="@dimen/_16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_music_name"
-            app:layout_constraintBottom_toBottomOf="@id/tv_music_name"/>
-
-        <FrameLayout
-            android:id="@+id/container_fireworks"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -30,6 +30,7 @@ class GetStartedScreen: BaseActivity<ActivityGetStartedBinding>() {
         // Handle the splash screen transition.
         installSplashScreen()
         super.onCreate(savedInstanceState)
+        enableFullScreen()
         soundManager.playFireworkSound()
         lifecycleScope.launch {
             delay(2000)

@@ -22,6 +22,7 @@ import com.thanh_nguyen.test_count_down.common.viewpager_transformer.CubeInPageT
 import com.thanh_nguyen.test_count_down.databinding.ActivityMainBinding
 import com.thanh_nguyen.test_count_down.service.CountDownForegroundService
 import com.thanh_nguyen.test_count_down.utils.*
+import com.thanh_nguyen.utils.transparentStatusAndNavigation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

@@ -8,7 +8,7 @@ import android.view.WindowManager
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -32,21 +32,16 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, inflateLayout())
-        enableFullScreen()
     }
 
-    private fun enableFullScreen(){
+    fun enableFullScreen(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//        )
         hideSystemUI()
     }
 
-    private fun hideSystemUI() {
+    open fun hideSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         WindowInsetsControllerCompat(window, binding.root).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
@@ -54,7 +49,7 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
         }
     }
 
-    private fun showSystemUI() {
+    open fun showSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         WindowInsetsControllerCompat(window, binding.root).show(WindowInsetsCompat.Type.systemBars())
     }

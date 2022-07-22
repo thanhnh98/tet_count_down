@@ -30,6 +30,6 @@ class AppFirebaseMessagingService: FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         WTF("${remoteMessage.notification?.body}")
-        Toast.makeText(this, "VCL",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "VCL",Toast.LENGTH_SHORT).show()
     }
 }

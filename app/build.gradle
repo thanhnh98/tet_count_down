@@ -81,7 +81,7 @@ dependencies {
 //    implementation project(Modules.facebook)
 //    implementation project(Modules.google)
 //    implementation project(Modules.youtube)
-//    implementation project(Modules.image_compressor)
+    implementation project(Modules.utils)
     implementation Deps.stdlib
     implementation Deps.core_ktx
     implementation Deps.appcompat

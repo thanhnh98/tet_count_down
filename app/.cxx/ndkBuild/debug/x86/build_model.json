@@ -18,10 +18,7 @@
     "soFolder": "D:\\Github\\tet_count_down\\app\\build\\intermediates\\ndkBuild\\debug\\lib",
     "isDebuggableEnabled": true,
     "validAbiList": [
-      "ARMEABI_V7A",
-      "ARM64_V8A",
-      "X86",
-      "X86_64"
+      "X86"
     ],
     "buildTargetSet": [],
     "implicitBuildTargetSet": [],
@@ -118,6 +115,7 @@
         "sdkFolder": "C:\\Users\\Thanh\\AppData\\Local\\Android\\Sdk",
         "isNativeCompilerSettingsCacheEnabled": false,
         "isBuildOnlyTargetAbiEnabled": true,
+        "ideBuildTargetAbi": "x86,armeabi-v7a,armeabi",
         "isCmakeBuildCohabitationEnabled": false,
         "isPrefabEnabled": false,
         "isV2NativeModelEnabled": true

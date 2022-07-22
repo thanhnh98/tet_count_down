@@ -41,7 +41,7 @@
 
         <activity
             android:name=".app.presentation.ui.main.MainActivity"
-            android:theme="@style/Theme.BaseProject.FullScreen"
+            android:theme="@style/Theme.BaseProject.MainScreen"
             android:exported="true"
             >
         </activity>

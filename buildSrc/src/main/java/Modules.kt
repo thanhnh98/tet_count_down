@@ -3,4 +3,5 @@ object Modules {
     const val google = ":google"
     const val youtube = ":youtube"
     const val image_compressor = ":image_compressor"
+    const val utils = ":utils"
 }
